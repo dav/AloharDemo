@@ -316,6 +316,9 @@ enum {
 + (NSArray *)userStayLocationHistory;
 
 //PRIVATE
+
+- (void)_manuallySetUserID:(NSString *)userID andToken:(NSString *)token;
+
 - (void)motionStateChanged:(ALMotionState *)motionState;
 
 - (void)userStayChanged:(ALUserStay *)userStay;
@@ -323,6 +326,10 @@ enum {
 - (void)departLocation;
 
 - (void)arriveLocation;
+
+
+//TODO remove
++ (NSArray *)checkingLogs;
 
 @end
 
