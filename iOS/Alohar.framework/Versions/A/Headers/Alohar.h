@@ -328,8 +328,8 @@ enum {
 - (void)arriveLocation;
 
 
-//TODO remove
-+ (NSArray *)checkingLogs;
+//PRIVATE
++ (NSArray *)logs;
 
 @end
 
