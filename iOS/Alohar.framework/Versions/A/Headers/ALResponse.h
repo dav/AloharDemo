@@ -14,8 +14,10 @@ enum {
     kALRequestTypePlaces,
     kALRequestTypeMotionState,
     kALRequestTypeStayDetail,
-    kALRequestTypePlaceDetail
-    
+    kALRequestTypePlaceDetail,
+    kALRequestTypeCorrectUserStay,
+    kALRequestTypeAddUserStay,
+    kALRequestTypeDeleteUserStay,
 };
 
 typedef enum {

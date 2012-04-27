@@ -14,6 +14,19 @@
 #import "ALUserStay.h"
 
 /*!
+ Complete handler block for Alohar Requests
+    if success, ALResponse instance will be set, otherwise error will be thrown
+ */
+
+typedef void (^ALRequestCompleteBlock)(ALResponse*, NSError*);
+
+/*!
+  Block alternative for ALSessionDelegate
+    if success, userToken will be returned, otherwise error will be thrown
+ */
+typedef void (^ALSessionCompleteBlock)(NSString*, NSError*);
+
+/*!
  * Protocol for Registration and Authentication.
  */
 @protocol ALSessionDelegate <NSObject>
@@ -26,23 +39,6 @@
 /*!
  * Callback when user failed to login. 
  * \param error Detail error information.
- */
-- (void)aloharDidFailWithError:(NSError *)error;
-@end
-
-/*!
- * Common protocol for rest of Alohar requests.
- */
-@protocol ALRequestDelegate <NSObject>
-@optional
-/*!
- * Callback when the request returns successfully. 
- * \param response An instance of ALResponse.
- */
-- (void)aloharRequestFinished:(ALResponse *)response;
-/*!
- *Callback when request fails with error.
- * \param error Detailed error infomation.
  */
 - (void)aloharDidFailWithError:(NSError *)error;
 @end
@@ -132,7 +128,7 @@ enum {
 + (NSString *)version;
 
 /*!
- * Register a new user for a given App
+ * Register a new user for a given App using delegate
  *
  * \param appID The AppID assigned for the App, click https://www.alohar.com/developer to register your app.
  * \param APIKey The ApiKey assigned for the App
@@ -140,9 +136,18 @@ enum {
  */
 + (void)registerWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey withDelegate:(id<ALSessionDelegate>)delegate;
 
+/*!
+ * Register a new user for a given App using Block
+ *
+ * \param appID The AppID assigned for the App, click https://www.alohar.com/developer to register your app.
+ * \param APIKey The ApiKey assigned for the App
+ * \param handler The complete block
+ */
++ (void)registerWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey completeHandler:(ALSessionCompleteBlock)handler;
 
 /*!
- * Authenticate an existing user. For new user, please use 
+ * Authenticate an existing user. 
+ * For new user, please use 
  * registerWithAppID:andAPIKey:withDelegate instead.
  * 
  * \param appID The AppID assigned for the App.
@@ -152,8 +157,26 @@ enum {
  */
 + (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID withDelegate:(id<ALSessionDelegate>)delegate;
 
+/*!
+ * Authenticate an existing user using block. 
+ * For new user, please use 
+ * registerWithAppID:andAPIKey:completeHandler instead.
+ * 
+ * \param appID The AppID assigned for the App.
+ * \param APIKey The ApiKey assigned to the App.
+ * \param userID The unique user ID assigned from Alohar from registration.
+ * \param handler The complete handler block
+ */
++ (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID completeHandler:(ALSessionCompleteBlock)handler;
 
+/*!
+ * Start the monitoring service
+ */
 + (void)startMonitoringUser;
+
+/*!
+ * Stop the monitoring service
+ */
 + (void)stopMonitoringUser;
 
 + (void)setMotionDelegate:(id <ALMotionDelegate>)delegate;
@@ -168,18 +191,18 @@ enum {
 /*!
  * Get the user's user stays for a given date.
  * \param date The date to search user stay.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getUserStaysForDate:(NSDate *)date withDelegate:(id <ALRequestDelegate>)delegate;
++ (void)getUserStaysForDate:(NSDate *)date completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get the user's user stays within a time period
  * \param startDate The start time.
  * \param endDate The end time.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate withDelegate:(id <ALRequestDelegate>)delegate;
- 
++ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate completeHandler:(ALRequestCompleteBlock)handler;
+
 /*!
  * Get user's user stays within a time period and a location boundary.
  * 
@@ -189,37 +212,38 @@ enum {
  * \param radius The search radius in meter. Optinal. Skip if the location is not provided.
  * \param limit The limitation of total number matches to return. Optional. The default is 500.
  * \param includeCand Flag to indicate whether the user stay shall include its candidates. Optional. The default is NO.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  * 
  */
-+ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate atLocation:(CLLocation *)location radius:(NSInteger)radius limit:(NSInteger)limit includeCandidiates:(BOOL)includeCand withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate atLocation:(CLLocation *)location radius:(NSInteger)radius limit:(NSInteger)limit includeCandidiates:(BOOL)includeCand completeHandler:(ALRequestCompleteBlock)handler;
+
 
 /*!
  * Get all places a user visited.
  * 
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  * 
  * *NOTE* The response might be large depends on the total number of the places user visisted. Recommend to use getPlaces:withCategory:withDelegate instead. 
  */
-+ (void)getAllPlacesWithDelegate:(id <ALRequestDelegate>)delegate;
++ (void)getAllPlacesWithCompleteHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get places user visited and match the given name
  * 
  * \param namePattern The regular expression to match the place name.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  */
 
-+ (void)getPlaces:(NSString *)namePattern withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getPlaces:(NSString *)namePattern completeHandler:(ALRequestCompleteBlock)handler;
 /*!
  * Get places user visited match the given name and category 
  * 
  * \param namePattern The regular expression to match the place name
  * \param catPattern The regular expression to match the place's category
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  */
 
-+ (void)getPlaces:(NSString *)namePattern withCategory:(NSString *)catPattern withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getPlaces:(NSString *)namePattern withCategory:(NSString *)catPattern completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get places the user visited within a time window that match the category regex.
@@ -230,44 +254,79 @@ enum {
  * \param visits The mininal numer of visits required for that places. Optioanl. The default is 1.
  * \param catPattern The regular expression to match the place's category
  * \param limit The limitation of total number matches to return. Optional. The default is 500.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getPlaces:(NSString *)namePattern fromDate:(NSDate *)startDate toDate:(NSDate *)endDate minimalVisits:(NSInteger)visits withCategory:(NSString *)catPattern limit:(NSInteger)limit withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getPlaces:(NSString *)namePattern fromDate:(NSDate *)startDate toDate:(NSDate *)endDate minimalVisits:(NSInteger)visits withCategory:(NSString *)catPattern limit:(NSInteger)limit completeHandler:(ALRequestCompleteBlock)handler;
+
+/*!
+ * Correct a user stay's selected POIs with a new place candidate
+ *
+ * \param stayId The user stay's stayId
+ * \param placeId The new selected place's ID
+ * \param handler The complete handler block with ALResponse or Error.
+ */
++ (void)correctStay:(NSInteger)stayId withCandidate:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
+
+
+/*!
+ * Correct a user stay's selected POIs with a new place
+ *
+ * \param stayId The user stay's stayId
+ * \param name The name of a new place
+ * \param loc The location of the new place
+ * \param addr The complete address of the new place
+ * \param category The category type of the new place
+ * \param handler The complete handler block with ALResponse or Error.
+ */
++ (void)correctStay:(NSInteger)stayId withPlace:(NSString*)name location:(CLLocation*)loc address:(NSString*)addr category:(placeCategoryType)category completeHandler:(ALRequestCompleteBlock)handler;
+
+/*!
+ * Delete a user stay
+ * 
+ * \param stayId The user stay's stayId
+ * \param handler The complete handler block with ALResponse or Error.
+ */
++ (void)deletateStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get the place candidates of a user stay.
  * 
- * \param stay A user stay. @see ALUserStay
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param stayId A user stay's ID. @see ALUserStay
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getPlaceCandidatesForStay:(ALUserStay *)stay withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getPlaceCandidatesForStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get all user stays of a place.
  *
- * \param place A place. @see ALPlace
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param placeId A place's ID. @see ALPlace
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getStaysForPlace:(ALPlace *)place withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getStaysForPlace:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get details for a place.
  * 
- * \param place Valid place. 
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param placeId Valid place's placeID 
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getDetailsForPlace:(ALPlace *)place withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getDetailsForPlace:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get details for a user stay.
  *
- * \param stay Valid user stay.
- * \param delegate A delegate that comforms to the ALRequestDelegate protocol.
+ * \param stayId Valid user stay's stayID
+ * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)getDetailsForStay:(ALUserStay *)stay withDelegate:(id<ALRequestDelegate>)delegate;
++ (void)getDetailsForStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*! 
  * Get the user's current location.
+ *
+ * Note: the current location is the last known location of the device in SDK. 
+ * If the monitoring service is stopped, the location will be stale. When the monitoring
+ * service is running, it is close to the real current location in most cases. But it 
+ * is NOT a replacement for the current location of native LocationManager. 
  */
 + (CLLocation *)currentLocation;
 

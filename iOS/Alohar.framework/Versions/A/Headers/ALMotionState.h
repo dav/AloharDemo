@@ -8,14 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-#define ALMotionStateStationary                     0
-#define ALMotionStateWalking                        1
-#define ALMotionStateDriving                        2
-#define ALMotionStateNoData                         3
-#define ALMotionStateBigMove                        4
+#define ALMotionStateStationary                     0               
+#define ALMotionStateWalking                        1               
+#define ALMotionStateSmoothMoving                   2               
+#define ALMotionStateNoData                         3               
+#define ALMotionStateRotation                       4                  
 
 /*!
- * ALMotionState class represents the motion state of the device. 
+    ALMotionState class represents the motion state of the device.
+  
+    We support following high-level motion state:
+    ALMotionStateStationary
+        The device is not moving. e.g. device is put on desk
+    ALMotionStateWalking
+        The device is moving with small regular shakes, e.g device in user's pocket when user is walking
+    ALMotionStateSmoothMoving
+        The device is moving on a smooth surface. e.g. sliding on a desk or driving on highway
+    ALMotionStateRotation
+        The device has significant movement. e.g Waving or Rotating.
+    ALMotionStateNoData
+        Initial unknown state.
+ 
  */
 @interface ALMotionState : NSObject
 @property (nonatomic, strong) NSNumber *state;

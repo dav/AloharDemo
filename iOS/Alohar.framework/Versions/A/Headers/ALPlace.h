@@ -9,6 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef enum {
+    kCategoryGeneric,
+    kCategoryHome,
+    kCategoryWork,
+    kCategorySchool,
+    kCategoryHotel,
+    kCategoryFitness,
+    kCategoryBeauty,
+    kCategoryNaturalSetting,
+    kCategoryEntertainment,
+    kCategoryStore,
+    kCategoryBar,
+    kCategoryCoffeeTea,
+    kCategoryRestaurant,
+} placeCategoryType ;
+
 /*!
  * The ALPlace declares an object that manages a POI. It has the basic
  * meta-data about the place such as name, address, location etc. In 
