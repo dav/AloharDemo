@@ -27,7 +27,7 @@
 {
     UIImageView *newImageView;
     ALMotionState *motionState = [Alohar currentMotionState];
-    if ([motionState.state intValue] == ALMotionStateDriving){
+    if ([motionState.state intValue] == ALMotionStateSmoothMoving){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(280, 10, 42, 21)];
         newImageView.image = [UIImage imageNamed:@"drive2"];
         self.motionStateLabel.text = @"Driving";
@@ -39,7 +39,7 @@
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(290, 10, 14, 24)];
         newImageView.image = [UIImage imageNamed:@"standing"];
         self.motionStateLabel.text = @"Standing";
-    } else if ([motionState.state intValue] == ALMotionStateBigMove){
+    } else if ([motionState.state intValue] == ALMotionStateRotation){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(283, 10, 28, 28)];
         newImageView.image = [UIImage imageNamed:@"bigmove"];
         self.motionStateLabel.text = @"BigMovement";

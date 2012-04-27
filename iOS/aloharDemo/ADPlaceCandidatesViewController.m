@@ -1,27 +1,28 @@
 //
-//  ADVisitsViewController.m
+//  ADPlacesViewController.m
 //  aloharDemo
 //
 //  Created by Jianming Zhou on 3/20/12.
 //  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
 //
 
-#import "ADVisitsViewController.h"
-#import <Alohar/ALUserStay.h>
+#import "ADPlaceCandidatesViewController.h"
+#import "ADPlaceDetailViewController.h"
 
-@interface ADVisitsViewController ()
+@interface ADPlaceCandidatesViewController ()
 
 @end
 
-@implementation ADVisitsViewController
+@implementation ADPlaceCandidatesViewController
+@synthesize loadingView;
 
-@synthesize place, visits;
+@synthesize candidates, stay, delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.visits = [[NSMutableArray alloc] init];
+        self.candidates = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
 }
@@ -29,18 +30,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [Alohar getStaysForPlace:self.place.placeID completeHandler:^void(ALResponse *response, NSError *error) {
+    
+    //load candidates
+    [Alohar getPlaceCandidatesForStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
         if (error) {
-            NSLog(@"Error %@", [error description]);
-        } else {
-            self.visits = [(NSArray *)response.objects mutableCopy];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        }}];
-
-    [self setTitle:[NSString stringWithFormat:@"Visits to %@", self.place.name]];
+            NSLog(@"Error %@", error);
+            return;
+        }
+        
+        self.candidates = [(NSArray *)response.objects mutableCopy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+    
+    [self setTitle:[NSString stringWithFormat:@"Candidates of %@", self.stay.selectedPlace.name]];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -50,8 +55,8 @@
 
 - (void)viewDidUnload
 {
+    [self setLoadingView:nil];
     [super viewDidUnload];
-    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -72,27 +77,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.visits count];
+    return [self.candidates count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    static NSDateFormatter *formatter;
-    if (!formatter) {
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MMM d h:mma"];
-
-    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }  
     
-    ALUserStay *visit = [visits objectAtIndex:[indexPath row]];
-    NSDate *startTime = [NSDate dateWithTimeIntervalSince1970:visit.startTime];
-    NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:visit.endTime];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ to %@", [formatter stringFromDate:startTime], [formatter stringFromDate:endTime]];
+    ALPlace *place = [self.candidates objectAtIndex:[indexPath row]];
+    cell.textLabel.text = place.name;
+    cell.detailTextLabel.text = place.address;
     
     return cell;
 }
@@ -103,6 +101,7 @@
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
+
 
 /*
 // Override to support editing the table view.
@@ -146,6 +145,32 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ALPlace *place = [self.candidates objectAtIndex:[indexPath row]];
+    candidatePlaceId = place.placeID;
+    NSString *msg = [NSString stringWithFormat:@"Do you want to select this place\n %@?", place.name];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:msg delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [alert show];
 }
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex 
+{
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+            [self.navigationController popViewControllerAnimated:YES];
+            [Alohar correctStay:self.stay.stayID withCandidate:candidatePlaceId completeHandler:^(ALResponse *response, NSError *error) {
+                if (self.delegate) {
+                    [self.delegate userStayUpdated];
+                }
+            }];
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

@@ -11,7 +11,7 @@
 #import <Alohar/Alohar.h>
 #import "ADRealTimeViewController.h"
 
-@interface ADMasterViewController : UITableViewController <ALRequestDelegate>
+@interface ADMasterViewController : UITableViewController
 
 - (IBAction)toggleMonitoringUser:(UIBarButtonItem *)sender;
 

@@ -9,7 +9,7 @@
 #import "ADHistoricalViewController.h"
 #import <Alohar/ALPlace.h>
 #import <Alohar/ALUserStay.h>
-#import "ADPlacesViewController.h"
+#import "ADPlaceDetailViewController.h"
 #import "ADVisitsViewController.h"
 
 @interface ADHistoricalViewController ()
@@ -42,7 +42,17 @@
 
     //Here show case three types of place search:
     //case 1 search all places
-    [Alohar getPlaces:@".*" withDelegate:self];
+    [Alohar getPlaces:@".*" completeHandler:^(ALResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@", error);
+        } else {
+            places = [(NSArray *)response.objects mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.placeCountLabel.text = [NSString stringWithFormat:@"%d", places.count];
+                [self.allPlacesTableView reloadData];
+            });
+        }
+    }];
     
     //case 2 search all places in restaurant category
     //[Alohar getPlaces:@".*" withCategory:@"^rest" withDelegate:self];
@@ -52,7 +62,18 @@
     
     //Here show case three types of search:
     //case 1: search for one specific date
-    [Alohar getUserStaysForDate:[NSDate date] withDelegate:self];
+    [Alohar getUserStaysForDate:[NSDate date] completeHandler:^(ALResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@", error);
+        } else {
+            userstays = [(NSArray *)response.objects mutableCopy];
+            NSLog(@"Updated user stays: %@", userstays);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.stayCountLabel.text = [NSString stringWithFormat:@"%d", userstays.count];
+                [self.recentStaysTableView reloadData];
+            }); 
+        }
+    }];
     
     //case 2: search for one period
 //    [Alohar getUserStaysFromDate:startDate toDate:[NSDate date] withDelegate:self];
@@ -65,38 +86,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self doSearch];
 }
 
 - (IBAction)refresh:(id)sender
 {
     [self doSearch];
-}
-
-
-- (void)aloharRequestFinished:(ALResponse *)response
-{
-    if (response.requestType == kALRequestTypePlaces){
-        places = [(NSArray *)response.objects mutableCopy];
-        NSLog(@"Updated places: %@", places);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.placeCountLabel.text = [NSString stringWithFormat:@"%d", places.count];
-            [self.allPlacesTableView reloadData];
-        });
-    } else if (response.requestType == kALRequestTypeUserStays){
-        userstays = [(NSArray *)response.objects mutableCopy];
-        NSLog(@"Updated user stays: %@", userstays);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.stayCountLabel.text = [NSString stringWithFormat:@"%d", userstays.count];
-            [self.recentStaysTableView reloadData];
-        }); 
-    }
-}
-
-- (void)aloharDidFailWithError:(NSError *)error 
-{
-    NSLog(@"Error %@", [error description]);
 }
 
 - (void)viewDidUnload
@@ -112,10 +112,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.recentStaysTableView){
-        NSLog(@"userstay count: %d", userstays.count);
         return userstays.count;
     }else{
-        NSLog(@"places count");
         return places.count;
     }
     
@@ -149,7 +147,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }  
         ALPlace *place = [places objectAtIndex:indexPath.row];
-        cell.textLabel.text = place.name;
+        cell.textLabel.text = [NSString stringWithFormat:@"[%d] %@", place.visitCount, place.name];
     }
         
     return cell;
@@ -157,10 +155,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showCandidates"]){
+    if ([[segue identifier] isEqualToString:@"showDetail"]){
         NSIndexPath *indexPath = [self.recentStaysTableView indexPathForSelectedRow];
         ALUserStay *stay = [userstays objectAtIndex:indexPath.row];
-        ADPlacesViewController *destinationView = segue.destinationViewController;
+        ADPlaceDetailViewController *destinationView = segue.destinationViewController;
         destinationView.stay = stay;
     } else if ([[segue identifier] isEqualToString:@"showVisits"]){
         NSIndexPath *indexPath = [self.allPlacesTableView indexPathForSelectedRow];
@@ -183,7 +181,7 @@
     if (tableView == self.allPlacesTableView) {
         [self performSegueWithIdentifier:@"showVisits" sender:self];
     } else if (tableView == self.recentStaysTableView) {
-        [self performSegueWithIdentifier:@"showCandidates" sender:self];
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

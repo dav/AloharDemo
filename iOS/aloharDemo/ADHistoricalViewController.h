@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Alohar/Alohar.h>
 
-@interface ADHistoricalViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ALRequestDelegate>
+@interface ADHistoricalViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak) IBOutlet UITableView *recentStaysTableView, *allPlacesTableView;
 @property (nonatomic, strong) NSMutableArray *places, *userstays;
 

@@ -11,8 +11,9 @@
 #import <Alohar/Alohar.h>
 #import <Alohar/ALPlace.h>
 
-@interface ADVisitsViewController : UITableViewController <ALRequestDelegate>
+@interface ADVisitsViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *visits;
 @property (nonatomic, strong) ALPlace *place;
+
 @end
