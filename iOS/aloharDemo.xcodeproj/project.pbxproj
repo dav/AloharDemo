@@ -43,9 +43,10 @@
 		88AAB214150EA2F3006CCCAA /* standing.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAB20E150EA2F3006CCCAA /* standing.png */; };
 		88AAB217150EA3E1006CCCAA /* nodata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAB215150EA3E1006CCCAA /* nodata@2x.png */; };
 		88AAB218150EA3E1006CCCAA /* nodata.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAB216150EA3E1006CCCAA /* nodata.png */; };
-		E623B83F15262CA200F5C37B /* Alohar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E623B83E15262CA200F5C37B /* Alohar.framework */; };
+		E6159ADD1548B7FE00EAF88E /* ADPlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6159ADC1548B7FE00EAF88E /* ADPlaceDetailViewController.m */; };
 		E6DA845A15212A5E00FD74EF /* ADEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DA845915212A5E00FD74EF /* ADEventTableViewCell.m */; };
-		E6EAB26E151915A700128BFE /* ADPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EAB26D151915A700128BFE /* ADPlacesViewController.m */; };
+		E6E4045A154B18CE004CFE79 /* Alohar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E40459154B18CE004CFE79 /* Alohar.framework */; };
+		E6EAB26E151915A700128BFE /* ADPlaceCandidatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EAB26D151915A700128BFE /* ADPlaceCandidatesViewController.m */; };
 		E6EAB271151915BB00128BFE /* ADVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EAB270151915BB00128BFE /* ADVisitsViewController.m */; };
 		E6F9E16E151A9456004AA090 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F9E16D151A9456004AA090 /* MessageUI.framework */; };
 		E6F9E172151A9D47004AA090 /* ADProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F9E171151A9D47004AA090 /* ADProfileViewController.m */; };
@@ -97,11 +98,13 @@
 		88AAB20E150EA2F3006CCCAA /* standing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = standing.png; path = images/standing.png; sourceTree = "<group>"; };
 		88AAB215150EA3E1006CCCAA /* nodata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nodata@2x.png"; path = "images/nodata@2x.png"; sourceTree = "<group>"; };
 		88AAB216150EA3E1006CCCAA /* nodata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nodata.png; path = images/nodata.png; sourceTree = "<group>"; };
-		E623B83E15262CA200F5C37B /* Alohar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alohar.framework; sourceTree = "<group>"; };
+		E6159ADB1548B7FE00EAF88E /* ADPlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlaceDetailViewController.h; sourceTree = "<group>"; };
+		E6159ADC1548B7FE00EAF88E /* ADPlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlaceDetailViewController.m; sourceTree = "<group>"; };
 		E6DA845815212A5E00FD74EF /* ADEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADEventTableViewCell.h; sourceTree = "<group>"; };
 		E6DA845915212A5E00FD74EF /* ADEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADEventTableViewCell.m; sourceTree = "<group>"; };
-		E6EAB26C151915A700128BFE /* ADPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlacesViewController.h; sourceTree = "<group>"; };
-		E6EAB26D151915A700128BFE /* ADPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlacesViewController.m; sourceTree = "<group>"; };
+		E6E40459154B18CE004CFE79 /* Alohar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alohar.framework; sourceTree = "<group>"; };
+		E6EAB26C151915A700128BFE /* ADPlaceCandidatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlaceCandidatesViewController.h; sourceTree = "<group>"; };
+		E6EAB26D151915A700128BFE /* ADPlaceCandidatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlaceCandidatesViewController.m; sourceTree = "<group>"; };
 		E6EAB26F151915BB00128BFE /* ADVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVisitsViewController.h; sourceTree = "<group>"; };
 		E6EAB270151915BB00128BFE /* ADVisitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVisitsViewController.m; sourceTree = "<group>"; };
 		E6F9E16D151A9456004AA090 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -127,7 +130,7 @@
 				5BB7800D14F75A89007F9C1F /* libz.dylib in Frameworks */,
 				5BB7800E14F75A89007F9C1F /* MobileCoreServices.framework in Frameworks */,
 				5BB7800C14F75A89007F9C1F /* CoreMotion.framework in Frameworks */,
-				E623B83F15262CA200F5C37B /* Alohar.framework in Frameworks */,
+				E6E4045A154B18CE004CFE79 /* Alohar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +140,6 @@
 		5BB77F6314F72236007F9C1F = {
 			isa = PBXGroup;
 			children = (
-				E623B83E15262CA200F5C37B /* Alohar.framework */,
 				5BB77F7814F72236007F9C1F /* aloharDemo */,
 				5BB77F7114F72236007F9C1F /* Frameworks */,
 				5BB77F6F14F72236007F9C1F /* Products */,
@@ -155,6 +157,7 @@
 		5BB77F7114F72236007F9C1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E6E40459154B18CE004CFE79 /* Alohar.framework */,
 				E6F9E16D151A9456004AA090 /* MessageUI.framework */,
 				885F3457150E999F00366AA1 /* MapKit.framework */,
 				5BB7800A14F75A7D007F9C1F /* CoreMotion.framework */,
@@ -181,8 +184,8 @@
 				E6F9E171151A9D47004AA090 /* ADProfileViewController.m */,
 				E6EAB26F151915BB00128BFE /* ADVisitsViewController.h */,
 				E6EAB270151915BB00128BFE /* ADVisitsViewController.m */,
-				E6EAB26C151915A700128BFE /* ADPlacesViewController.h */,
-				E6EAB26D151915A700128BFE /* ADPlacesViewController.m */,
+				E6EAB26C151915A700128BFE /* ADPlaceCandidatesViewController.h */,
+				E6EAB26D151915A700128BFE /* ADPlaceCandidatesViewController.m */,
 				5BB77F8114F72236007F9C1F /* ADAppDelegate.h */,
 				5BB77F8214F72236007F9C1F /* ADAppDelegate.m */,
 				5BB77F8714F72236007F9C1F /* ADMasterViewController.h */,
@@ -194,6 +197,8 @@
 				882CF07D151A40E2000D7285 /* ADEventHistoryTableViewController.h */,
 				882CF07E151A40E2000D7285 /* ADEventHistoryTableViewController.m */,
 				5BB77F8414F72236007F9C1F /* MainStoryboard.storyboard */,
+				E6159ADB1548B7FE00EAF88E /* ADPlaceDetailViewController.h */,
+				E6159ADC1548B7FE00EAF88E /* ADPlaceDetailViewController.m */,
 				883F17EB150E9690008F0392 /* Images */,
 				5BB77F7914F72236007F9C1F /* Supporting Files */,
 			);
@@ -319,11 +324,12 @@
 				5BB77F8914F72236007F9C1F /* ADMasterViewController.m in Sources */,
 				883F17EA150E94DF008F0392 /* ADHistoricalViewController.m in Sources */,
 				88AAB202150EA02E006CCCAA /* ADRealTimeViewController.m in Sources */,
-				E6EAB26E151915A700128BFE /* ADPlacesViewController.m in Sources */,
+				E6EAB26E151915A700128BFE /* ADPlaceCandidatesViewController.m in Sources */,
 				E6EAB271151915BB00128BFE /* ADVisitsViewController.m in Sources */,
 				882CF07F151A40E2000D7285 /* ADEventHistoryTableViewController.m in Sources */,
 				E6F9E172151A9D47004AA090 /* ADProfileViewController.m in Sources */,
 				E6DA845A15212A5E00FD74EF /* ADEventTableViewCell.m in Sources */,
+				E6159ADD1548B7FE00EAF88E /* ADPlaceDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,8 +412,9 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aloharDemo/aloharDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = ../Alohar/Alohar/headers;
 				INFOPLIST_FILE = "aloharDemo/aloharDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,8 +435,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aloharDemo/aloharDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = ../Alohar/Alohar/headers;
 				INFOPLIST_FILE = "aloharDemo/aloharDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
