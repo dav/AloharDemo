@@ -30,7 +30,7 @@
     if ([motionState.state intValue] == ALMotionStateSmoothMoving){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(280, 10, 42, 21)];
         newImageView.image = [UIImage imageNamed:@"drive2"];
-        self.motionStateLabel.text = @"Driving";
+        self.motionStateLabel.text = @"Smooth Moving";
     } else if ([motionState.state intValue] == ALMotionStateWalking){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(290, 10, 14, 24)];
         newImageView.image = [UIImage imageNamed:@"walk"];
@@ -42,7 +42,7 @@
     } else if ([motionState.state intValue] == ALMotionStateRotation){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(283, 10, 28, 28)];
         newImageView.image = [UIImage imageNamed:@"bigmove"];
-        self.motionStateLabel.text = @"BigMovement";
+        self.motionStateLabel.text = @"Rotation";
     } else{
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 14, 24, 19)];
         newImageView.image = [UIImage imageNamed:@"nodata"];
@@ -82,9 +82,6 @@
         annotation.coordinate = self.currentLocation.coordinate;
         [self.mapView addAnnotation:annotation];
     }
-    
-    
-    
 }
 
 - (void)viewDidUnload
