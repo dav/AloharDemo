@@ -38,7 +38,7 @@
     } else if ([motionState.state intValue] == ALMotionStateStationary){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(290, 10, 14, 24)];
         newImageView.image = [UIImage imageNamed:@"standing"];
-        self.motionStateLabel.text = @"Standing";
+        self.motionStateLabel.text = @"Stationary";
     } else if ([motionState.state intValue] == ALMotionStateRotation){
         newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(283, 10, 28, 28)];
         newImageView.image = [UIImage imageNamed:@"bigmove"];
