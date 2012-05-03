@@ -18,7 +18,7 @@
     if success, ALResponse instance will be set, otherwise error will be thrown
  */
 
-typedef void (^ALRequestCompleteBlock)(ALResponse*, NSError*);
+typedef void (^ALRequestCompleteBlock)(ALResponse *response, NSError *error);
 
 /*!
   Block alternative for ALSessionDelegate
