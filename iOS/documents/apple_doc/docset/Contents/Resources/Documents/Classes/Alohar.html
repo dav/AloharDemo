@@ -52,11 +52,13 @@
 	
 	<option value="//api/name/currentLocation">&nbsp;&nbsp;&nbsp;&nbsp;+ currentLocation</option>
 	
+	<option value="//api/name/currentMobileState">&nbsp;&nbsp;&nbsp;&nbsp;+ currentMobileState</option>
+	
 	<option value="//api/name/currentMotionState">&nbsp;&nbsp;&nbsp;&nbsp;+ currentMotionState</option>
 	
 	<option value="//api/name/currentUserStay">&nbsp;&nbsp;&nbsp;&nbsp;+ currentUserStay</option>
 	
-	<option value="//api/name/deletateStay:completeHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ deletateStay:completeHandler:</option>
+	<option value="//api/name/deleteStay:completeHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteStay:completeHandler:</option>
 	
 	<option value="//api/name/getAllPlacesWithCompleteHandler:">&nbsp;&nbsp;&nbsp;&nbsp;+ getAllPlacesWithCompleteHandler:</option>
 	
@@ -92,6 +94,12 @@
 	
 	<option value="//api/name/registerWithAppID:andAPIKey:withDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerWithAppID:andAPIKey:withDelegate:</option>
 	
+	<option value="//api/name/setMobileStateDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ setMobileStateDelegate:</option>
+	
+	<option value="//api/name/setMotionDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ setMotionDelegate:</option>
+	
+	<option value="//api/name/setUserStayDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ setUserStayDelegate:</option>
+	
 	<option value="//api/name/sharedInstance">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedInstance</option>
 	
 	<option value="//api/name/startMonitoringUser">&nbsp;&nbsp;&nbsp;&nbsp;+ startMonitoringUser</option>
@@ -120,6 +128,18 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Registration/Authentication">Registration/Authentication</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Monitering Serive Life Cycle">Monitering Serive Life Cycle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Delegates">Delegates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Place/User Stay Retrieval Methods">Place/User Stay Retrieval Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_State Methods">State Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -140,11 +160,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentLocation">currentLocation</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentMobileState">currentMobileState</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentMotionState">currentMotionState</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUserStay">currentUserStay</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deletateStay:completeHandler:">deletateStay:completeHandler:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteStay:completeHandler:">deleteStay:completeHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllPlacesWithCompleteHandler:">getAllPlacesWithCompleteHandler:</a></span></li>
 	
@@ -179,6 +201,12 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerWithAppID:andAPIKey:completeHandler:">registerWithAppID:andAPIKey:completeHandler:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerWithAppID:andAPIKey:withDelegate:">registerWithAppID:andAPIKey:withDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMobileStateDelegate:">setMobileStateDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMotionDelegate:">setMotionDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setUserStayDelegate:">setUserStayDelegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedInstance">sharedInstance</a></span></li>
 	
@@ -256,8 +284,8 @@ stopMonitoringUser
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						
-						
+						<a title="Initialization" name="task_Initialization"></a>
+						<h3 class="subsubtitle task-title">Initialization</h3>
 
 						<ul class="task-list">
 							<li>
@@ -267,14 +295,15 @@ stopMonitoringUser
 	</span>
 	
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/version">+&nbsp;version</a></code>
-		<span class="tooltip"><p>Get Framework Version</p></span>
-	</span>
-	
-	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Registration/Authentication" name="task_Registration/Authentication"></a>
+						<h3 class="subsubtitle task-title">Registration/Authentication</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerWithAppID:andAPIKey:withDelegate:">+&nbsp;registerWithAppID:andAPIKey:withDelegate:</a></code>
 		<span class="tooltip"><p>Register a new user for a given App using delegate</p></span>
@@ -306,7 +335,15 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Monitering Serive Life Cycle" name="task_Monitering Serive Life Cycle"></a>
+						<h3 class="subsubtitle task-title">Monitering Serive Life Cycle</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/startMonitoringUser">+&nbsp;startMonitoringUser</a></code>
 		<span class="tooltip"><p>Start the monitoring service</p></span>
@@ -320,7 +357,44 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	</span>
 	
 	
+</li>
+						</ul>
+						
+						
+						<a title="Delegates" name="task_Delegates"></a>
+						<h3 class="subsubtitle task-title">Delegates</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setMotionDelegate:">+&nbsp;setMotionDelegate:</a></code>
+		<span class="tooltip"><p>Set Motion State Delegate</p></span>
+	</span>
+	
+	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setUserStayDelegate:">+&nbsp;setUserStayDelegate:</a></code>
+		<span class="tooltip"><p>Set User Stay Delegate</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setMobileStateDelegate:">+&nbsp;setMobileStateDelegate:</a></code>
+		<span class="tooltip"><p>Set Mobile State Delegate</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Place/User Stay Retrieval Methods" name="task_Place/User Stay Retrieval Methods"></a>
+						<h3 class="subsubtitle task-title">Place/User Stay Retrieval Methods</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/currentUserStay">+&nbsp;currentUserStay</a></code>
 		<span class="tooltip"><p>Get the current user stay object</p></span>
@@ -392,7 +466,7 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/deletateStay:completeHandler:">+&nbsp;deletateStay:completeHandler:</a></code>
+		<code><a href="#//api/name/deleteStay:completeHandler:">+&nbsp;deleteStay:completeHandler:</a></code>
 		<span class="tooltip"><p>Delete a user stay</p></span>
 	</span>
 	
@@ -425,7 +499,15 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="State Methods" name="task_State Methods"></a>
+						<h3 class="subsubtitle task-title">State Methods</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/currentLocation">+&nbsp;currentLocation</a></code>
 		<span class="tooltip"><p>Get the user&rsquo;s current location.</p></span>
@@ -436,6 +518,13 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/currentMotionState">+&nbsp;currentMotionState</a></code>
 		<span class="tooltip"><p>Get the device&rsquo;s current motion state.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentMobileState">+&nbsp;currentMobileState</a></code>
+		<span class="tooltip"><p>Get the device&rsquo;s current mobile state.</p></span>
 	</span>
 	
 	
@@ -456,10 +545,7 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/monitoringUser">+&nbsp;monitoringUser</a></code>
-		<span class="tooltip"><ul>
-<li>Check whether the Alohar monitoring service is running.</li>
-</ul>
-</span>
+		<span class="tooltip"><p>Check whether the Alohar monitoring service is running.</p></span>
 	</span>
 	
 	
@@ -467,6 +553,13 @@ registerWithAppID:andAPIKey:completeHandler instead.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/isLoggedIn">+&nbsp;isLoggedIn</a></code>
 		<span class="tooltip"><p>Check whether the user has valid credentials and has an active session.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/version">+&nbsp;version</a></code>
+		<span class="tooltip"><p>Get Framework Version</p></span>
 	</span>
 	
 	
@@ -783,17 +876,63 @@ registerWithAppID:andAPIKey:withDelegate instead.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Get the user&rsquo;s current location.</p>
-
-<p>Note: the current location is the last known location of the device in SDK.
+		<p>Get the user&rsquo;s current location.</p><div class="warning"><p><strong>Warning:</strong> <em>important</em> the current location is the last known location of the device in SDK.
 If the monitoring service is stopped, the location will be stale. When the monitoring
 service is running, it is close to the real current location in most cases. But it
-is NOT a replacement for the current location of native LocationManager.</p>
+is NOT a replacement for the current location of native LocationManager.</p></div>
 	</div>
 	
 	
 	
 	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentMobileState" title="currentMobileState"></a>
+	<h3 class="subsubtitle method-title">currentMobileState</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get the device&rsquo;s current mobile state.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (ALMobileState *)currentMobileState</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get the device&rsquo;s current mobile state.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/ALMobileState.html">ALMobileState</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -902,8 +1041,8 @@ is NOT a replacement for the current location of native LocationManager.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/deletateStay:completeHandler:" title="deletateStay:completeHandler:"></a>
-	<h3 class="subsubtitle method-title">deletateStay:completeHandler:</h3>
+	<a name="//api/name/deleteStay:completeHandler:" title="deleteStay:completeHandler:"></a>
+	<h3 class="subsubtitle method-title">deleteStay:completeHandler:</h3>
 	
 	
 	
@@ -912,7 +1051,7 @@ is NOT a replacement for the current location of native LocationManager.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (void)deletateStay:(NSInteger)<em>stayId</em> completeHandler:(ALRequestCompleteBlock)<em>handler</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (void)deleteStay:(NSInteger)<em>stayId</em> completeHandler:(ALRequestCompleteBlock)<em>handler</em></code></div>
 	
 	
 	<div class="method-subsection arguments-section parameters">
@@ -1745,10 +1884,7 @@ is NOT a replacement for the current location of native LocationManager.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<ul>
-<li>Check whether the Alohar monitoring service is running.</li>
-</ul>
-
+		<p>Check whether the Alohar monitoring service is running.</p>
 	</div>		
 	
 	
@@ -1768,10 +1904,7 @@ is NOT a replacement for the current location of native LocationManager.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<ul>
-<li>Check whether the Alohar monitoring service is running.</li>
-</ul>
-
+		<p>Check whether the Alohar monitoring service is running.</p>
 	</div>
 	
 	
@@ -1890,6 +2023,153 @@ is NOT a replacement for the current location of native LocationManager.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Register a new user for a given App using delegate</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setMobileStateDelegate:" title="setMobileStateDelegate:"></a>
+	<h3 class="subsubtitle method-title">setMobileStateDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set Mobile State Delegate</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setMobileStateDelegate:(id&lt;ALMobileStateDelegegate&gt;)<em>delegate</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>delegate</em></dt>
+			<dd><p>A delegate that conforms to the ALMobileStateDelegate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Set Mobile State Delegate</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setMotionDelegate:" title="setMotionDelegate:"></a>
+	<h3 class="subsubtitle method-title">setMotionDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set Motion State Delegate</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setMotionDelegate:(id&lt;ALMotionDelegate&gt;)<em>delegate</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>delegate</em></dt>
+			<dd><p>A delegate that conforms to the <a href="../Protocols/ALMotionDelegate.html">ALMotionDelegate</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Set Motion State Delegate</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setUserStayDelegate:" title="setUserStayDelegate:"></a>
+	<h3 class="subsubtitle method-title">setUserStayDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set User Stay Delegate</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setUserStayDelegate:(id&lt;ALUserStayDelegate&gt;)<em>delegate</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>delegate</em></dt>
+			<dd><p>A delegate that conforms to the <a href="../Protocols/ALUserStayDelegate.html">ALUserStayDelegate</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Set User Stay Delegate</p>
 	</div>
 	
 	
@@ -2133,7 +2413,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-04-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-05-03)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

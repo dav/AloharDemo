@@ -111,7 +111,7 @@
         case 0:
             break;
         case 1:
-            [Alohar deletateStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
+            [Alohar deleteStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
                 [self.navigationController popViewControllerAnimated:YES];
             }];
             break;

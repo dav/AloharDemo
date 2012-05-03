@@ -3,6 +3,7 @@
 //  Alohar
 //
 //  Created by Sam Warmuth on 2/23/12.
+//  Last Updated by Jianming Zhou on 5/3/2012.
 //  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
 //
 
@@ -12,17 +13,17 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ALPlace.h"
 #import "ALUserStay.h"
+#import "ALMobileState.h"
 
 /*!
- Complete handler block for Alohar Requests
-    if success, ALResponse instance will be set, otherwise error will be thrown
+ * Complete handler block for Alohar Requests
+ *  if success, ALResponse instance will be set, otherwise error will be thrown
  */
-
 typedef void (^ALRequestCompleteBlock)(ALResponse*, NSError*);
 
 /*!
-  Block alternative for ALSessionDelegate
-    if success, userToken will be returned, otherwise error will be thrown
+ * Block alternative for ALSessionDelegate
+ * if success, userToken will be returned, otherwise error will be thrown
  */
 typedef void (^ALSessionCompleteBlock)(NSString*, NSError*);
 
@@ -55,9 +56,26 @@ typedef void (^ALSessionCompleteBlock)(NSString*, NSError*);
  * @see ALMotionState
  */
 - (void)didUpdateToMotionState:(ALMotionState *)newMotionState fromMotionState:(ALMotionState *)oldMotionState;
-- (void)aloharDidFailWithError:(NSError *)error;
+
 @end
 
+
+/*!
+ * Protocol to listen to high level mobile state updates.
+ * \param newMobileState New mobile state
+ * \param oldMobileState Old mobile state
+ */
+@protocol ALMobileStateDelegegate <NSObject>
+@optional
+
+/*!
+ * Callback when mobile state changes
+ * \param newMobileState New Mobile State
+ * \param oldMobileState Old Mobile State
+ */
+- (void)didUpdateToMobileState:(ALMobileState *)newMobileState fromMobileState:(ALMobileState *)oldMobileState;
+
+@end
 /*!
  * Protocol to listen to real time events such as arrival, departure and user stay detection.
  */
@@ -109,23 +127,23 @@ enum {
  * 
  */
 @interface Alohar : NSObject
+
 @property (weak) id <ALSessionDelegate>  sessionDelegate;
 @property (weak) id <ALMotionDelegate>   motionDelegate;
 @property (weak) id <ALUserStayDelegate> userStayDelegate;
-
+@property (weak) id <ALMobileStateDelegegate> mobileStateDelegate;
 @property (nonatomic, strong) ALMotionState *currentMotionState;
+@property (nonatomic, strong) ALMobileState *currentMobileState;
 
+
+/** @name Initialization */
 
 /*!
  * Get the Shared Instance of Alohar
  */
 + (Alohar *)sharedInstance;
 
-/*!
- * Get Framework Version
- * \return The version of Alohar Framework
- */
-+ (NSString *)version;
+/** @name Registration/Authentication */
 
 /*!
  * Register a new user for a given App using delegate
@@ -169,6 +187,8 @@ enum {
  */
 + (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID completeHandler:(ALSessionCompleteBlock)handler;
 
+/** @name Monitering Serive Life Cycle */
+
 /*!
  * Start the monitoring service
  */
@@ -179,8 +199,30 @@ enum {
  */
 + (void)stopMonitoringUser;
 
+/** @name Delegates */
+
+/*!
+ * Set Motion State Delegate
+ * \param delegate A delegate that conforms to the ALMotionDelegate
+ *
+ */
 + (void)setMotionDelegate:(id <ALMotionDelegate>)delegate;
+
+/*!
+ * Set User Stay Delegate 
+ * \param delegate A delegate that conforms to the ALUserStayDelegate
+ *
+ */
 + (void)setUserStayDelegate:(id <ALUserStayDelegate>)delegate;
+
+/*!
+ * Set Mobile State Delegate
+ * \param delegate A delegate that conforms to the ALMobileStateDelegate
+ *
+ */
++ (void)setMobileStateDelegate:(id<ALMobileStateDelegegate>)delegate;
+
+/** @name Place/User Stay Retrieval Methods */
 
 /*!
  * Get the current user stay object
@@ -286,7 +328,7 @@ enum {
  * \param stayId The user stay's stayId
  * \param handler The complete handler block with ALResponse or Error.
  */
-+ (void)deletateStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)deleteStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
 
 /*!
  * Get the place candidates of a user stay.
@@ -320,10 +362,13 @@ enum {
  */
 + (void)getDetailsForStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
 
+
+/** @name State Methods */
+
 /*! 
  * Get the user's current location.
  *
- * Note: the current location is the last known location of the device in SDK. 
+ * @warning *important* the current location is the last known location of the device in SDK. 
  * If the monitoring service is stopped, the location will be stale. When the monitoring
  * service is running, it is close to the real current location in most cases. But it 
  * is NOT a replacement for the current location of native LocationManager. 
@@ -335,6 +380,13 @@ enum {
  * @see ALMotionState
  */
 + (ALMotionState *)currentMotionState;
+
+/*!
+ * Get the device's current mobile state.
+ * @see ALMobileState
+ */
++ (ALMobileState *)currentMobileState;
+
 
 /*!
  * Check whether the device is stationary.
@@ -350,7 +402,7 @@ enum {
 
 /*!
  * Check whether the Alohar monitoring service is running.
- \return YES if the monitoring service is ON
+ * \return YES if the monitoring service is ON
  */
 + (BOOL)monitoringUser;
 
@@ -359,6 +411,12 @@ enum {
  * \return YES if the user connected to Alohar
  */
 + (BOOL)isLoggedIn;
+
+/*!
+ * Get Framework Version
+ * \return The version of Alohar Framework
+ */
++ (NSString *)version;
 
 /*!
  * History of arrival/departure events.
@@ -386,8 +444,8 @@ enum {
 
 - (void)arriveLocation;
 
+- (void)mobileStateChanged:(ALMobileState *)newMobileState;
 
-//PRIVATE
 + (NSArray *)logs;
 
 @end
