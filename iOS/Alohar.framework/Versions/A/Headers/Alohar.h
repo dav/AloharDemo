@@ -24,7 +24,7 @@ typedef void (^ALRequestCompleteBlock)(ALResponse *response, NSError *error);
   Block alternative for ALSessionDelegate
     if success, userToken will be returned, otherwise error will be thrown
  */
-typedef void (^ALSessionCompleteBlock)(NSString*, NSError*);
+typedef void (^ALSessionCompleteBlock)(NSString* userToken, NSError* error);
 
 /*!
  * Protocol for Registration and Authentication.
