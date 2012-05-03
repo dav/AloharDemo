@@ -44,8 +44,8 @@
 		88AAB217150EA3E1006CCCAA /* nodata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAB215150EA3E1006CCCAA /* nodata@2x.png */; };
 		88AAB218150EA3E1006CCCAA /* nodata.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAB216150EA3E1006CCCAA /* nodata.png */; };
 		E6159ADD1548B7FE00EAF88E /* ADPlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6159ADC1548B7FE00EAF88E /* ADPlaceDetailViewController.m */; };
+		E6C029E21553478A00C0B293 /* Alohar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C029E11553478A00C0B293 /* Alohar.framework */; };
 		E6DA845A15212A5E00FD74EF /* ADEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DA845915212A5E00FD74EF /* ADEventTableViewCell.m */; };
-		E6E4045A154B18CE004CFE79 /* Alohar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E40459154B18CE004CFE79 /* Alohar.framework */; };
 		E6EAB26E151915A700128BFE /* ADPlaceCandidatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EAB26D151915A700128BFE /* ADPlaceCandidatesViewController.m */; };
 		E6EAB271151915BB00128BFE /* ADVisitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EAB270151915BB00128BFE /* ADVisitsViewController.m */; };
 		E6F9E16E151A9456004AA090 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F9E16D151A9456004AA090 /* MessageUI.framework */; };
@@ -100,9 +100,9 @@
 		88AAB216150EA3E1006CCCAA /* nodata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nodata.png; path = images/nodata.png; sourceTree = "<group>"; };
 		E6159ADB1548B7FE00EAF88E /* ADPlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlaceDetailViewController.h; sourceTree = "<group>"; };
 		E6159ADC1548B7FE00EAF88E /* ADPlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlaceDetailViewController.m; sourceTree = "<group>"; };
+		E6C029E11553478A00C0B293 /* Alohar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alohar.framework; sourceTree = "<group>"; };
 		E6DA845815212A5E00FD74EF /* ADEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADEventTableViewCell.h; sourceTree = "<group>"; };
 		E6DA845915212A5E00FD74EF /* ADEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADEventTableViewCell.m; sourceTree = "<group>"; };
-		E6E40459154B18CE004CFE79 /* Alohar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alohar.framework; sourceTree = "<group>"; };
 		E6EAB26C151915A700128BFE /* ADPlaceCandidatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlaceCandidatesViewController.h; sourceTree = "<group>"; };
 		E6EAB26D151915A700128BFE /* ADPlaceCandidatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlaceCandidatesViewController.m; sourceTree = "<group>"; };
 		E6EAB26F151915BB00128BFE /* ADVisitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVisitsViewController.h; sourceTree = "<group>"; };
@@ -117,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C029E21553478A00C0B293 /* Alohar.framework in Frameworks */,
 				E6F9E16E151A9456004AA090 /* MessageUI.framework in Frameworks */,
 				885F3458150E999F00366AA1 /* MapKit.framework in Frameworks */,
 				5BB77F7314F72236007F9C1F /* UIKit.framework in Frameworks */,
@@ -130,7 +131,6 @@
 				5BB7800D14F75A89007F9C1F /* libz.dylib in Frameworks */,
 				5BB7800E14F75A89007F9C1F /* MobileCoreServices.framework in Frameworks */,
 				5BB7800C14F75A89007F9C1F /* CoreMotion.framework in Frameworks */,
-				E6E4045A154B18CE004CFE79 /* Alohar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +157,7 @@
 		5BB77F7114F72236007F9C1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E6E40459154B18CE004CFE79 /* Alohar.framework */,
+				E6C029E11553478A00C0B293 /* Alohar.framework */,
 				E6F9E16D151A9456004AA090 /* MessageUI.framework */,
 				885F3457150E999F00366AA1 /* MapKit.framework */,
 				5BB7800A14F75A7D007F9C1F /* CoreMotion.framework */,
@@ -407,12 +407,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/aloharDemo\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aloharDemo/aloharDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = ../Alohar/Alohar/headers;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "aloharDemo/aloharDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -431,11 +432,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/aloharDemo\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aloharDemo/aloharDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = ../Alohar/Alohar/headers;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "aloharDemo/aloharDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

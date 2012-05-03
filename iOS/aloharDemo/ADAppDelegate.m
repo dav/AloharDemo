@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     //!IMPORTANT!
     //Before using the SDK, you need to register with Alohar first to get an unique ID.
     //if you have a UID before, you need to authenticate first.
@@ -24,23 +25,28 @@
     NSString *appID = @"10";
     NSString *apiKey = @"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463";
     
-    //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
-//    [defaults setObject:userToken forKey:@"AloharDemoUserID"];
     
     //There are two ways to register or authenticate
     //using delegate ALSessionDelegate
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"AloharDemoUserID"];
-    if (userToken == nil || userToken.length == 0){
-        [Alohar registerWithAppID:appID andAPIKey:apiKey withDelegate:self];
-    }else{
-        [Alohar authenticateWithAppID:appID andAPIKey:apiKey andUserID:userToken withDelegate:self];
+
+    if ([Alohar isLoggedIn]) {
+        [Alohar startMonitoringUser];
+    } else {
+        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
+        //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //    NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
+        //    [defaults setObject:userToken forKey:@"AloharDemoUserID"];
+        NSString *userToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"AloharDemoUserID"];
+        if (userToken == nil || userToken.length == 0){
+            [Alohar registerWithAppID:appID andAPIKey:apiKey withDelegate:self];
+        }else{
+            [Alohar authenticateWithAppID:appID andAPIKey:apiKey andUserID:userToken withDelegate:self];
+        }
     }
     return YES;
     
     //or you can use block
-//    [Alohar authenticateWithAppID:@"10" andAPIKey:@"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463" andUserID:userToken completeHandler:^(NSString *userToken, NSError *error) {
+//    [Alohar authenticateWithAppID:appID andAPIKey:apiKey andUserID:userToken completeHandler:^(NSString *userToken, NSError *error) {
 //        if (error) {
 //            NSLog(@"Login failed %@", error);
 //            return;
