@@ -1,3 +1,6 @@
+###Latest Updates###
+iOS SDK V0.2, new iOS Demo and updated documentations.
+
 ##Alohar Demo##
 
 This open source project demonstrates how to integrate Alohar SDK into your iOS and Android application.
