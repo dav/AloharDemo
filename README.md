@@ -26,14 +26,14 @@ Download latest SDK and sample app.
 
 ###Sample Applications###
 
-This SDK comes with a sample application that demonstrates authorization, making API calls to guide you in development. It aalso shows case how to our platform works behides the scenes.
+This SDK comes with a sample application that demonstrates authorization, making API calls to guide you in development. It also shows case how to our platform works behides the scenes.
 
 To build and run the iOS sample application with XCode:
 
 + Open the included XCode Project File by selecting iOS/aloharDemo.xcodeproj.
 + Select Build->Build and Run. This should compile the application and launch it.
 
-*NOTE*: our iOS SDK requires OS5.0+ and XCode4.2+. our Android SDK require OS2.2+.
+**NOTE**: **our iOS SDK requires OS5.0+ and XCode4.2+. our Android SDK require OS2.2+.**
 
 ###Report Issues/Bugs/Feature Requests###
 
