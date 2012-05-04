@@ -13,7 +13,7 @@ Mobile phones are smart today, but they can be even smarter with the Alohar Ambi
 
 The Alohar Mobile Ambient Analytics Platform enables ambient location apps. In other words, it efficiently collects location and other mobile sensor data and quickly analyzes it to understand a smartphone user’s behavior. It achieves this while using the minimal amount of battery necessary on the mobile device. The platform is composed of a smartphone client SDK (software development kit) for Android and iPhone and several cloud-based services. The platform uses mobile location, motion, direction, Wi-Fi and timing data to learn about the mobile user in real time and over time. Therefore it provides more advanced functionality than a conventional mobile LBS (location based services) platform. 
 
-*Here are just a few things you can do with the platform:*
+**Here are just a few things you can do with the platform:**
 
 + Automatically detect the places (including the name and category) that the user visits.
 + Minimize battery power consumption while gathering data from the mobile device.
