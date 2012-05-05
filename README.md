@@ -21,7 +21,7 @@ The Alohar Mobile Ambient Analytics Platform enables ambient location apps. In o
 + Automatically get the number of times a user visits a place, and how much time is spent there per visit.
 + Automatically understand a user’s mobile motion state (e.g. stationary, walking or driving).
 
-**Check Out Our ShowCase App**: **Placeme(http://itunes.apple.com/us/app/placeme/id501165259?mt=8)**
+**Check Out Our ShowCase App**: **[Placeme](http://itunes.apple.com/us/app/placeme/id501165259?mt=8)**
 
 
 ###Getting Started###
