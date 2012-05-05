@@ -40,6 +40,10 @@ To build and run the iOS sample application with XCode:
 
 **NOTE**: **Our iOS SDK requires OS5.0+ and XCode4.2+. Our Android SDK requires OS2.2+.**
 
+**Alohar SDK leverages various sensor data and has a learning engine, we recommend you run the sample application on your device and use it for sometime to see its full power. Right after the initial installation, you will see empty user stay or places. Please keep using it for a short time, you will see your first stay detected shortly.**
+
 ###Report Issues/Bugs/Feature Requests###
+
+Both SDKs are still in Beta stage, we are collecting feedbacks and potential feature requests. Please let's know your thought. 
 
 Got questions? Email <developer@alohar.com>
