@@ -21,6 +21,8 @@ The Alohar Mobile Ambient Analytics Platform enables ambient location apps. In o
 + Automatically get the number of times a user visits a place, and how much time is spent there per visit.
 + Automatically understand a user’s mobile motion state (e.g. stationary, walking or driving).
 
+**Check Out Our ShowCase App**: **Placeme(http://itunes.apple.com/us/app/placeme/id501165259?mt=8)**
+
 
 ###Getting Started###
 
@@ -36,7 +38,7 @@ To build and run the iOS sample application with XCode:
 + Open the included XCode Project File by selecting iOS/aloharDemo.xcodeproj.
 + Select Build->Build and Run. This should compile the application and launch it.
 
-**NOTE**: **our iOS SDK requires OS5.0+ and XCode4.2+. our Android SDK require OS2.2+.**
+**NOTE**: **Our iOS SDK requires OS5.0+ and XCode4.2+. Our Android SDK requires OS2.2+.**
 
 ###Report Issues/Bugs/Feature Requests###
 
