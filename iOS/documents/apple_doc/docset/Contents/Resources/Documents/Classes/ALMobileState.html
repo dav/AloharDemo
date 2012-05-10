@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>ALMotionDelegate Protocol Reference</title>
+		<title>ALMobileState Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">ALMotionDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">ALMobileState Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,13 +38,18 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/state">&nbsp;&nbsp;&nbsp;&nbsp;state</option>
+	
+	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/didUpdateToMotionState:fromMotionState:">&nbsp;&nbsp;&nbsp;&nbsp;- didUpdateToMotionState:fromMotionState:</option>
+	<option value="//api/name/stateDescription">&nbsp;&nbsp;&nbsp;&nbsp;- stateDescription</option>
 	
 	
 	
@@ -68,13 +73,19 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/state">state</a></span></li>
+	
+</ul></li>
+
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didUpdateToMotionState:fromMotionState:">didUpdateToMotionState:fromMotionState:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stateDescription">stateDescription</a></span></li>
 	
 </ul></li>
 
@@ -83,7 +94,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="ALMotionDelegate Protocol Reference" name="top"></a>
+				<a title="ALMobileState Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,18 +103,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">ALMotionDelegate Protocol Reference</h1>
+						<h1 class="title title-header">ALMobileState Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
+	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">Alohar.h</td>
+	<td class="specification-value">ALMobileState.h<br />ALMobileState.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +124,37 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Protocol to listen to motion state updates.</p>
+						<p>ALMobileState captures a high-level movement <a href="#//api/name/state">state</a> of a mobile device which
+is different from lower level motion <a href="#//api/name/state">state</a> like <a href="../Classes/ALMotionState.html">ALMotionState</a>. It is the
+decision <a href="#//api/name/state">state</a> <a href="../Classes/Alohar.html">Alohar</a> SDK surfaced out based on various senor data like
+accecelometer, location, wifi etc.</p>
+
+<p>Imagine you leave your home in the morning, drive to your company campus then
+walk to your office. The ALMobileState will capture the major movement <a href="#//api/name/state">state</a> in between.
+Using ALMobileStateDelegate, user will recieve updates from ALMobileStateNotMoving
+to ALMobileStateFastMoving shortly after user is driving, updates from
+ALMobileStateFastMoving to ALMobileStateSlowMoving after user arrives company
+campus and starts to walk to the office, and updates from ALMobileStateSlowMoving
+to ALMobileStateNotMoving once user arrives the office.</p>
+
+<p>In general, slow moving is anything like walking or biking or low speed driving.
+Fast moving usually means high speed driving. Different from motion <a href="#//api/name/state">state</a>, mobile
+<a href="#//api/name/state">state</a> will skip small <a href="#//api/name/state">state</a> changes in between. For example, if user drives and
+stops at red light for short time, <a href="../Protocols/ALMotionDelegate.html">ALMotionDelegate</a> might surface the stationary
+motion <a href="#//api/name/state">state</a>, but ALMobileStateDelgate might treat it still fast moving and
+skip the change completely.</p>
+
+<p>Currently, we support following mobile state:</p>
+
+<pre><code>ALMobileStateUnknown
+    Initial unknown state
+ALMobileStateNotMoving
+    Users are at a user stay. Users might walk inside the user stay.
+ALMobileStateSlowMoving
+    Users are on commute and users are moving at a relative slow speed like walking, biking or slow driving.
+ALMobileStateFastMoving         
+    Users are no commute and users are moving at high speed like high way driving.
+</code></pre>
 					</div>
 					
 					
@@ -131,8 +172,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/didUpdateToMotionState:fromMotionState:">&ndash;&nbsp;didUpdateToMotionState:fromMotionState:</a></code>
-		<span class="tooltip"><p>Callback when motion state changes</p></span>
+		<code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stateDescription">&ndash;&nbsp;stateDescription</a></code>
+		
 	</span>
 	
 	
@@ -145,6 +193,42 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/state" title="state"></a>
+	<h3 class="subsubtitle method-title">state</h3>
+	
+	
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *state</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ALMobileState.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 					
 					
@@ -154,33 +238,13 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/didUpdateToMotionState:fromMotionState:" title="didUpdateToMotionState:fromMotionState:"></a>
-	<h3 class="subsubtitle method-title">didUpdateToMotionState:fromMotionState:</h3>
+	<a name="//api/name/stateDescription" title="stateDescription"></a>
+	<h3 class="subsubtitle method-title">stateDescription</h3>
 	
 	
 	
-	<div class="method-subsection brief-description">
-		<p>Callback when motion state changes</p>
-	</div>		
 	
-	
-	<div class="method-subsection method-declaration"><code>- (void)didUpdateToMotionState:(ALMotionState *)<em>newMotionState</em> fromMotionState:(ALMotionState *)<em>oldMotionState</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>newMotionState</em></dt>
-			<dd><p>New motion state</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>oldMotionState</em></dt>
-			<dd><p>Old motion state</p></dd>
-		</dl>
-		
-	</div>
+	<div class="method-subsection method-declaration"><code>- (NSString *)stateDescription</code></div>
 	
 	
 	
@@ -188,29 +252,16 @@
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Callback when motion state changes</p>
-	</div>
 	
 	
 	
 	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="../Classes/ALMotionState.html">ALMotionState</a></p></code></li>
-			
-		</ul>
-	</div>
 	
 	
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">Alohar.h</code><br />
+		<code class="declared-in-ref">ALMobileState.h</code><br />
 	</div>				
 	
 	

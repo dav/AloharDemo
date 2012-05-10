@@ -5,11 +5,13 @@
 //
 
 #import "ADRealTimeViewController.h"
-#import <Alohar/Alohar.h>
 
 @implementation ADRealTimeViewController
-@synthesize motionStateLabel;
 @synthesize callbackTimer, motionContainer, currentLocation, mapView;
+@synthesize motionStateLabel;
+@synthesize oldMobileStateLabel;
+@synthesize currentMobileStateLabel;
+@synthesize mobileStateLabel;
 
 #pragma mark - Managing the detail item
 
@@ -19,12 +21,21 @@
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    //set timeer to query the current motion state
     self.callbackTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateMotionStateAndLocation) userInfo:nil repeats:YES];
     [self updateMotionStateAndLocation];
+    
+    //listen mobile state
+    [Alohar setMobileStateDelegate:self];
 }
 
 - (void)updateMotionStateAndLocation
 {
+    //piggyback the mobile state 
+    ALMobileState *mobileState = [Alohar currentMobileState];
+    self.mobileStateLabel.text = [mobileState stateDescription];
+    
+    //read motion state
     UIImageView *newImageView;
     ALMotionState *motionState = [Alohar currentMotionState];
     if ([motionState.state intValue] == ALMotionStateSmoothMoving){
@@ -82,11 +93,16 @@
         annotation.coordinate = self.currentLocation.coordinate;
         [self.mapView addAnnotation:annotation];
     }
+    
 }
 
 - (void)viewDidUnload
 {
     [self setMotionStateLabel:nil];
+    [self setOldMobileStateLabel:nil];
+    [self setCurrentMobileStateLabel:nil];
+    [self setCurrentMobileStateLabel:nil];
+    [self setMobileStateLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     if (self.callbackTimer != nil) [self.callbackTimer invalidate]; 
@@ -95,6 +111,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didUpdateToMobileState:(ALMobileState *)newMobileState fromMobileState:(ALMobileState *)oldMobileState
+{
+    self.oldMobileStateLabel.text = [oldMobileState stateDescription];
+    self.currentMobileStateLabel.text = [newMobileState stateDescription];
 }
 
 @end

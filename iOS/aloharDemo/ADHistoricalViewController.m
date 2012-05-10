@@ -47,6 +47,7 @@
             NSLog(@"Error %@", error);
         } else {
             places = [(NSArray *)response.objects mutableCopy];
+            NSLog(@"Updated places: %@", places);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.placeCountLabel.text = [NSString stringWithFormat:@"%d", places.count];
                 [self.allPlacesTableView reloadData];
@@ -112,8 +113,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.recentStaysTableView){
+        NSLog(@"userstay count: %d", userstays.count);
         return userstays.count;
     }else{
+        NSLog(@"places count");
         return places.count;
     }
     

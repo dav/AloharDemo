@@ -16,7 +16,7 @@
  * includes a list of Place candidates ranked. The best match will be 
  * chosen as the selectedPlace.
  *
- * The startTime/endTime records the start/end of the stay. The centroid
+ * The startTime, endTime records the start/end of the stay. The centroid
  * location is the location Alohar detected for that stay, which is not
  * necessary equivalent to the location of the selected place.
  * 

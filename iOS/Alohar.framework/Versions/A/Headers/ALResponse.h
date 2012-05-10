@@ -29,24 +29,26 @@ typedef enum {
 typedef NSUInteger ALRequestType;
 
 /*!
- * ALResponse class declare a common protocol to process
- * Alohar response. 
- *
- * The response has three main parts:
- * + timeStamp The time the response is returned. 
- * + requestType The type of the request type. 
- * + objects The payload of the response
- *
- * ALResponse has following request types:
- * ```
- * enum {
- * kALRequestTypeUserStays,
- * kALRequestTypePlaces,
- * kALRequestTypeMotionState,
- * kALRequestTypeStayDetail,
- * kALRequestTypePlaceDetail,
- * }
- * ```
+ ALResponse class declare a common protocol to process
+ Alohar response. 
+ 
+ The response has three main parts:
+ 
+ + timeStamp The time the response is returned. 
+ + requestType The type of the request type. 
+ + objects The payload of the response
+ 
+ 
+ ALResponse has following request types:
+    
+    enum {
+        kALRequestTypeUserStays,
+        kALRequestTypePlaces,
+        kALRequestTypeMotionState,
+        kALRequestTypeStayDetail,
+        kALRequestTypePlaceDetail,
+    }
+ 
  */
 @interface ALResponse : NSObject
 
