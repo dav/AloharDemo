@@ -38,11 +38,10 @@
     [comps setDay:10];
     [comps setMonth:10];
     [comps setYear:2010];
-//    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
 
     //Here show case three types of place search:
     //case 1 search all places
-    [Alohar getPlaces:@".*" completeHandler:^(ALResponse *response, NSError *error) {
+    [Alohar getPlacesWithPattern:@".*" completion:^(ALResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error %@", error);
         } else {
@@ -56,14 +55,19 @@
     }];
     
     //case 2 search all places in restaurant category
-    //[Alohar getPlaces:@".*" withCategory:@"^rest" withDelegate:self];
+//    [Alohar getPlacesWithPattern:@"*" andCategory:@"^rest" completion:^(ALResponse *response, NSError *error) {
+//            //parse response
+//    }];
     
     //case 3 search places
-//    [Alohar getPlaces:@".*" fromDate:startDate toDate:[NSDate date] minimalVisits:2 withCategory:@".*" limit:10 withDelegate:self];
-    
+//    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    [Alohar getPlacesWithPattern:@".*" fromDate:startDate toDate:[NSDate date] minimalVisits:2 withCategory:@".*" limit:10 completion:^(ALResponse *response, NSError *error) {
+//        //parse response
+//    }];
+     
     //Here show case three types of search:
     //case 1: search for one specific date
-    [Alohar getUserStaysForDate:[NSDate date] completeHandler:^(ALResponse *response, NSError *error) {
+    [Alohar getUserStaysForDate:[NSDate date] completion:^(ALResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error %@", error);
         } else {

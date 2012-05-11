@@ -54,7 +54,7 @@
     //the stay has detail info alreay, 
     //here just show case how to fetch stay detail using stay id
     if (self.stay) {
-        [Alohar getDetailsForStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
+        [Alohar getDetailsForStay:self.stay.stayID completion:^(ALResponse *response, NSError *error) {
             if (error) {
                 NSLog(@"Error %@", error);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -111,7 +111,7 @@
         case 0:
             break;
         case 1:
-            [Alohar deleteStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
+            [Alohar deleteStay:self.stay.stayID completion:^(ALResponse *response, NSError *error) {
                 [self.navigationController popViewControllerAnimated:YES];
             }];
             break;

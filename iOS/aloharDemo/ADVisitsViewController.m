@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    [Alohar getStaysForPlace:self.place.placeID completeHandler:^void(ALResponse *response, NSError *error) {
+    [Alohar getStaysForPlace:self.place.placeID completion:^void(ALResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error %@", [error description]);
         } else {
