@@ -12,112 +12,139 @@
 
     
   </head>
-  <body><div id="nav">
-  
-    <div id="header">
-      <a href="#" id="logo">Alohar SDK</a>
-    </div>
-  
-  <ul id="sections">
+  <body><div id="container">
+  <div id="nav">
     
-      <li>
-        <a href="#overview">Overview</a>
-        
-      </li>
+      <div id="header">
+        <a href="#" id="logo">Alohar SDK</a>
+      </div>
     
-      <li>
-        <a href="#initialization-session-delegate">Initialization / Session Delegate</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#initialization-session-delegate/active-methods">Active Methods</a>
-              </li>
-            
-              <li>
-                <a href="#initialization-session-delegate/callbacks">Callbacks</a>
-              </li>
-            
-          </ul>
-        
-      </li>
+    <ul id="sections">
+      
+        <li>
+          <a href="#overview">Overview</a>
+          
+        </li>
+      
+        <li>
+          <a href="#alohar-sdk-requirements">Alohar SDK Requirements</a>
+          
+        </li>
+      
+        <li>
+          <a href="#initialization-session-delegate">Initialization / Session Delegate</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#initialization-session-delegate/user-registration">User Registration</a>
+                </li>
+              
+                <li>
+                  <a href="#initialization-session-delegate/active-methods">Active Methods</a>
+                </li>
+              
+                <li>
+                  <a href="#initialization-session-delegate/callbacks">Callbacks</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#request-delegate">Request Delegate</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#request-delegate/active-methods">Active Methods</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#change-delegate">Change Delegate</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#change-delegate/active-methods">Active Methods</a>
+                </li>
+              
+                <li>
+                  <a href="#change-delegate/callbacks">Callbacks</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#non-delegate-methods">Non-delegate methods</a>
+          
+        </li>
+      
+        <li>
+          <a href="#objects">Objects</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#objects/aluserstay">ALUserStay</a>
+                </li>
+              
+                <li>
+                  <a href="#objects/alplace">ALPlace</a>
+                </li>
+              
+                <li>
+                  <a href="#objects/almotionstate">ALMotionState</a>
+                </li>
+              
+                <li>
+                  <a href="#objects/alresponse">ALResponse</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+    </ul>
     
-      <li>
-        <a href="#request-delegate">Request Delegate</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#request-delegate/active-methods">Active Methods</a>
-              </li>
-            
-              <li>
-                <a href="#request-delegate/callbacks">Callbacks</a>
-              </li>
-            
-          </ul>
-        
-      </li>
     
-      <li>
-        <a href="#change-delegate">Change Delegate</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#change-delegate/active-methods">Active Methods</a>
-              </li>
-            
-              <li>
-                <a href="#change-delegate/callbacks">Callbacks</a>
-              </li>
-            
-          </ul>
-        
-      </li>
+  </div>
+  <div id="content">
     
-      <li>
-        <a href="#non-delegate-methods">Non-delegate methods</a>
-        
-      </li>
-    
-      <li>
-        <a href="#objects">Objects</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#objects/aluserstay">ALUserStay</a>
-              </li>
-            
-              <li>
-                <a href="#objects/alplace">ALPlace</a>
-              </li>
-            
-              <li>
-                <a href="#objects/almotionstate">ALMotionState</a>
-              </li>
-            
-              <li>
-                <a href="#objects/alresponse">ALResponse</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-  </ul>
-  
-  
-</div>
-<div id="content">
-  
-  <h1>Alohar SDK Reference v0.5</h1>
+    <h1>Alohar SDK Reference</h1>
 <h2 id='overview'>Overview</h2 id='overview'>
 <p>The Alohar SDK provides access to the <strong>Alohar Mobile Location Behavior Platform</strong>, which provides detailed information about the behavior of users by analyzing location and other sensor data. The overall platform is a combination of a smartphone client SDK (for both Android and iPhone) and several cloud-based services. The Alohar Mobile Location Behavior Platform uses mobile location, motion, wifi, and timing data to learn about the user in real time and also provide insights over time. These features allow us to provide much more advanced functionality than a conventional location based service (LBS).
 
 </p>
-<p>This is the reference documentation for the SDK. If this is your first time working with the SDK, we recommend the  <a href="tutorial.html">getting started guide</a> for a short how-to on getting Alohar up and running. If you have a specific question about a method or class, please see the included API documentation.
+<p><br/>
+
+</p>
+<p><strong>Here are of the things you can do with the Alohar SDK</strong>
+
+</p>
+<ul>
+<li>Automatically understand a user&#39;s mobile motion state (e.g. stationary, walking or driving).</li>
+<li>Automatically detect the places (including the name and category) that the user visits.</li>
+<li>Get notifications when a user arrives at or departs from a place.</li>
+<li>Automatically get the number of times a user visits a place, and how much time is spent there per visit.</li>
+<li>Minimize power consumption while gathering data from the mobile device.</li>
+</ul>
+<p>The beauty of the Alohar SDK is that you can focus on your application-specific functionalities, rather than low level user location and behavior, and therefore achieve a fast time to market. 
+
+</p>
+<p><strong>This is the reference documentation for the SDK</strong>. If this is your first time working with the SDK, we recommend the  <a href="tutorial.html">getting started guide</a> for a short how-to on getting Alohar up and running. If you have a specific question about a method or class, please see the included API documentation.
+
+
+</p>
+<h2 id='alohar-sdk-requirements'>Alohar SDK Requirements</h2 id='alohar-sdk-requirements'>
+<p>There are several features, most notably location, that have undergone significant changes in each of Apple&#39;s iOS releases. Therefore, we&#39;ve chosen a development and production target that allows us to use the advanced features that the new OS versions provide. <strong>The Alohar SDK requires Xcode</strong> 4.2+<strong> for development, and iOS </strong>5.0+<strong> for both development and distribution</strong>. If you don&#39;t have these, please update your software from Apple&#39;s developer portal: <a href="https://developer.apple.com/">developer.apple.com</a>.
 
 </p>
 <hr style="padding: 0; margin: 0;"/>
@@ -139,9 +166,9 @@
 
 </p>
 <p>The second time the app is run for the specific user, the app uses the UID and calls Alohar.authenticate() from Alohar context to authenticate the user. Once the user is authenticated, the app can start to manage the core service and access user information from Alohar platform.
-User Registration
 
 </p>
+<h3 id='initialization-session-delegate/user-registration'>User Registration</h3 id='initialization-session-delegate/user-registration'>
 <p>After the Alohar context is initialized, the developer needs to register and authenticate their user in Alohar system. The SDK manages the authentication and authorization and securely communicate with the Alohar servers.
 
 </p>
@@ -151,7 +178,7 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 </p>
 <h3 id='initialization-session-delegate/active-methods'>Active Methods</h3 id='initialization-session-delegate/active-methods'>
 <h4><strong>registerWithAppID:andAPIKey:withDelegate</strong></h4>
-<p>Call this method to start an Alohar session for a new user. Your app ID and API key are used to associate this user with your Alohar developer account.
+<p>Call this method to start an Alohar session for a new user. Your app ID and API key are used to associate this user with your Alohar developer account. If you don&#39;t have an AppID and don&#39;t know how to get one, please see our <a href="tutorial.html">getting started guide</a>.
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)registerWithAppID:(<span class="built_in">NSString</span> *)appID
@@ -217,7 +244,7 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='request-delegate'>Request Delegate</h2 id='request-delegate'>
-<p>Alohar&#39;s request structure allows queries to be made against the collected data. A query can be made using one of the active methods below, and the result will be returned in an <code>ALResponse</code> object.
+<p>Alohar&#39;s request structure allows queries to be made against the collected data. Each of these queries uses blocks to return the results asynchronously. Here&#39;s an example 
 
 
 </p>
@@ -225,20 +252,20 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <p>There are several methods to search for a user&#39;s previous stays. 
 
 </p>
-<h4><strong>getUserStaysForDate:withDelegate</strong></h4>
+<h4><strong>getUserStaysForDate:completion</strong></h4>
 <p>Calling this method with an <code>NSDate</code> will return all user stays that overlap with that 24-hour period.
 
 </p>
-<pre><code>+ (void)getUserStaysForDate:(NSDate *)date
-               withDelegate:(id <span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h4><strong>getUserStaysFromDate:toDate:withDelegate</strong></h4>
+<pre><code>+ (void)getUserStaysForDate:(NSDate <span class="variable">*)</span><span class="keyword">date</span>
+                 completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<h4><strong>getUserStaysFromDate:toDate:completion</strong></h4>
 <p>This method returns all user stays that overlap with the period between two <code>NSDate</code>s. 
 
 </p>
-<pre><code>+ (<span class="tag">void</span>)<span class="tag">getUserStaysFromDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">startDate</span>
-                      <span class="tag">toDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">endDate</span>
-                <span class="tag">withDelegate</span><span class="pseudo">:(id</span> &lt;<span class="tag">ALRequestDelegate</span>>)<span class="tag">delegate</span>;</code></pre>
-<h4><strong>getUserStaysFromDate:toDate:atLocation:radius:limit:withCandidiates:withDelegate</strong></h4>
+<pre><code>+ (void)getUserStaysFromDate:(NSDate <span class="variable">*)</span>startDate
+                      toDate:(NSDate <span class="variable">*)</span>endDate
+                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<h4><strong>getUserStaysFromDate:toDate:atLocation:radius:limit:includeCandidiates:completion</strong></h4>
 <p>Get user&#39;s user stays within a time period and a location boundary.
 
 
@@ -247,10 +274,9 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <pre><code> + (<span class="tag">void</span>)<span class="tag">getUserStaysFromDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">startDate</span>
                        <span class="tag">toDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">endDate</span>
                    <span class="tag">atLocation</span><span class="pseudo">:(CLLocation</span> *)<span class="tag">location</span>
-                       <span class="tag">radius</span><span class="pseudo">:(NSInteger)radius</span>
-                        <span class="tag">limit</span><span class="pseudo">:(NSInteger)limit</span>
+                       <span class="tag">radius</span><span class="pseudo">:(NSInteger)radius</span> <span class="tag">limit</span><span class="pseudo">:(NSInteger)limit</span>
            <span class="tag">includeCandidiates</span><span class="pseudo">:(BOOL)includeCandidates</span>
-                 <span class="tag">withDelegate</span><span class="pseudo">:(id</span>&lt;<span class="tag">ALRequestDelegate</span>>)<span class="tag">delegate</span>;</code></pre>
+                   <span class="tag">completion</span><span class="pseudo">:(void</span> (^)(<span class="tag">ALResponse</span> *<span class="tag">response</span>, <span class="tag">NSError</span> *<span class="tag">error</span>))<span class="tag">completion</span>;</code></pre>
 <h5>Parameters</h5>
 <ul>
 <li><strong>startDate</strong>: The start time</li>
@@ -259,26 +285,26 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <li><strong>radius</strong>: The search radius in meter. Optinal (pass nil to skip). Skip if the location is not provided.</li>
 <li><strong>limit</strong>: The limitation of total number matches to return. Optional (pass nil to skip). The default is 500.</li>
 <li><strong>withcand</strong>: Flag to indicate whether the user stay shall include its candidates. The default is NO.</li>
-<li><strong>delegate</strong>: A delegate comforming to protocol <code>ALRequestDelegate</code>.  </li>
+<li><strong>completion</strong>: This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.</li>
 </ul>
-<h4><strong>getAllPlacesWithDelegate:withDelegate</strong></h4>
-<p>This method returns all <code>ALPlace</code>s that the user has ever visited. <em>NOTE:</em> The response size depends on total number of visits -- for long-term users, this can be hundreds of KB. We recommend using getPlaces:withCategory:withDelegate to return more manageable results.<br>    + (void)getAllPlacesWithDelegate:(id <ALRequestDelegate>)delegate;
-
+<h4><strong>getAllPlacesWithCompletion</strong></h4>
+<p>This method returns all <code>ALPlace</code>s that the user has ever visited. <em>NOTE:</em> The response size depends on total number of visits -- for long-term users, this can be hundreds of KB. We recommend using getPlaces:withCategory:withDelegate to return more manageable results.                     
 
 </p>
-<h4><strong>getPlaces:withDelegate</strong></h4>
+<pre><code> + (<span class="keyword">void</span>)getAllPlacesWithCompletion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<h4><strong>getPlacesWithPattern:completion</strong></h4>
 <p>This method returns all <code>ALPlace</code>s that match the <code>namePattern</code> regex <code>NSString</code> passed to it. For example, passing <code>@&quot;^McDo&quot;</code> will return all places with names that start with @&quot;McDo&quot; (likely a list of McDonalds visits).
 
 </p>
-<pre><code>+ (void)getPlaces:(NSString *)namePattern
-     withDelegate:(id<span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h4><strong>getPlaces:withCategory:withDelegate</strong></h4>
+<pre><code>+ (void)getPlacesWithPattern:(NSString <span class="variable">*)</span>namePattern
+                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<h4><strong>getPlacesWithPattern:andCategory:completion</strong></h4>
 <p>This method returns all <code>ALPlace</code>s that match the <code>namePattern</code> regex <code>NSString</code> passed to it. For example, calling <code>[Alohar getPlaces:@&quot;.*&quot; withCategory:@&quot;^rest&quot; withDelegate:self]</code> will return all places with categories starting with rest -- likely a list of restaurants and possibly rest stops.
 
 </p>
-<pre><code>+ (<span class="keyword">void</span>)getPlaces:(<span class="built_in">NSString</span> *)namePattern
-     withCategory:(<span class="built_in">NSString</span> *)catPattern
-     withDelegate:(<span class="keyword">id</span>&lt;ALRequestDelegate>)delegate;</code></pre>
+<pre><code>+ (void)getPlacesWithPattern:(NSString <span class="variable">*)</span>namePattern
+                andCategory:(NSString <span class="variable">*)</span>catPattern
+                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
 <h4><strong>getPlaces:fromDate:toDate:minimalVisits:withCategory:limit:withDelegate</strong></h4>
 <p>This is the most advanced filter we provide for user stays. See the &quot;Parameters&quot; section below for guidance on each value.
 
@@ -295,44 +321,35 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <li><strong>startDate</strong>: The start date.</li>
 <li><strong>endDate</strong>: The end date.</li>
 <li><strong>location</strong>: The centroid location of the search area. Optional (pass nil to skip).</li>
-<li><strong>radius</strong>: The search radius in meter. Optinal (pass nil to skip). Has no effect if location is not provided.</li>
+<li><strong>radius</strong>: The search radius in meters. Optional (pass nil to skip). Has no effect if location is not provided.</li>
 <li><strong>limit</strong>: The maximum number of matches to return. Pass nil for default (500).</li>
-<li><strong>withcand</strong>: Flag to indicate whether the user stay shall include its candidates. The default is NO.</li>
+<li><strong>withcand</strong>: Flag to indicate whether the user stay should include possible POI candidates for each place. The default is NO.</li>
 <li><strong>delegate</strong>: A delegate comforming to protocol <code>ALRequestDelegate</code>. </li>
 </ul>
-<h4><strong>getPlaceCandidatesForStay:withDelegate</strong></h4>
+<h4><strong>getPlaceCandidatesForStay:completion</strong></h4>
 <p>This method returns all of the possible places a user stay could refer to. The Alohar SDK attempts to choose the right place, but orders all possibilities into a candidate list. 
 
 </p>
-<pre><code>+ (void)getPlaceCandidatesForStay:(ALUserStay *)stay
-                     withDelegate:(id<span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h4><strong>getStaysForPlace:withDelegate</strong></h4>
+<pre><code>+ (<span class="keyword">void</span>)getPlaceCandidatesForStay:(<span class="built_in">NSInteger</span>)stayId
+                       completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<h4><strong>getStaysForPlace:completion</strong></h4>
 <p>This method returns all user stays for a given place.
 
 </p>
-<pre><code>+ (void)getStaysForPlace:(ALPlace *)place
-            withDelegate:(id<span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h4><strong>getDetailsForPlace:withDelegate</strong></h4>
+<pre><code>+ (<span class="keyword">void</span>)getStaysForPlace:(<span class="built_in">NSInteger</span>)placeId
+              completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<h4><strong>getDetailsForPlace:completion</strong></h4>
 <p>This method returns the full details for a place.
 
 </p>
-<pre><code>+ (void)getDetailsForPlace:(ALPlace *)place
-              withDelegate:(id<span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h4><strong>getDetailsForStay:withDelegate</strong></h4>
+<pre><code>+ (<span class="keyword">void</span>)getDetailsForPlace:(<span class="built_in">NSInteger</span>)placeId
+                completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<h4><strong>getDetailsForStay:completion</strong></h4>
 <p>This method returns the full details for a user stay.
 
 </p>
-<pre><code>+ (void)getDetailsForStay:(ALUserStay *)stay
-             withDelegate:(id<span class="tag">&lt;<span class="title">ALRequestDelegate</span>></span>)delegate;</code></pre>
-<h3 id='request-delegate/callbacks'>Callbacks</h3 id='request-delegate/callbacks'>
-<pre><code>- (<span class="keyword">void</span>)aloharRequestFinished:(ALResponse *)response;</code></pre>
-<p>This method returns an <code>ALResponse</code> object with the requested data. See the <code>ALResponse</code> object below.
-
-</p>
-<pre><code>- (void)aloharDidFailWithError:(NSError <span class="variable">*)</span><span class="keyword">error</span>;</code></pre>
-<p>This callback means something went wrong with the request. The error object describes the issue.
-
-</p>
+<pre><code>+ (<span class="keyword">void</span>)getDetailsForStay:(<span class="built_in">NSInteger</span>)stayId
+               completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='change-delegate'>Change Delegate</h2 id='change-delegate'>
@@ -508,14 +525,16 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <pre><code><span class="built_in">Request</span> Types:
     kALRequestTypeUserStays,
     kALRequestTypePlaces,
-    kALRequestTypeMotionState,
     kALRequestTypeStayDetail,
-    kALRequestTypePlaceDetail</code></pre>
+    kALRequestTypePlaceDetail
+    kALRequestTypeCorrectUserStay,
+    kALRequestTypeAddUserStay,
+    kALRequestTypeDeleteUserStay</code></pre>
 <h5>Properties</h5>
 <p><code>NSDate *timeStamp</code> <em>The date that this request was returned</em>
 
 </p>
-<p><code>NSMutableArray *objects</code> *The returned values from the request. Even if there is only one result, it will always be wrapped in an <code>NSMutableArray</code>.
+<p><code>NSMutableArray *objects</code> *The returned values from the request. Even if there is only one result, unless it is NIL otherwise it will always be wrapped in an <code>NSMutableArray</code>.
 
 </p>
 <p><code>ALRequestType requestType</code> *The type of request this response is from. See Request Types above for the available options.
@@ -523,7 +542,9 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 </p>
 <p><hr style="padding: 0; margin: 0;"/>
 <br/><br/><br/>
-<span style='display:none'>curl -X POST -d &quot;name=Alohar SDK&quot; --data-urlencode content@documentation.md <a href="http://documentup.com/compiled?name=super%26">http://documentup.com/compiled?name=super%26</a> &gt; documentation.html &amp;&amp; open documentation.html </span></p>
+<span style='display:none'>curl -X POST -d &quot;name=Alohar SDK&quot; --data-urlencode content@documentation.md <a href="http://documentup.com/compiled?name=super%26">http://documentup.com/compiled?name=super%26</a> &gt; documentation.html &amp;&amp; open documentation.html </span>
+</p>
 
+  </div>
 </div></body>
 </html>
