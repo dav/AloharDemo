@@ -12,7 +12,6 @@
 enum {
     kALRequestTypeUserStays,
     kALRequestTypePlaces,
-    kALRequestTypeMotionState,
     kALRequestTypeStayDetail,
     kALRequestTypePlaceDetail,
     kALRequestTypeCorrectUserStay,
@@ -44,21 +43,40 @@ typedef NSUInteger ALRequestType;
     enum {
         kALRequestTypeUserStays,
         kALRequestTypePlaces,
-        kALRequestTypeMotionState,
         kALRequestTypeStayDetail,
         kALRequestTypePlaceDetail,
+        kALRequestTypeCorrectUserStay,
+        kALRequestTypeAddUserStay,
+        kALRequestTypeDeleteUserStay,
     }
  
  */
 @interface ALResponse : NSObject
 
 /*!
+ An NSDate that is set to the time the request was received from the server.
  */
 @property (strong) NSDate *timeStamp;
 /*!
+ The objects returned from this call. Depending on the call, this is an NSMutableArray of:
+  
+     kALRequestTypeUserStays
+         ALUserStay object(s)
+     kALRequestTypePlaces
+         ALPlace object(s)
+     kALRequestTypeStayDetail
+         ALUserStay object(s)
+     kALRequestTypePlaceDetail
+         ALPlace Object(s)
+
+ Following calls will return Nil:
+    kALRequestTypeCorrectUserStay
+    kALRequestTypeAddUserStay
+    kALRequestTypeDeleteUserStay
  */
 @property (nonatomic, strong) NSMutableArray *objects;
 /*!
+ This is the type identifier for the request. Use this to determine what class of object is in the objects array.
  */
 @property ALRequestType requestType;
 

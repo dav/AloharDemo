@@ -32,7 +32,7 @@
     [super viewDidLoad];
     
     //load candidates
-    [Alohar getPlaceCandidatesForStay:self.stay.stayID completeHandler:^(ALResponse *response, NSError *error) {
+    [Alohar getPlaceCandidatesForStay:self.stay.stayID completion:^(ALResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error %@", error);
             return;
@@ -161,7 +161,7 @@
             break;
         case 1:
             [self.navigationController popViewControllerAnimated:YES];
-            [Alohar correctStay:self.stay.stayID withCandidate:candidatePlaceId completeHandler:^(ALResponse *response, NSError *error) {
+            [Alohar correctStay:self.stay.stayID withCandidate:candidatePlaceId completion:^(ALResponse *response, NSError *error) {
                 if (self.delegate) {
                     [self.delegate userStayUpdated];
                 }

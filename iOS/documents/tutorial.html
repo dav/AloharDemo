@@ -12,90 +12,103 @@
 
     
   </head>
-  <body><div id="nav">
-  <div id="header">
-    <a href="#" id="logo">Alohar - Getting Started</a>
+  <body><div id="container">
+  <div id="nav">
+    
+      <div id="header">
+        <a href="#" id="logo">Alohar - Getting Started</a>
+      </div>
+    
+    <ul id="sections">
+      
+        <li>
+          <a href="#development-requirements">Development Requirements</a>
+          
+        </li>
+      
+        <li>
+          <a href="#register-your-ios-app">Register your iOS app</a>
+          
+        </li>
+      
+        <li>
+          <a href="#installing-alohar-sdk">Installing Alohar SDK</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#installing-alohar-sdk/create-a-new-xcode-project">Create a new Xcode Project</a>
+                </li>
+              
+                <li>
+                  <a href="#installing-alohar-sdk/download-the-sdk">Download the SDK</a>
+                </li>
+              
+                <li>
+                  <a href="#installing-alohar-sdk/add-linked-libraries">Add Linked Libraries</a>
+                </li>
+              
+                <li>
+                  <a href="#installing-alohar-sdk/add-background-location-support">Add background location support</a>
+                </li>
+              
+                <li>
+                  <a href="#installing-alohar-sdk/add-all_load-to-linker-flags">Add -all_load to Linker Flags</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#basic-usage">Basic Usage</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#basic-usage/add-import-session-delegate">Add import, session delegate</a>
+                </li>
+              
+                <li>
+                  <a href="#basic-usage/starting-a-session">Starting a Session</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#monitoring-user-changes">Monitoring User Changes</a>
+          
+        </li>
+      
+    </ul>
+    
+    
   </div>
-  <ul id="sections">
+  <div id="content">
     
-      <li>
-        <a href="#register-your-ios-app">Register your iOS app</a>
-        
-      </li>
-    
-      <li>
-        <a href="#installing-alohar-sdk">Installing Alohar SDK</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#installing-alohar-sdk/create-a-new-xcode-project">Create a new Xcode Project</a>
-              </li>
-            
-              <li>
-                <a href="#installing-alohar-sdk/download-the-sdk">Download the SDK</a>
-              </li>
-            
-              <li>
-                <a href="#installing-alohar-sdk/add-linked-libraries">Add Linked Libraries</a>
-              </li>
-            
-              <li>
-                <a href="#installing-alohar-sdk/add-background-location-support">Add background location support</a>
-              </li>
-            
-              <li>
-                <a href="#installing-alohar-sdk/add-all_load-to-linker-flags">Add -all_load to Linker Flags</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#basic-usage">Basic Usage</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#basic-usage/add-import-session-delegate">Add import, session delegate</a>
-              </li>
-            
-              <li>
-                <a href="#basic-usage/starting-a-session">Starting a Session</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#monitoring-user-changes">Monitoring User Changes</a>
-        
-      </li>
-    
-  </ul>
-  
-  
-</div>
-<div id="content">
-  
-  <style type="text/css">
+    <style type="text/css">
 img {
   border: 1px solid #ccc;}
 </style>
 
-
 <h1>Getting started with Alohar</h1>
 <p>This is a primer on installing and using Alohar in your projects. For an overview of the SDK and details on specific  usage, please go to <a href="documentation.html">our full documentation</a>.
 
+</p>
+<h2 id='development-requirements'>Development Requirements</h2 id='development-requirements'>
+<p>For the Alohar SDK, we use many of Apple&#39;s advanced location and motion controls introduced in the newest OS release. <strong>Therefore, the Alohar SDK requires Xcode</strong> 4.2+<strong>, and iOS </strong>5.0+. If you don&#39;t have these, please go to Apple&#39;s developer portal to update: <a href="https://developer.apple.com/">developer.apple.com</a>.
+
+</p>
+<p>While it may seem limiting to only allow users that have 5.0+, iOS users have a fantastic track record of updating their devices. As of April 12th 2012, 80-90% of all users are on iOS 5. Most of the users that still remain on iOS 4.0 are those that cannot upgrade due to their device (iPhone, iPhone 3G). These devices are disappearing quickly, and we think the advantages you&#39;ll get yourself are also worth the upgrade.
 
 </p>
 <h2 id='register-your-ios-app'>Register your iOS app</h2 id='register-your-ios-app'>
-<p>Go to <a href="https://www.placemeapp.com/developer/"><a href="https://www.placemeapp.com/developer/">https://www.placemeapp.com/developer/</a></a>, and follow the directions there to set up your account. 
+<p>Go to <a href="http://www.alohar.com/developer/">alohar.com/developer/</a>, and follow the directions there to set up your account. One you have an account, navigate to &quot;My Apps&quot;, and add a new iOS application profile.
 
 </p>
-<p>There are two things you need from the signup process. Your <strong>App ID</strong>, and your <strong>App Secret</strong>.
+<p>Once you complete your app profile, you will recieve two things: Your <strong>App ID</strong>, and your <strong>App Secret</strong>. These can be accessed in the future by visiting &quot;My Apps&quot; again.
 
 </p>
 <p><img src="images/SDKKeys.png" alt="SDK Keys">
@@ -103,35 +116,43 @@ img {
 </p>
 <h2 id='installing-alohar-sdk'>Installing Alohar SDK</h2 id='installing-alohar-sdk'>
 <h3 id='installing-alohar-sdk/create-a-new-xcode-project'>Create a new Xcode Project</h3 id='installing-alohar-sdk/create-a-new-xcode-project'>
-<p>If you haven&apos;t yet, create a new Xcode project. If you need help, this tutorial is very helpful: <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/iPhone/Conceptual/iPhone101/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007514-CH1-SW1">Getting started with Xcode projects tutorial from Apple</a>.
+<p>If you haven&#39;t yet, create a new Xcode project. If you need help getting started with Xcode and iOS projects in general, this tutorial is very helpful: <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/iPhone/Conceptual/iPhone101/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007514-CH1-SW1">Getting started with Xcode projects tutorial from Apple</a>.
 
 </p>
-<p>For this example project, we&apos;re going to use a &quot;Single View Application&quot;.
+<p>For this example project, we&#39;re going to use a &quot;Single View Application&quot;, because it is a simpler setup than the other options. All application types provide a pretty much identical experience for the purposes of this tutorial.
 
 </p>
 <p><img src="images/newProject.png" alt="Single View App">
 
 </p>
 <h3 id='installing-alohar-sdk/download-the-sdk'>Download the SDK</h3 id='installing-alohar-sdk/download-the-sdk'>
-<p>First, download the <a href="coreSDKLink">Alohar SDK Framework</a>. Drag the &quot;Alohar.framework&quot; folder from the download into the &quot;Frameworks&quot; folder in your Xcode project, and make sure to turn on &quot;Copy items to destination group&apos;s folder&quot;. 
+<p>First, download the <a href="coreSDKLink">Alohar SDK Framework</a>. Drag the &quot;Alohar.framework&quot; folder from where it was downloaded into the &quot;Frameworks&quot; folder in your Xcode project, and make sure to turn on &quot;Copy items to destination group&#39;s folder&quot;. 
 
 </p>
 <p><img src="images/addFramework.png" alt="Add Framework">
 <img src="images/copyIntoDestination.png" alt="Copy to Destination">
 </p>
 <h3 id='installing-alohar-sdk/add-linked-libraries'>Add Linked Libraries</h3 id='installing-alohar-sdk/add-linked-libraries'>
-<p>Alohar needs a few standard libraries to be included in the project in order to function. In Xcode, go to the &quot;Build Phases&quot; section of your target (see image below for path to &quot;Build Phases&quot;), and add these libraries:
+<p>Alohar needs a few standard libraries to be included in the project in order to function. These are mainly to provide location and motion functionality. In Xcode, go to the &quot;Build Phases&quot; section of your target (see image below for path to &quot;Build Phases&quot;), and add these libraries:
 
 </p>
-<ul><li>CFNetwork.framework</li><li>CoreTelephony.framework</li><li>CoreLocation.framework</li><li>SystemConfiguration.framework</li><li>MobileCoreServices.framework</li><li>CoreMotion.framework</li><li>libz.dylib </li></ul>
-<p>Also, notice that Alohar.framework has been automatically included in the library list.
+<ul>
+<li>CFNetwork.framework</li>
+<li>CoreTelephony.framework</li>
+<li>CoreLocation.framework</li>
+<li>SystemConfiguration.framework</li>
+<li>MobileCoreServices.framework</li>
+<li>CoreMotion.framework</li>
+<li>libz.dylib</li>
+</ul>
+<p>Also, notice that Alohar.framework was automatically included in the library list for you when you dragged it into your project.
 
 </p>
 <p><img src="images/linkBinary.png" alt="Linked Libraries">
 
 </p>
 <h3 id='installing-alohar-sdk/add-background-location-support'>Add background location support</h3 id='installing-alohar-sdk/add-background-location-support'>
-<p>Alohar&apos;s automatic location service requires background location data to work. To support this, with your project target still selected, go to the &quot;Info&quot; tab. Right click within the &quot;Custom iOS Target Properties&quot; and choose &quot;Add Row&quot;. Type &quot;Required background modes&quot; and hit enter. Click on the triangle at the left of the new row to expand, and then type &quot;App registers for location updates&quot; in the value column of the row that says &quot;Item 0&quot;.
+<p>Alohar captures your location and determines visits and user state even while the app is in the background through the automatic location server. Alohar&#39;s automatic location service requires background location data to work. To support this, with your project target still selected, go to the &quot;Info&quot; tab. Right click within the &quot;Custom iOS Target Properties&quot; and choose &quot;Add Row&quot;. Type &quot;Required background modes&quot; and hit enter. Click on the triangle at the left of the new row to expand, and then type &quot;App registers for location updates&quot; in the value column of the row that says &quot;Item 0&quot;.
 
 </p>
 <p><img src="images/addRow.png" alt="Add Row">
@@ -140,7 +161,7 @@ img {
 
 </p>
 <h3 id='installing-alohar-sdk/add-all_load-to-linker-flags'>Add -all_load to Linker Flags</h3 id='installing-alohar-sdk/add-all_load-to-linker-flags'>
-<p>The final setup step is to set &quot;-all_load&quot; in your project&apos;s linker flags. Click on the &quot;Build Settings&quot; tab, make sure &quot;all&quot; is the selected filter, then scroll down until you see &quot;Other Linker Flags&quot; in the &quot;Linking&quot; section. double click on the empty value area to the right of the label, and enter &quot;-all_load&quot;. Here&apos;s a screenshot of the finished step:
+<p>The final setup step is to set &quot;-all_load&quot; in your project&#39;s linker flags. Click on the &quot;Build Settings&quot; tab, make sure &quot;all&quot; is the selected filter, then scroll down until you see &quot;Other Linker Flags&quot; in the &quot;Linking&quot; section. double click on the empty value area to the right of the label, and enter &quot;-all_load&quot;. Here&#39;s a screenshot of the finished step:
 
 </p>
 <p><img src="images/allLoad.png" alt="added -all_load">
@@ -167,14 +188,14 @@ img {
              <span class="method">withDelegate:</span><span class="keyword">self</span>];</code></pre>
 <p>The registerWithAppID method is asynchronous -- session success or failure will be relayed to callback methods -- either aloharDidLogin, or aloharDidFailWithError. If the user is successfully logged in, we can start monitoring their state. <em>Note: the user will see <code>YOUR_APP would like to use your current location</code> dialog when you call <code>startMonitoringUser</code>.</em>
 </p>
-<pre><code>- <span class="params">(<span class="reserved">void</span>)</span>aloharDidLogin:<span class="params">(NSString *)</span>userToken
+<pre><code>- (void)aloharDidLogin:(NSString <span class="variable">*)</span>userToken
 {
-  NSLog<span class="params">(@<span class="string">"User is logged in!"</span>)</span>;
+  NSLog(<span class="variable">@"</span>User is logged in!<span class="string">");
   [Alohar startMonitoringUser];
 }
-- <span class="params">(<span class="reserved">void</span>)</span>aloharDidFailWithError:<span class="params">(NSError *)</span>error
+- (void)aloharDidFailWithError:(NSError <span class="variable">*)</span>error
 {
-  NSLog<span class="params">(@<span class="string">"User couldn't be logged in! Error: %@"</span>, error)</span>;
+  NSLog(<span class="variable">@"</span>User couldn't be logged in! Error: <span class="variable">%@</span>"</span>, error);
 }</code></pre>
 <p>After these changes, our AppDelegate.m file looks like this:
 
@@ -184,7 +205,7 @@ img {
 
 </p>
 <h2 id='monitoring-user-changes'>Monitoring User Changes</h2 id='monitoring-user-changes'>
-<p>So, we&apos;re monitoring the user, but we can&apos;t see anything. Let&apos;s hook up a callback in our ViewController file. In the ViewController.h file, add <code>#import &lt;Alohar/Alohar.h&gt;</code>, and add the ALMotionDelegate protocol (see finished step below). 
+<p>So, we&#39;re monitoring the user, but we can&#39;t see anything. Let&#39;s hook up a callback in our ViewController file. In the ViewController.h file, add <code>#import &lt;Alohar/Alohar.h&gt;</code>, and add the ALMotionDelegate protocol (see finished step below). 
 
 </p>
 <p><img src="images/importAndMotionDelegate.png" alt="Import + Motion Delegate">
@@ -195,15 +216,15 @@ img {
 </p>
 <p><code>[Alohar setMotionDelegate:self];</code>
 </p>
-<pre><code>- <span class="params">(<span class="reserved">void</span>)</span>didUpdateToMotionState:<span class="params">(ALMotionState *)</span>newMotionState 
-               fromMotionState:<span class="params">(ALMotionState *)</span>oldMotionState
+<pre><code><span class="pp">- <span class="params">(void)</span>didUpdateToMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>newMotionState 
+               fromMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>oldMotionState
 {
-  NSLog<span class="params">(@<span class="string">"New Motion State: %@"</span>, newMotionState.stateDescription)</span>;
+  NSLog<span class="params">(@<span class="string">"New Motion State: %@"</span>, new<span class="variable">MotionState</span>.</span></span>state<span class="variable">Description</span>);
 }</code></pre>
 <p><img src="images/viewcontroller.png" alt="View Controller">
 
 </p>
-<p>That&apos;s it! You&apos;ve created a working Alohar app. Mimic the action of walking (rhythmic swinging) and see your motion state update to walking! This is only one of many features on the Alohar platform. Please check out <a href="documentation.html">our full documentation</a> for more info.
+<p>That&#39;s it! You&#39;ve created a working Alohar app. Mimic the action of walking (rhythmic swinging) and see your motion state update to walking! This is only one of many features on the Alohar platform. Please check out <a href="documentation.html">our full documentation</a> for more info.
 
 </p>
 <p><img src="images/logOutput.png" alt="Finished Log Output">
@@ -212,5 +233,7 @@ img {
 </p>
 <p><span style='display:none'>curl -X POST -d &quot;name=Alohar - Getting Started&quot; --data-urlencode content@tutorial.md <a href="http://documentup.com/compiled">http://documentup.com/compiled</a> &gt; tutorial.html &amp;&amp; open tutorial.html</span>
 </p>
+
+  </div>
 </div></body>
 </html>
