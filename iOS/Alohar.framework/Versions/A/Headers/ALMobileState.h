@@ -14,41 +14,49 @@
 #define ALMobileStateFastMoving         3
 
 /*!
- ALMobileState captures a high-level movement state of a mobile device which 
- is different from lower level motion state like ALMotionState. It is the 
- decision state Alohar SDK surfaced out based on various senor data like 
- accecelometer, location, wifi etc.
+ ALMobileState captures the high-level movement state of the user's device. 
  
- Imagine you leave your home in the morning, drive to your company campus then
- walk to your office. The ALMobileState will capture the major movement state in between.
- Using ALMobileStateDelegate, user will recieve updates from ALMobileStateNotMoving 
- to ALMobileStateFastMoving shortly after user is driving, updates from 
- ALMobileStateFastMoving to ALMobileStateSlowMoving after user arrives company
- campus and starts to walk to the office, and updates from ALMobileStateSlowMoving
- to ALMobileStateNotMoving once user arrives the office.
+ While ALMotionState provides near-instant motion state of the user's device,
+ ALMobileState provides a more stable and reliable indicator of the type of
+ action (sitting, walking, driving, etc) the user is currently performing.
+ 
+ ALMobileState's state is based on data from various sensors, including 
+ accelerometer, location, and wifi.
+ 
+ Imagine you leave your home in the morning, drive 10 minutes to your company campus, and then
+ walk to your office. The ALMobileState will capture each major motion state.
+ 
+    Start      (At Home)                          ALMobileStateNotMoving
+    ~1-2 min   (Leaving home, getting into car)   ALMobileStateSlowMoving
+    ~10 min    (Driving on Highway to work)       ALMobileStateFastMoving
+    ~1-2 min   (Park car, walk into work)         ALMobileStateSlowMoving
+    end        (At Work)                          ALMobileStateNotMoving
+
+ 
  
  In general, slow moving is anything like walking or biking or low speed driving. 
- Fast moving usually means high speed driving. Different from motion state, mobile 
- state will skip small state changes in between. For example, if user drives and 
+ Fast moving usually means high speed driving. As opposed to from ALMotionState, ALMobileState 
+ will skip small state changes in between. For example, if user drives and 
  stops at red light for short time, ALMotionDelegate might surface the stationary 
- motion state, but ALMobileStateDelgate might treat it still fast moving and 
+ motion state, but ALMobileStateDelgate will likely treat it as still fast moving and 
  skip the change completely.
  
- Currently, we support following mobile state:
- 
-    ALMobileStateUnknown
-        Initial unknown state
-    ALMobileStateNotMoving
-        Users are at a user stay. Users might walk inside the user stay.
-    ALMobileStateSlowMoving
-        Users are on commute and users are moving at a relative slow speed like walking, biking or slow driving.
-    ALMobileStateFastMoving         
-        Users are no commute and users are moving at high speed like high way driving.
- 
+ @warning This API is still beta quality. Feedback is welcome: developer@alohar.com
+
  */
 @interface ALMobileState : NSObject
 
 /*!
+ Currently, we support following mobile states:
+ 
+     ALMobileStateUnknown
+         Initial unknown state
+     ALMobileStateNotMoving
+         User is at a user stay. The user may be moving within a place, but is not moving *between* places.
+     ALMobileStateSlowMoving
+         User is traveling between user stays at a relatively slow speed like walking, biking or slow driving.
+     ALMobileStateFastMoving         
+         Users are moving at high speed like high way driving.
  */
 @property (nonatomic, strong) NSNumber *state;
 

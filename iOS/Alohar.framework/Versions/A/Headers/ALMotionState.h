@@ -16,9 +16,17 @@
 
 /*!
  ALMotionState class represents the motion state of the device. The state
- captures the high-level motion state by smoothing raw accecelometer data.
+ captures the motion state by smoothing raw accecelometer data. These states
+ describe smoothed raw motion data. For a higher-level user state, see ALMobileState.
    
- We support following high-level motion state:
+ @warning This API is still beta quality. Feedback is welcome: developer@alohar.com
+
+ */
+@interface ALMotionState : NSObject
+
+/*!
+ We support following motion states:
+
     ALMotionStateStationary: 
         The device is not moving. e.g. device is put on desk
     ALMotionStateWalking: 
@@ -29,13 +37,6 @@
         The device has significant movement. e.g Waving or Rotating.
     ALMotionStateNoData: 
         Initial unknown state.
- 
- @warning The APIs are still in Beta quality. Feedbacks are welcome: support@alohar.com
-
- */
-@interface ALMotionState : NSObject
-
-/*!
  */
 @property (nonatomic, strong) NSNumber *state;
 

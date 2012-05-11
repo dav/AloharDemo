@@ -16,18 +16,6 @@
 #import "ALMobileState.h"
 
 /*!
- * Complete handler block for Alohar Requests
- *  if success, ALResponse instance will be set, otherwise error will be thrown
- */
-typedef void (^ALRequestCompleteBlock)(ALResponse *response, NSError *error);
-
-/*!
- * Block alternative for ALSessionDelegate
- * if success, userToken will be returned, otherwise error will be thrown
- */
-typedef void (^ALSessionCompleteBlock)(NSString *userToken, NSError *error);
-
-/*!
  * Protocol for Registration and Authentication.
  */
 @protocol ALSessionDelegate <NSObject>
@@ -39,7 +27,7 @@ typedef void (^ALSessionCompleteBlock)(NSString *userToken, NSError *error);
 - (void)aloharDidLogin:(NSString *)userID;
 /*!
  * Callback when user failed to login. 
- * \param error Detail error information.
+ * \param error Detailed error information.
  */
 - (void)aloharDidFailWithError:(NSError *)error;
 @end
@@ -110,13 +98,13 @@ enum {
 /*!
  * Alohar is the main interface to Alohar's framework. 
  *
- * To use the Alohar, user needs to authenticate first. For
- * a new user, call registerWithAppID:andAPIKey:withDelegate
- * or call authenticateWithAppID:andAPIKey:andUserID:withDelegate
+ * To use the Alohar, the user needs to be authenticated first. For
+ * a new user, call ```registerWithAppID:andAPIKey:withDelegate```
+ * or call ```authenticateWithAppID:andAPIKey:andUserID:withDelegate```
  * 
- * Once the user is authenticated, he/she can start to use rest of
- * framework. Alohar is a persistent sensing framework, to enable the 
- * persistent sensing, user shall start the service by calling
+ * Once the user is authenticated, he/she can start to use rest of the
+ * framework. Alohar is a persistent sensing framework, to enable 
+ * persistent sensing, start the service by calling
  * ```
  * startMonitoringUser
  * ```
@@ -146,30 +134,30 @@ enum {
 /** @name Registration/Authentication */
 
 /*!
- * Register a new user for a given App using delegate
+ * Register a new user for the app using delegate response
  *
- * \param appID The AppID assigned for the App, click https://www.alohar.com/developer to register your app.
- * \param APIKey The ApiKey assigned for the App
- * \param delegate A delegate comform to ALSessionDelegate
+ * \param appID The AppID assigned for the App, go to https://www.alohar.com/developer to register your app.
+ * \param APIKey The APIKey assigned for the App
+ * \param delegate A delegate that comforms to ALSessionDelegate
  */
 + (void)registerWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey withDelegate:(id<ALSessionDelegate>)delegate;
 
 /*!
- * Register a new user for a given App using Block
+ * Register a new user for the app using block response
  *
  * \param appID The AppID assigned for the App, click https://www.alohar.com/developer to register your app.
- * \param APIKey The ApiKey assigned for the App
- * \param handler The complete block
+ * \param APIKey The APIKey assigned for the App
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)registerWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey completeHandler:(ALSessionCompleteBlock)handler;
++ (void)registerWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey completion:(void (^)(NSString *userToken, NSError *error))completion;
 
 /*!
  * Authenticate an existing user. 
- * For new user, please use 
- * registerWithAppID:andAPIKey:withDelegate instead.
+ * For a new user, please use 
+ * ```registerWithAppID:andAPIKey:withDelegate``` instead.
  * 
  * \param appID The AppID assigned for the App.
- * \param APIKey The ApiKey assigned to the App.
+ * \param APIKey The APIKey assigned to the App.
  * \param userID The unique user ID assigned from Alohar from registration.
  * \param delegate A delegate that conforms to the ALSessionDelegate protocol.
  */
@@ -178,16 +166,16 @@ enum {
 /*!
  * Authenticate an existing user using block. 
  * For new user, please use 
- * registerWithAppID:andAPIKey:completeHandler instead.
+ * ```registerWithAppID:andAPIKey:completion``` instead.
  * 
  * \param appID The AppID assigned for the App.
- * \param APIKey The ApiKey assigned to the App.
- * \param userID The unique user ID assigned from Alohar from registration.
- * \param handler The complete handler block
+ * \param APIKey The APIKey assigned to the App.
+ * \param userID The unique user ID returned by Alohar at user registration.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID completeHandler:(ALSessionCompleteBlock)handler;
++ (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID completion:(void (^)(NSString *userToken, NSError *error))completion;
 
-/** @name Monitering Serive Life Cycle */
+/** @name Life Cycle Of Monitering Service */
 
 /*!
  * Start the monitoring service
@@ -209,15 +197,15 @@ enum {
 + (void)setMotionDelegate:(id <ALMotionDelegate>)delegate;
 
 /*!
- * Set User Stay Delegate 
- * \param delegate A delegate that conforms to the ALUserStayDelegate
+ * Set the User Stay Delegate 
+ * \param delegate A delegate that conforms to the ALUserStayDelegate protocol
  *
  */
 + (void)setUserStayDelegate:(id <ALUserStayDelegate>)delegate;
 
 /*!
- * Set Mobile State Delegate
- * \param delegate A delegate that conforms to the ALMobileStateDelegate
+ * Set the Mobile State Delegate
+ * \param delegate A delegate that conforms to the ALMobileStateDelegate protocol
  *
  */
 + (void)setMobileStateDelegate:(id<ALMobileStateDelegegate>)delegate;
@@ -225,142 +213,142 @@ enum {
 /** @name Place/User Stay Retrieval Methods */
 
 /*!
- * Get the current user stay object
+ * Get the ALUserStay object for the user's current visit. If the user is between places, this will be nil.
  * @see ALUserStay
  */
 + (ALUserStay *)currentUserStay;
 
 /*!
  * Get the user's user stays for a given date.
- * \param date The date to search user stay.
- * \param handler The complete handler block with ALResponse or Error.
+ * \param date The date to search for user stays. Counts from midnight to midnight of the user's time zone (e.g. July 8th is any user stay that overlaps with 12:01AM July 8th to 11:59PM July 8th).
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getUserStaysForDate:(NSDate *)date completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getUserStaysForDate:(NSDate *)date completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
- * Get the user's user stays within a time period
+ * Get user stays that that start or end within a given time period
  * \param startDate The start time.
  * \param endDate The end time.
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
- * Get user's user stays within a time period and a location boundary.
+ * Get user's user stays that start or end within a given time period and a location boundary.
  * 
  * \param startDate The start time
  * \param endDate The end time
  * \param location The centroid location of the search area. Optional.
  * \param radius The search radius in meter. Optinal. Skip if the location is not provided.
  * \param limit The limitation of total number matches to return. Optional. The default is 500.
- * \param includeCand Flag to indicate whether the user stay shall include its candidates. Optional. The default is NO.
- * \param handler The complete handler block with ALResponse or Error.
+ * \param includeCandidates Flag to indicate whether the user stay shall include its candidates. Optional. The default is NO.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  * 
  */
-+ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate atLocation:(CLLocation *)location radius:(NSInteger)radius limit:(NSInteger)limit includeCandidiates:(BOOL)includeCand completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate atLocation:(CLLocation *)location radius:(NSInteger)radius limit:(NSInteger)limit includeCandidiates:(BOOL)includeCandidates completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 
 /*!
- * Get all places a user visited.
+ * Get all places the current user has ever visited.
  * 
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  * 
- * *NOTE* The response might be large depends on the total number of the places user visisted. Recommend to use getPlaces:withCategory:withDelegate instead. 
+ * @warning *NOTE* The response may be large (750KB+) depending on the total number of places user has visited. We recommend using ```getPlacesWithPattern:andCategory:withDelegate``` instead. 
  */
-+ (void)getAllPlacesWithCompleteHandler:(ALRequestCompleteBlock)handler;
++ (void)getAllPlacesWithCompletion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
- * Get places user visited and match the given name
+ * Get places user visited with names that match the regular expression
  * 
- * \param namePattern The regular expression to match the place name.
- * \param handler The complete handler block with ALResponse or Error.
+ * \param namePattern The regular expression to match the place names against.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
 
-+ (void)getPlaces:(NSString *)namePattern completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getPlacesWithPattern:(NSString *)namePattern completion:(void (^)(ALResponse *response, NSError *error))completion;
 /*!
- * Get places user visited match the given name and category 
+ * Get places the user has visited that match the given name and category 
  * 
- * \param namePattern The regular expression to match the place name
- * \param catPattern The regular expression to match the place's category
- * \param handler The complete handler block with ALResponse or Error.
+ * \param namePattern The regular expression to match the place names against.
+ * \param catPattern The regular expression to match the place categories against.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
 
-+ (void)getPlaces:(NSString *)namePattern withCategory:(NSString *)catPattern completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getPlacesWithPattern:(NSString *)namePattern andCategory:(NSString *)catPattern completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get places the user visited within a time window that match the category regex.
  * 
- * \param namePattern The regular expression for the place name
+ * \param namePattern The regular expression to match the place names against.
  * \param startDate The start time
  * \param endDate The end Time
- * \param visits The mininal numer of visits required for that places. Optioanl. The default is 1.
+ * \param visits The minimum number of visits for each place. For example, if this is set to 3, all places with 1-2 visits will not be included in the results.
  * \param catPattern The regular expression to match the place's category
- * \param limit The limitation of total number matches to return. Optional. The default is 500.
- * \param handler The complete handler block with ALResponse or Error.
+ * \param limit The limitation of total number matches to return. Pass nil to return the default number (500).
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getPlaces:(NSString *)namePattern fromDate:(NSDate *)startDate toDate:(NSDate *)endDate minimalVisits:(NSInteger)visits withCategory:(NSString *)catPattern limit:(NSInteger)limit completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getPlacesWithPattern:(NSString *)namePattern fromDate:(NSDate *)startDate toDate:(NSDate *)endDate minimalVisits:(NSInteger)visits withCategory:(NSString *)catPattern limit:(NSInteger)limit completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Correct a user stay's selected POIs with a new place candidate
  *
  * \param stayId The user stay's stayId
  * \param placeId The new selected place's ID
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)correctStay:(NSInteger)stayId withCandidate:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)correctStay:(NSInteger)stayId withCandidate:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 
 /*!
  * Correct a user stay's selected POIs with a new place
  *
  * \param stayId The user stay's stayId
- * \param name The name of a new place
+ * \param name The name of the new place
  * \param loc The location of the new place
  * \param addr The complete address of the new place
  * \param category The category type of the new place
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion The complete handler block with ALResponse or Error.
  */
-+ (void)correctStay:(NSInteger)stayId withPlace:(NSString*)name location:(CLLocation*)loc address:(NSString*)addr category:(placeCategoryType)category completeHandler:(ALRequestCompleteBlock)handler;
++ (void)correctStay:(NSInteger)stayId withPlace:(NSString*)name location:(CLLocation*)loc address:(NSString*)addr category:(placeCategoryType)category completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Delete a user stay
  * 
  * \param stayId The user stay's stayId
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)deleteStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)deleteStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
- * Get the place candidates of a user stay.
+ * Get the place candidates for a user stay.
  * 
- * \param stayId A user stay's ID. @see ALUserStay
- * \param handler The complete handler block with ALResponse or Error.
+ * \param stayId The user stay's ID. @see ALUserStay
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getPlaceCandidatesForStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
- * Get all user stays of a place.
+ * Get all user stays for a place.
  *
  * \param placeId A place's ID. @see ALPlace
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getStaysForPlace:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getStaysForPlace:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get details for a place.
  * 
  * \param placeId Valid place's placeID 
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getDetailsForPlace:(NSInteger)placeId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getDetailsForPlace:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get details for a user stay.
  *
  * \param stayId Valid user stay's stayID
- * \param handler The complete handler block with ALResponse or Error.
+ * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  */
-+ (void)getDetailsForStay:(NSInteger)stayId completeHandler:(ALRequestCompleteBlock)handler;
++ (void)getDetailsForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 
 /** @name State Methods */
@@ -368,7 +356,7 @@ enum {
 /*! 
  * Get the user's current location.
  *
- * @warning *important* the current location is the last known location of the device in SDK. 
+ * @warning *important* the current location is the SDK's last known location of the device. 
  * If the monitoring service is stopped, the location will be stale. When the monitoring
  * service is running, it is close to the real current location in most cases. But it 
  * is NOT a replacement for the current location of native LocationManager. 
@@ -422,12 +410,12 @@ enum {
  * History of arrival/departure events.
  * \return Array of events
  * 
- * Note: There are three type of events: Arrival, Departure, UserStay
+ * *Note*: There are three type of events: Arrival, Departure, UserStay
  * For Arrival/Departure events, the NSDictionary has the following key/value pairs:
- * {type:(NSString*), location:(CLLocation*), timestamp:(NSInteger)}
+ * ```{type:(NSString*), location:(CLLocation*), timestamp:(NSInteger)}```
  *
  * For Userstay events, the NSDictionary has the following key/value pairs:
- * {type:(NSString*), stay:(ALUserStay*), timestamp:(NSInteger)}
+ * ```{type:(NSString*), stay:(ALUserStay*), timestamp:(NSInteger)}```
  *
  */
 + (NSArray *)userStayLocationHistory;
