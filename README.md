@@ -1,5 +1,17 @@
 ###Latest Updates###
-iOS SDK V0.2, new iOS Demo and updated documentations.
+
+**05/11/2012**
+iOS SDK V0.2.1, main changes:
+
++ battery life enhancement
++ edit APIs for user stays
++ new APIs for high level mobile movement state: not moving, slow moving and fast moving.
++ support block
++ some APIs updates and various bug fixes
++ updated Demo App
++ updated documentation: API doc (iOS/documents/apple_doc), tutorial (iOS/documents/tutorial.html), and SDK reference (iOS/documents/documentation.html)
+
+Questions? Contact us developer@alohar.com 
 
 ##Alohar Demo##
 
