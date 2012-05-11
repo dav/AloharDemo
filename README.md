@@ -1,7 +1,8 @@
 ###Latest Updates###
 
 **05/11/2012**
-iOS SDK V0.2.1, main changes:
+
+***iOS SDK V0.2.1***, main changes:
 
 + battery life enhancement
 + edit APIs for user stays
