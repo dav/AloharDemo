@@ -76,13 +76,13 @@
 - (void)currentUserStayIdentified:(ALUserStay *)newStay;
 /*!
  * Callback when an arrival event is detected. 
- * \param location The centroid of the user's location when the arrival event is triggered.
+ * \param location The centroid of the user's location when the arrival event was triggered.
  */
 - (void)userArrivedAtPlaceWithLocation:(CLLocation *)location;
 /*!
  * Callback when a departure event is detected. 
  * \param location The centroid of the last user stay. 
- * If the user stay is not detected, the centroid of user's location will be returned.
+ * If no user stay is detected, the centroid of the user's last location is returned.
  */
 - (void)userDepartedPlaceWithLocation:(CLLocation *)location;
 @end
@@ -98,7 +98,7 @@ enum {
 /*!
  * Alohar is the main interface to Alohar's framework. 
  *
- * To use the Alohar, the user needs to be authenticated first. For
+ * To use the Alohar, the user needs to be authenticated. For
  * a new user, call ```registerWithAppID:andAPIKey:withDelegate```
  * or call ```authenticateWithAppID:andAPIKey:andUserID:withDelegate```
  * 
