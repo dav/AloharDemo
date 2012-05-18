@@ -224,6 +224,15 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 
 </p>
 <pre><code><span class="attr_selector">[Alohar stopMonitoringUser]</span></code></pre>
+<h4><strong>Auto Start </strong></h4>
+<p>Once your device reboots, the monitoring service will be termiated along with your app. User might forget to turn on your application after the reboot. To continue sensing user&#39;s behavior in those cases, you can turn on auto-start feature which will turn the monitoring service back once the user is moved significantly. Of course, you can completely turn the service off by calling <code>[Alohar stopMonitoringUser]</code> any time and auto start will also respect that. We highly recommend you to turn this feature on for better user exprience. To enable this feature, simply add <code>[Alohar enableAutoStart]</code> when the application is going to be terminated. For example:
+
+</p>
+<pre><code>- (void)applicationWillTerminate:(UIApplication *)application
+{
+        // Called <span class="keyword">when</span> the application <span class="keyword">is</span> about <span class="keyword">to</span> terminate. Save data <span class="keyword">if</span> appropriate. See also applicationDidEnterBackground:.
+        [Alohar enableAutoStart];
+}</code></pre>
 <p><div id='sessiondelegate-callbacks' style='padding:0;margin:0;'/></div>
 </p>
 <h3 id='initialization-session-delegate/callbacks'>Callbacks</h3 id='initialization-session-delegate/callbacks'>
@@ -244,12 +253,27 @@ Again, <strong>your app must manage the userID to allow data retrieval in the fu
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='request-delegate'>Request Delegate</h2 id='request-delegate'>
-<p>Alohar&#39;s request structure allows queries to be made against the collected data. Each of these queries uses blocks to return the results asynchronously. Here&#39;s an example 
-
+<p>Alohar&#39;s request structure allows queries to be made against the collected data. Each of these queries uses blocks to return the results asynchronously. Here&#39;s an example:
 
 </p>
+<p>Method:
+
+</p>
+<pre><code>+ (<span class="keyword">void</span>)getDetailsForStay:(<span class="built_in">NSInteger</span>)stayId
+               completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<p>Usage:
+
+</p>
+<pre><code>[Alohar getDetailsForStay:stayID completion:^(ALResponse *<span class="built_in">response</span>, NSError *<span class="keyword">error</span>) {
+    <span class="keyword">if</span> (<span class="keyword">error</span>) {
+        NSLog(@<span class="string">"Request Failed. Error %@"</span>, <span class="keyword">error</span>);
+    } <span class="keyword">else</span> {
+        NSLog(@<span class="string">"Request Succeeded!"</span>);
+        //The resulting user stay <span class="keyword">is</span> stored <span class="keyword">in</span> the variable <span class="comment">'response'</span>
+    }
+}];</code></pre>
 <h3 id='request-delegate/active-methods'>Active Methods</h3 id='request-delegate/active-methods'>
-<p>There are several methods to search for a user&#39;s previous stays. 
+<p>There are several methods to search through a user&#39;s stay history. 
 
 </p>
 <h4><strong>getUserStaysForDate:completion</strong></h4>
