@@ -32,11 +32,11 @@
     if ([Alohar isLoggedIn]) {
         [Alohar startMonitoringUser];
     } else {
-        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
-            [defaults setObject:userToken forKey:@"AloharDemoUserID"];
-        userToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"AloharDemoUserID"];
+//        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
+//            [defaults setObject:userToken forKey:@"AloharDemoUserID"];
+        NSString *userToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"AloharDemoUserID"];
         if (userToken == nil || userToken.length == 0){
             [Alohar registerWithAppID:appID andAPIKey:apiKey withDelegate:self];
         }else{
