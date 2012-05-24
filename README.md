@@ -2,6 +2,13 @@
 
 **05/24/2012**
 
+***Android SDK V0.2***
+
++ support monbile movement state
++ update onCommute API and mobile state APIs
++ battery life enhancement
++ update Android Demo Application
+
 ***iOS SDK V0.2.4***, main changes:
 
 + More battery life enhancement
@@ -48,18 +55,24 @@ The Alohar Mobile Ambient Analytics Platform enables ambient location apps. In o
 ###Getting Started###
 
 Go to [Alohar's Developer](http://www.alohar.com/developer) get a free developer account.
-Download latest SDK and sample app.
+Checkout the latest SDK and sample app in this repo.
 
 ###Sample Applications###
 
 This SDK comes with a sample application that demonstrates authorization, making API calls to guide you in development. It also shows case how to our platform works behides the scenes.
 
-To build and run the iOS sample application with XCode:
+***To build and run the iOS sample application with XCode:***
 
 + Open the included XCode Project File by selecting iOS/aloharDemo.xcodeproj.
 + Select Build->Build and Run. This should compile the application and launch it.
 
-**NOTE**: **Our iOS SDK requires OS5.0+ and XCode4.2+. Our Android SDK requires OS2.2+.**
+***To build and run the Android sample application with Eclipse:***
+
++ Import Demp applicaton as Android project under Android/Demo
++ Choose Android OS 2.2
++ Compile and Run. 
+
+**NOTE**: **Our iOS SDK requires OS5.0+ and XCode4.2+. Our Android SDK requires OS2.2+. The AppID and ApiKey in our sample apps are there only for demo purpose. Please get unique appId and apiKey for your App from www.alohar.com/developer**
 
 **Alohar SDK leverages various sensor data and has a learning engine, we recommend you run the sample application on your device and use it for sometime to see its full power. Right after the initial installation, you will see empty user stay or places. Please keep using it for a short time, you will see your first stay detected shortly.**
 
