@@ -23,13 +23,15 @@ import android.widget.ToggleButton;
 import com.alohar.core.Alohar;
 import com.alohar.user.callback.ALEventListener;
 import com.alohar.user.callback.ALMotionListener;
+import com.alohar.user.callback.ALMovementListener;
 import com.alohar.user.content.ALMotionManager;
 import com.alohar.user.content.ALPlaceManager;
 import com.alohar.user.content.data.ALEvents;
 import com.alohar.user.content.data.MotionState;
+import com.alohar.user.content.data.MovementState;
 import com.alohar.user.content.data.UserStay;
 
-public class CobraDemoActivity extends Activity implements ALEventListener, ALMotionListener {
+public class CobraDemoActivity extends Activity implements ALEventListener, ALMotionListener, ALMovementListener {
 
 	/** The alohar instance */
 	Alohar mAlohar;
@@ -56,11 +58,12 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
 	/** The Constant PREF_KEY. */
 	private static final String PREF_KEY = "uid";
 	
-	//register your application at https://www.alohar.com/develper to get AppId and ApiKey
-	public static final int APP_ID = -1; 
-
+	//IMPORTANT: Replace with your app's APP_ID and API_KEY
+	/** The Constant APP_ID. */
+	public static final int APP_ID = 2;   //Cobra Demo
 	//Keep this key secretly
-	public static final String API_KEY = "YOUR API KEY";
+	/** The Constant API_KEY. */
+	public static final String API_KEY = "87fca2f9c65e3c527df808b5a7a6db21dc8f37cb";
 	
 	/** The uid. */
 	public String uid;
@@ -87,7 +90,7 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
         mUIDView = (EditText)findViewById(R.id.uid);
         
         mAlohar = Alohar.init(getApplication());
-
+        
         mPlaceManager = mAlohar.getPlaceManager();
         mMotionManager = mAlohar.getMotionManager();
         
@@ -95,8 +98,11 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
         //register listener
         mPlaceManager.registerPlaceEventListener(mEventManager);
         mMotionManager.registerMotionListener(this);
+        mMotionManager.registerMovementListener(this);
         
-        uid = prefs.getString(PREF_KEY, null);
+        //NOTE: use your own UID for production
+        String testUID = "227910fc0e2b99fba33079d754f895ed5ef1a89a";
+        uid = prefs.getString(PREF_KEY, testUID);
         if (uid != null) {
         	mUIDView.setText(String.valueOf(uid));
         	onAuthenClick(mUIDView);
@@ -112,7 +118,7 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		//update the title
-		String title = String.format("%s v%s %d", getString(R.string.app_name), getString(R.string.version), mAlohar.version());
+		String title = String.format("%s v%s %s", getString(R.string.app_name), getString(R.string.version), mAlohar.version());
 		setTitle(title);
 	}
 
@@ -186,14 +192,16 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
 		});
 	}
     
-    private static final int MENU_FLUSH = 1;
-    private static final int MENU_EXIT  = 2;
+//    private static final int MENU_DEBUG = 1;
+    private static final int MENU_FLUSH = 2;
+    private static final int MENU_EXIT  = 3;
     
     /* (non-Javadoc)
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+//        menu.add(0, MENU_DEBUG, 0, "debug");
         menu.add(0, MENU_FLUSH, 0, "flush");
         menu.add(0, MENU_EXIT, 0, "Exit");
 
@@ -206,6 +214,10 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+//            case MENU_DEBUG:
+//            	Intent intent = new Intent(this, LogActivity.class);
+//            	startActivity(intent);
+//                return true;
             case MENU_FLUSH:
         		// try to trigger one post every 15 minutes
             	mAlohar.flush();
@@ -243,11 +255,7 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
     		toastError("Please give a valid UID");
     	} else {
     		uid = inputUID;
-    		try {
-        		mAlohar.authenticate(uid, APP_ID, API_KEY, this);
-    		} catch (Exception e) {
-//    			e.printStackTrace();
-			}
+    		mAlohar.authenticate(uid, APP_ID, API_KEY, this);
     	}
     	mProgress.setVisibility(View.VISIBLE);
     }
@@ -342,4 +350,17 @@ public class CobraDemoActivity extends Activity implements ALEventListener, ALMo
 			}
 		});
 	}
+	
+	@Override
+	public void onMovementChanged(MovementState oldState, MovementState newState){
+		final String mobileStateSwitch = oldState.name() + "=>" + newState.name();
+		mainHandler.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				((TextView)findViewById(R.id.mobile_state)).setText(mobileStateSwitch);
+			}
+		});
+	}
+
 }
