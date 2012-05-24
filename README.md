@@ -1,11 +1,12 @@
 ###Latest Updates###
 
-**05/18/2012**
+**05/24/2012**
 
 ***iOS SDK V0.2.4***, main changes:
 
 + More battery life enhancement
 + updates for user stays edit APIs
++ Various bug fixes and performance enhancement
 
 **05/14/2012**
 
