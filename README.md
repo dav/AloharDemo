@@ -68,7 +68,7 @@ This SDK comes with a sample application that demonstrates authorization, making
 
 ***To build and run the Android sample application with Eclipse:***
 
-+ Import Demp applicaton as Android project under Android/Demo
++ Import Demo applicaton as Android project under Android/Demo
 + Choose Android OS 2.2
 + Compile and Run. 
 
