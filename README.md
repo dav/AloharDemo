@@ -4,7 +4,7 @@
 
 ***Android SDK V0.2***
 
-+ support monbile movement state
++ support mobile movement state
 + update onCommute API and mobile state APIs
 + battery life enhancement
 + update Android Demo Application
