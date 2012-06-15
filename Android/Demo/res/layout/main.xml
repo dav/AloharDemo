@@ -123,6 +123,21 @@
     	      />
 
     	   	 <TextView 
+   	        	android:layout_width="fill_parent"
+   	        	android:layout_height="wrap_content"
+   	        	android:textColor="@color/text_blue"
+   	        	android:textStyle="bold"
+   	        	android:text="[Movement State]:"/>
+    	   	
+    	   	<TextView 
+   	        	android:id="@+id/mobile_state"
+   	        	android:layout_width="fill_parent"
+   	        	android:layout_height="wrap_content"
+   	        	android:text="unknown"
+   	        	android:paddingLeft="10dip"
+    	      />
+    	   	
+    	   	 <TextView 
    	        	android:id="@+id/user_state"
    	        	android:layout_width="fill_parent"
    	        	android:layout_height="wrap_content"

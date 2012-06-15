@@ -32,7 +32,7 @@
     if ([Alohar isLoggedIn]) {
         [Alohar startMonitoringUser];
     } else {
-        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
+//        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
 //            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //            NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
 //            [defaults setObject:userToken forKey:@"AloharDemoUserID"];
@@ -96,6 +96,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    //Enable Auto-start 
+    [Alohar enableAutoStart];
 }
 
 @end

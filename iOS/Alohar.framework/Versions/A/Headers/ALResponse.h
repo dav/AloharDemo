@@ -68,10 +68,12 @@ typedef NSUInteger ALRequestType;
          ALUserStay object(s)
      kALRequestTypePlaceDetail
          ALPlace Object(s)
+    kALRequestTypeCorrectUserStay
+        ALUserStay object
+    kALRequestTypeAddUserStay
+        ALUserStay object
 
  Following calls will return Nil:
-    kALRequestTypeCorrectUserStay
-    kALRequestTypeAddUserStay
     kALRequestTypeDeleteUserStay
  */
 @property (nonatomic, strong) NSMutableArray *objects;

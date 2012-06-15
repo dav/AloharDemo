@@ -22,7 +22,7 @@
     <ul id="sections">
       
         <li>
-          <a href="#development-requirements">Development Requirements</a>
+          <a href="#alohar-sdk-requirements">Alohar SDK Requirements</a>
           
         </li>
       
@@ -94,21 +94,21 @@ img {
 </style>
 
 <h1>Getting started with Alohar</h1>
-<p>This is a primer on installing and using Alohar in your projects. For an overview of the SDK and details on specific  usage, please go to <a href="documentation.html">our full documentation</a>.
+<p>This is a tutorial guide to get started in using <strong>Alohar SDK</strong>. For API details read our <a href="documentation.html">Developer Documentation</a>.
 
 </p>
-<h2 id='development-requirements'>Development Requirements</h2 id='development-requirements'>
-<p>For the Alohar SDK, we use many of Apple&#39;s advanced location and motion controls introduced in the newest OS release. <strong>Therefore, the Alohar SDK requires Xcode</strong> 4.2+<strong>, and iOS </strong>5.0+. If you don&#39;t have these, please go to Apple&#39;s developer portal to update: <a href="https://developer.apple.com/">developer.apple.com</a>.
+<h2 id='alohar-sdk-requirements'>Alohar SDK Requirements</h2 id='alohar-sdk-requirements'>
+<p>Alohar SDK <strong>requires Xcode 4.2+</strong> for development, and <strong>iOS 5.0+</strong> for both development and distribution and to access advanced location features of iOS. You can update your software from Apple&#39;s developer portal: <a href="https://developer.apple.com/">developer.apple.com</a>.
 
 </p>
-<p>While it may seem limiting to only allow users that have 5.0+, iOS users have a fantastic track record of updating their devices. As of April 12th 2012, 80-90% of all users are on iOS 5. Most of the users that still remain on iOS 4.0 are those that cannot upgrade due to their device (iPhone, iPhone 3G). These devices are disappearing quickly, and we think the advantages you&#39;ll get yourself are also worth the upgrade.
+<p><strong>Alohar SDK</strong> may be limiting to users using iOS 5.0+, Alohar believes the decision is reasonable. As of April 12th 2012, 80-90% of all users are on iOS 5. Most of the users that still remain on iOS 4.0 are those that cannot upgrade due to their device (iPhone, iPhone 3G). These devices are disappearing quickly.
 
 </p>
 <h2 id='register-your-ios-app'>Register your iOS app</h2 id='register-your-ios-app'>
-<p>Go to <a href="http://www.alohar.com/developer/">alohar.com/developer/</a>, and follow the directions there to set up your account. One you have an account, navigate to &quot;My Apps&quot;, and add a new iOS application profile.
+<p>To get started you register yourself as Alohar developer at <a href="http://www.alohar.com/developer/">alohar.com/developer/</a>. After logging into your Alohar developer account, select &quot;My Apps&quot;, and create a new iOS application profile.
 
 </p>
-<p>Once you complete your app profile, you will recieve two things: Your <strong>App ID</strong>, and your <strong>App Secret</strong>. These can be accessed in the future by visiting &quot;My Apps&quot; again.
+<p>Once you complete your app profile, you will receive 1) Your <strong>App ID</strong> and 2) your <strong>App Secret</strong>. Save this information for later use.
 
 </p>
 <p><img src="images/SDKKeys.png" alt="SDK Keys">
@@ -116,24 +116,27 @@ img {
 </p>
 <h2 id='installing-alohar-sdk'>Installing Alohar SDK</h2 id='installing-alohar-sdk'>
 <h3 id='installing-alohar-sdk/create-a-new-xcode-project'>Create a new Xcode Project</h3 id='installing-alohar-sdk/create-a-new-xcode-project'>
-<p>If you haven&#39;t yet, create a new Xcode project. If you need help getting started with Xcode and iOS projects in general, this tutorial is very helpful: <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/iPhone/Conceptual/iPhone101/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007514-CH1-SW1">Getting started with Xcode projects tutorial from Apple</a>.
+<p>Create a new Xcode project using the latest iOS Xcode 4.2+. For iOS beginners, check out <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/iPhone/Conceptual/iPhone101/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007514-CH1-SW1">Apple Tutorial on Xcode</a>.
 
 </p>
-<p>For this example project, we&#39;re going to use a &quot;Single View Application&quot;, because it is a simpler setup than the other options. All application types provide a pretty much identical experience for the purposes of this tutorial.
+<p>In this first Alohar example, let&#39;s use a &quot;Single View Application&quot; for Xcode project.
 
 </p>
 <p><img src="images/newProject.png" alt="Single View App">
 
 </p>
 <h3 id='installing-alohar-sdk/download-the-sdk'>Download the SDK</h3 id='installing-alohar-sdk/download-the-sdk'>
-<p>First, download the <a href="coreSDKLink">Alohar SDK Framework</a>. Drag the &quot;Alohar.framework&quot; folder from where it was downloaded into the &quot;Frameworks&quot; folder in your Xcode project, and make sure to turn on &quot;Copy items to destination group&#39;s folder&quot;. 
+<p>First, download the <a href="coreSDKLink">Alohar SDK Framework</a>. Drag the entire &quot;Alohar.framework&quot; folder from the downloaded Alohar SDK folder into the &quot;Frameworks&quot; folder in your Xcode project. Be sure to check the box on &quot;Copy items to destination group&#39;s folder&quot; to copy all the Alohar framework files into your Xcode project.
 
 </p>
 <p><img src="images/addFramework.png" alt="Add Framework">
 <img src="images/copyIntoDestination.png" alt="Copy to Destination">
 </p>
 <h3 id='installing-alohar-sdk/add-linked-libraries'>Add Linked Libraries</h3 id='installing-alohar-sdk/add-linked-libraries'>
-<p>Alohar needs a few standard libraries to be included in the project in order to function. These are mainly to provide location and motion functionality. In Xcode, go to the &quot;Build Phases&quot; section of your target (see image below for path to &quot;Build Phases&quot;), and add these libraries:
+<p>Alohar SDK requires access to lower level iOS SDK APIs in seven iOS 5 frameworks: CF Network, Core Telephony, Core Location, System Configuration, Mobile Core Services, Core Motion and Libz. These frameworks allows Alohar SDK to provide advanced location and motion functionality.
+
+</p>
+<p>To add the required frameworks, select &quot;Build Phases&quot; of your Project Targets in your new Xcode project (see image below that display the location of &quot;Build Phases&quot;) and add these frameworks.
 
 </p>
 <ul>
@@ -152,12 +155,14 @@ img {
 
 </p>
 <h3 id='installing-alohar-sdk/add-background-location-support'>Add background location support</h3 id='installing-alohar-sdk/add-background-location-support'>
-<p>Alohar captures your location and determines visits and user state even while the app is in the background through the automatic location server. Alohar&#39;s automatic location service requires background location data to work. To support this, with your project target still selected, go to the &quot;Info&quot; tab. Right click within the &quot;Custom iOS Target Properties&quot; and choose &quot;Add Row&quot;. Type &quot;Required background modes&quot; and hit enter. Click on the triangle at the left of the new row to expand, and then type &quot;App registers for location updates&quot; in the value column of the row that says &quot;Item 0&quot;.
+<p>Alohar captures your location and determines visits and user state even while the app is in the background through the automatic location server. Alohar&#39;s automatic location service requires background location data to work. 
+
+</p>
+<p>In order to enable location updates for app running in the background, we need to add additional field in the iOS Target Properties. In the Project Target, select &quot;Info&quot; tab. Right click within the &quot;Custom iOS Target Properties&quot; and choose &quot;Add Row&quot;. Type &quot;Required background modes&quot; and hit enter. Click on the triangle at the left of the new row to expand, and then type &quot;App registers for location updates&quot; in the value column of the row that says &quot;Item 0&quot;.
 
 </p>
 <p><img src="images/addRow.png" alt="Add Row">
 <img src="images/backgroundModes.png" alt="Completed Background Modes">
-
 
 </p>
 <h3 id='installing-alohar-sdk/add-all_load-to-linker-flags'>Add -all_load to Linker Flags</h3 id='installing-alohar-sdk/add-all_load-to-linker-flags'>
@@ -169,7 +174,7 @@ img {
 </p>
 <h2 id='basic-usage'>Basic Usage</h2 id='basic-usage'>
 <h3 id='basic-usage/add-import-session-delegate'>Add import, session delegate</h3 id='basic-usage/add-import-session-delegate'>
-<p>Open your AppDelegate header file (--AppDelegate.h), and just below <code>#import &lt;UIKit/UIKit.h&gt;</code>, add <code>#import &lt;Alohar/Alohar.h&gt;</code>
+<p>Expand your xcode project folder to find AppDelegate header file AppDelegate.h. Open your AppDelegate header file (AppDelegate.h), and just below <code>#import &lt;UIKit/UIKit.h&gt;</code>, add <code>#import &lt;Alohar/Alohar.h&gt;</code>
 
 </p>
 <p>Then add <code>ALSessionDelegate</code> just after UIApplicationDelegate. See the image below to view the completed step.
@@ -179,14 +184,20 @@ img {
 
 </p>
 <h3 id='basic-usage/starting-a-session'>Starting a Session</h3 id='basic-usage/starting-a-session'>
-<p>The final step to get placeme up and running is to call the startSession method with the token and secret you received when signing up for Alohar. Add this line to the <code>application:didFinishLaunchingWithOptions</code> method of your AppDelegate.m file.
+<p>Let&#39;s create a start session method in your app. Now log into your Alohar Developer Account. Select your Alohar iOS app. Save your <strong>Alohar App ID</strong> and <strong>API Key</strong>.
 
+</p>
+<p>In your AppDelegate.m file, add the following lines in  this <code>application:didFinishLaunchingWithOptions</code> method. Replace APP_ID with your <strong>Alohar App ID</strong> and replace APP_SECRET with your <strong>API Key</strong>.
 
 </p>
 <pre><code>[<span class="class">Alohar</span> <span class="method">registerWithAppID:</span>@<span class="comment">"APP_ID"</span>
                 <span class="method">andAPIKey:</span>@<span class="comment">"APP_SECRET"</span>
              <span class="method">withDelegate:</span><span class="keyword">self</span>];</code></pre>
 <p>The registerWithAppID method is asynchronous -- session success or failure will be relayed to callback methods -- either aloharDidLogin, or aloharDidFailWithError. If the user is successfully logged in, we can start monitoring their state. <em>Note: the user will see <code>YOUR_APP would like to use your current location</code> dialog when you call <code>startMonitoringUser</code>.</em>
+
+</p>
+<p>Add the following aloharDidLogin: and aloharDidFailWithError: methods in the same <code>application:didFinishLaunchingWithOptions</code> method.
+
 </p>
 <pre><code>- (void)aloharDidLogin:(NSString <span class="variable">*)</span>userToken
 {
@@ -197,24 +208,27 @@ img {
 {
   NSLog(<span class="variable">@"</span>User couldn't be logged in! Error: <span class="variable">%@</span>"</span>, error);
 }</code></pre>
-<p>After these changes, our AppDelegate.m file looks like this:
+<p>Your AppDelegate.m file should looks like this:
 
 </p>
 <p><img src="images/appdelegateM.png" alt="Finished AppDelegate">
 
-
 </p>
 <h2 id='monitoring-user-changes'>Monitoring User Changes</h2 id='monitoring-user-changes'>
-<p>So, we&#39;re monitoring the user, but we can&#39;t see anything. Let&#39;s hook up a callback in our ViewController file. In the ViewController.h file, add <code>#import &lt;Alohar/Alohar.h&gt;</code>, and add the ALMotionDelegate protocol (see finished step below). 
+<p>So, we&#39;re monitoring the user, but we can&#39;t see anything. Let&#39;s hook up a callback in our ViewController file. In the ViewController.h file, add <code>#import &lt;Alohar/Alohar.h&gt;</code>, and add the ALMotionDelegate protocol (see finished step below).
 
 </p>
 <p><img src="images/importAndMotionDelegate.png" alt="Import + Motion Delegate">
 
 </p>
-<p>The final step is to set your view controller as the motion delegate in <code>viewDidLoad</code>, and catch any callbacks using <code>didUpdateToMotionState:fromMotionState</code>.
+<p>In your ViewController.m file, set your view controller as the motion delegate inside the <code>viewDidLoad</code> method. Add the following line below [super viewDidLoad]:
 
 </p>
 <p><code>[Alohar setMotionDelegate:self];</code>
+
+</p>
+<p>Catch any callbacks by adding the <code>didUpdateToMotionState:fromMotionState</code> method.
+
 </p>
 <pre><code><span class="pp">- <span class="params">(void)</span>didUpdateToMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>newMotionState 
                fromMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>oldMotionState
@@ -224,11 +238,16 @@ img {
 <p><img src="images/viewcontroller.png" alt="View Controller">
 
 </p>
-<p>That&#39;s it! You&#39;ve created a working Alohar app. Mimic the action of walking (rhythmic swinging) and see your motion state update to walking! This is only one of many features on the Alohar platform. Please check out <a href="documentation.html">our full documentation</a> for more info.
+<p>That&#39;s it! You&#39;ve created a working Alohar app.
+
+</p>
+<p>Mimic the action of walking (rhythmic swinging) and see your motion state update to walking! This is only one of many features on the Alohar platform.
+
+</p>
+<p>Please check out <a href="documentation.html">our full documentation</a> for more info.
 
 </p>
 <p><img src="images/logOutput.png" alt="Finished Log Output">
-
 
 </p>
 <p><span style='display:none'>curl -X POST -d &quot;name=Alohar - Getting Started&quot; --data-urlencode content@tutorial.md <a href="http://documentup.com/compiled">http://documentup.com/compiled</a> &gt; tutorial.html &amp;&amp; open tutorial.html</span>

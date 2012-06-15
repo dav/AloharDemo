@@ -12,111 +12,117 @@
 
     
   </head>
-  <body><div id="nav">
-  <div id="header">
-    <a href="#" id="logo">Alohar SDK Reference</a>
+  <body><div id="container">
+  <div id="nav">
+    
+      <div id="header">
+        <a href="#" id="logo">Alohar SDK Reference</a>
+      </div>
+    
+    <ul id="sections">
+      
+        <li>
+          <a href="#overview">Overview</a>
+          
+        </li>
+      
+        <li>
+          <a href="#configuration-and-userid-management">Configuration and UserId Management</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#configuration-and-userid-management/environment-configuration">Environment Configuration</a>
+                </li>
+              
+                <li>
+                  <a href="#configuration-and-userid-management/alohar-context-initialization">Alohar Context Initialization</a>
+                </li>
+              
+                <li>
+                  <a href="#configuration-and-userid-management/userid-registration-authentication">UserId Registration/Authentication</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#core-service-management">Core Service Management</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#core-service-management/method-references">Method References</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#place-manager">Place Manager</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#place-manager/major-place-related-data-types">Major Place-Related Data Types</a>
+                </li>
+              
+                <li>
+                  <a href="#place-manager/real-time-userstay-interface">Real Time Userstay Interface</a>
+                </li>
+              
+                <li>
+                  <a href="#place-manager/method-reference">Method Reference</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#motion-state-manager">Motion State Manager</a>
+          
+            <ul>
+              
+                <li>
+                  <a href="#motion-state-manager/data-elements">Data Elements</a>
+                </li>
+              
+                <li>
+                  <a href="#motion-state-manager/real-time-interfaces">Real-Time Interfaces</a>
+                </li>
+              
+                <li>
+                  <a href="#motion-state-manager/method-references">Method References</a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+        <li>
+          <a href="#common-interfaces">Common Interfaces</a>
+          
+        </li>
+      
+        <li>
+          <a href="#new-feature-requests-questions">New Feature Requests &amp; Questions</a>
+          
+        </li>
+      
+    </ul>
+    
+    
   </div>
-  <ul id="sections">
+  <div id="content">
     
-      <li>
-        <a href="#overview">Overview</a>
-        
-      </li>
-    
-      <li>
-        <a href="#configuration-and-userid-management">Configuration and UserId Management</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#configuration-and-userid-management/environment-configuration">Environment Configuration</a>
-              </li>
-            
-              <li>
-                <a href="#configuration-and-userid-management/alohar-context-initialization">Alohar Context Initialization</a>
-              </li>
-            
-              <li>
-                <a href="#configuration-and-userid-management/userid-registration-authentication">UserId Registration/Authentication</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#core-service-management">Core Service Management</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#core-service-management/method-references">Method References</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#place-manager">Place Manager</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#place-manager/major-place-related-data-types">Major Place-Related Data Types</a>
-              </li>
-            
-              <li>
-                <a href="#place-manager/real-time-userstay-interface">Real Time Userstay Interface</a>
-              </li>
-            
-              <li>
-                <a href="#place-manager/method-reference">Method Reference</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#motion-state-manager">Motion State Manager</a>
-        
-          <ul>
-            
-              <li>
-                <a href="#motion-state-manager/data-elements">Data Elements</a>
-              </li>
-            
-              <li>
-                <a href="#motion-state-manager/real-time-interfaces">Real-Time Interfaces</a>
-              </li>
-            
-              <li>
-                <a href="#motion-state-manager/method-references">Method References</a>
-              </li>
-            
-          </ul>
-        
-      </li>
-    
-      <li>
-        <a href="#common-interfaces">Common Interfaces</a>
-        
-      </li>
-    
-      <li>
-        <a href="#new-feature-requests-questions">New Feature Requests &amp; Questions</a>
-        
-      </li>
-    
-  </ul>
-  
-  
-</div>
-<div id="content">
-  
-  <h1>Alohar Android SDK Reference Guide</h1>
-<p><strong>v0.5</strong>
+    <h1>Alohar Android SDK Reference Guide</h1>
+<p><strong>v0.2</strong>
+
+</p>
+<p>Last update: 05/25/2012
 
 </p>
 <p>Alohar Mobile Inc develops the <strong>Alohar Mobile Location Behavior Platform</strong>, which understands mobile device user’s behavior by analyzing location and other mobile sensor data. The platform is composed of a smartphone client SDK (software development kit)  for Android and iPhone and several cloud-based services. The Alohar Mobile Location Behavior Platform uses mobile location, motion, wifi and timing data to learn about the mobile device user in real time and over time.  Therefore it provides more advanced functionality than a conventional mobile LBS (location based services) platform.
@@ -133,7 +139,12 @@ To learn how to set up the Alohar Android SDK, please read the <a href="android_
 <p>The Alohar SDK consists of four major components:
 
 </p>
-<ul><li><strong>Configuration and UserId Management</strong></li><li><strong>Core Service Management</strong></li><li><strong>Place and Userstay Management</strong></li><li><strong>Motion State Management</strong> </li></ul>
+<ul>
+<li><strong>Configuration and UserId Management</strong></li>
+<li><strong>Core Service Management</strong></li>
+<li><strong>Place and Userstay Management</strong></li>
+<li><strong>Motion State Management</strong></li>
+</ul>
 <h2 id='configuration-and-userid-management'>Configuration and UserId Management</h2 id='configuration-and-userid-management'>
 <p>To start using the SDK,  a developer needs to do the following three steps:
 
@@ -209,7 +220,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>For an existing user, call the following method to authenticate it, using the <strong>UID</strong> you have obtained from <code>Alohar.register()</code> in a previous run.
 
 </p>
-<pre><code><span class="keyword">void</span> authenticate(String uid, <span class="keyword">int</span> appId, String apiKey, ALEventListener callback)</code></pre>
+<pre><code>void authenticate(<span class="built_in">String</span> uid, <span class="built_in">int</span> appId, <span class="built_in">String</span> apiKey, ALEventListener callback)</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>uid</em>: unique user id assigned to this user of the given application, obtained from Alohar.register() in a previous run.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>appId</em>: application ID granted from Alohar when developer registered its application. <br>
@@ -242,20 +253,26 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>The following methods manage the life cycle of the core service. All these methods are accessible from the class Alohar, which is the global interface to the SDK. 
 
 </p>
-<ul><li>Start core service and set up other dependencies properly. </li></ul>
-<pre><code><span class="reserved">void</span> startService<span class="params">()</span>;</code></pre>
+<ul>
+<li>Start core service and set up other dependencies properly.</li>
+</ul>
+<pre><code><span class="keyword">void</span> startService();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<ul><li>Stop core service. </li></ul>
-<pre><code><span class="reserved">void</span> stopService<span class="params">()</span>;</code></pre>
+<ul>
+<li>Stop core service.</li>
+</ul>
+<pre><code><span class="keyword">void</span> stopService();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<ul><li>Stop all other components and release resource properly. Any methods call after the tear down is not guaranteed.  </li></ul>
-<pre><code><span class="reserved">void</span> tearDown<span class="params">()</span>;</code></pre>
+<ul>
+<li>Stop all other components and release resource properly. Any methods call after the tear down is not guaranteed. </li>
+</ul>
+<pre><code><span class="keyword">void</span> tearDown();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
@@ -268,7 +285,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>To see how powerful these features are and understand how you can build interesting app on top them, you first need to get an instance of the Place Manager via the Alohar context. 
 
 </p>
-<pre><code>ALPlaceManager getPlaceManager<span class="params">()</span>;</code></pre>
+<pre><code>ALPlaceManager getPlaceManager()<span class="comment">;</span></code></pre>
 <p>Get Alohar place manager where you can register to listen for place events, query or search places and user stays. 
 
 </p>
@@ -284,7 +301,12 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 
 </p>
 <h3 id='place-manager/major-place-related-data-types'>Major Place-Related Data Types</h3 id='place-manager/major-place-related-data-types'>
-<ul><li><strong>Place</strong>: detail information of a place visited by a user, including id, name, address, latitude(E6), longitude(E6), category, phone, web, iconUrl.</li><li><strong>UserStay</strong>: a visit of a place detected by Alohar core service. The stay has one selected place and a list of place candidates. It also stores an Alohar computed centroid (latitude, longitude) for reference in addition to other meta data including start time, end time, state, feedback, parent etc.</li><li><strong>PlaceProfile</strong>: a statistic profile of a place including visit count, time of first and last visit.</li><li><strong>ALLocation</strong>: a location entity used by Alohar service. It has latitude and longitude.  </li></ul>
+<ul>
+<li><strong>Place</strong>: detail information of a place visited by a user, including id, name, address, latitude(E6), longitude(E6), category, phone, web, iconUrl.</li>
+<li><strong>UserStay</strong>: a visit of a place detected by Alohar core service. The stay has one selected place and a list of place candidates. It also stores an Alohar computed centroid (latitude, longitude) for reference in addition to other meta data including start time, end time, state, feedback, parent etc.</li>
+<li><strong>PlaceProfile</strong>: a statistic profile of a place including visit count, time of first and last visit.</li>
+<li><strong>ALLocation</strong>: a location entity used by Alohar service. It has latitude and longitude. </li>
+</ul>
 <h3 id='place-manager/real-time-userstay-interface'>Real Time Userstay Interface</h3 id='place-manager/real-time-userstay-interface'>
 <p>PlaceManager supports real time place detection, for example, when the user arrives at or leaves a place, certain events are generated. Developers can use the following callback interface to listen to those events.
 
@@ -313,7 +335,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>longitude</em>:double <br>
 
 </p>
-<pre><code><span class="reserved">void</span> onUserStayChanged<span class="params">(UserStay userStay)</span>;</code></pre>
+<pre><code><span class="keyword">void</span> onUserStayChanged(UserStay userStay);</code></pre>
 <p>Called when current userstay changes. Either a new userstay is detected, or some major attributes of the current userstay has changed.
 
 </p>
@@ -325,7 +347,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>The developer can use the following methods of <strong>ALPlaceManager</strong> to get place-related data.
 
 </p>
-<pre><code>ALLocation getCurrentLocation<span class="params">()</span></code></pre>
+<pre><code>ALLocation getCurrentLocation()</code></pre>
 <p>Get current alohar location
 
 </p>
@@ -333,7 +355,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code>UserStay getLastKnownStay<span class="params">()</span></code></pre>
+<pre><code>UserStay getLastKnownStay()</code></pre>
 <p>Get last known user stay which might be different from the real current user stay depends on the alohar service. It shall be the current user stay in most cases.
 
 </p>
@@ -341,7 +363,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code><span class="reserved">void</span> registerPlaceEventListener<span class="params">(ALPlaceEventListener listener)</span></code></pre>
+<pre><code><span class="keyword">void</span> registerPlaceEventListener(ALPlaceEventListener listener)</code></pre>
 <p>Register a listener for events of any place. 
 
 </p>
@@ -372,7 +394,10 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>callback</em>: ALEventLisener. The following events will be called back: <br>
 
 </p>
-<ul><li>If successful, ALEvents.PLACES_QUERY_CALLBACK. Data is a list of PlaceProfile.</li><li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available. </li></ul>
+<ul>
+<li>If successful, ALEvents.PLACES_QUERY_CALLBACK. Data is a list of PlaceProfile.</li>
+<li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available.</li>
+</ul>
 <pre><code><span class="keyword">void</span> getUserStays(Place place, <span class="keyword">final</span> ALEventListener callback)</code></pre>
 <p>Fetch all user stays of a given place.
 
@@ -382,7 +407,10 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>callback</em>: ALEventLisener. Following events will be called back:<br>
 
 </p>
-<ul><li>If successful, ALEvents.USERSTATS_OF_A_PLACE_CALLBACK. Data is a list of UserStay.</li><li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available. </li></ul>
+<ul>
+<li>If successful, ALEvents.USERSTATS_OF_A_PLACE_CALLBACK. Data is a list of UserStay.</li>
+<li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available.</li>
+</ul>
 <pre><code><span class="keyword">void</span> searchUserStays(<span class="keyword">double</span> latitude, <span class="keyword">double</span> longitude, <span class="keyword">int</span> radius, <span class="keyword">long</span> startTime, <span class="keyword">long</span> endTime, <span class="keyword">boolean</span> withCandiates, <span class="keyword">int</span> limit, ALEventListener callback)</code></pre>
 <p>Search user stays around a location in a time window. The total number of results is capped by the limit variable, with default=500.
 
@@ -398,8 +426,11 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>callback</em>: ALEventLisener. The following events will be called back: <br>
 
 </p>
-<ul><li>If successful, ALEvents.USERSTAYS_QUERY_CALLBACK. Data is a list of UserStay.</li><li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available. </li></ul>
-<pre><code><span class="reserved">void</span> getCandidates<span class="params">(UserStay stay, ALEventListener callback)</span></code></pre>
+<ul>
+<li>If successful, ALEvents.USERSTAYS_QUERY_CALLBACK. Data is a list of UserStay.</li>
+<li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available.</li>
+</ul>
+<pre><code><span class="keyword">void</span> getCandidates(UserStay stay, ALEventListener callback)</code></pre>
 <p>Fetch the place candidate list of a given user stay.
 
 </p>
@@ -408,12 +439,15 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>callback</em>: ALEventLisener. Following events will be called back: <br>
 
 </p>
-<ul><li>If successful, ALEvents.USERSTAY_CANDIDATES_CALLBACK. Data is a list of Place.</li><li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if presents. </li></ul>
+<ul>
+<li>If successful, ALEvents.USERSTAY_CANDIDATES_CALLBACK. Data is a list of Place.</li>
+<li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if presents.</li>
+</ul>
 <h2 id='motion-state-manager'>Motion State Manager</h2 id='motion-state-manager'>
-<p>Besides places, Alohar SDK provides some powerful APIs for applications to get motion state information, such as stationary, walking, or driving. You need to get the motion manager instance first from Alohar context.
+<p>Besides places, Alohar SDK provides some powerful APIs for applications to get motion state information, such as stationary, walking, or driving. Since version 0.2, we added some new high level movement recognition APIs. You need to get the motion manager instance first from Alohar context.
 
 </p>
-<pre><code>ALMotionManager getMotionManager<span class="params">()</span>;</code></pre>
+<pre><code>ALMotionManager getMotionManager()<span class="comment">;</span></code></pre>
 <p>Get motion manager where you can register to listen for motion state change, query user’s current motion state etc. see more here.
 
 </p>
@@ -426,10 +460,13 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 
 </p>
 <h3 id='motion-state-manager/data-elements'>Data Elements</h3 id='motion-state-manager/data-elements'>
-<p>Currently, Alohar SDK supports the following motion states.
+<p>Currently, Alohar SDK supports the following motion states and movement states.
 
 </p>
-<ul><li><strong>MotionState</strong>: a set of motion states supported such as STATIONARY, WALKING, MICROMOVEMENT etc. </li></ul>
+<ul>
+<li><strong>MotionState</strong>: a set of motion states supported such as STATIONARY, WALKING, MICROMOVEMENT etc.</li>
+<li><strong>MovementState</strong>: a set of mobile movement states supported such as NOT_MOVING, SLOW_MOVING, FAST_MOVING etc.</li>
+</ul>
 <h3 id='motion-state-manager/real-time-interfaces'>Real-Time Interfaces</h3 id='motion-state-manager/real-time-interfaces'>
 <p>The developer’s app can receive real-time events when user’s motion state changes, by using the  following real time event listener.
 
@@ -440,7 +477,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 </p>
 <p><strong>Callback Methods:</strong><br>
 </p>
-<pre><code><span class="reserved">void</span> onMotionStateChanged<span class="params">(MotionState oldState, MotionState newState)</span>:</code></pre>
+<pre><code><span class="keyword">void</span> onMotionStateChanged(MotionState oldState, MotionState newState):</code></pre>
 <p>Called when a new motion state is detected. 
 
 </p>
@@ -449,11 +486,33 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>newState</em>: new motion state. <br>
 
 </p>
+<p>Similarly, app can also listen movement state events, by using the  following real time event listener
+.
+
+</p>
+<pre><code>ALMovementListener</code></pre>
+<p>Provides the callbacks for the mobile movement state change events.
+
+</p>
+<p><strong>Callback Methods:</strong><br>
+</p>
+<pre><code><span class="keyword">void</span> onMovementChanged(MovementState oldState, MovementState newState):</code></pre>
+<p>Called when a new movement state is detected. 
+
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>oldState</em>: old movement state.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>newState</em>: new movement state. <br>
+
+</p>
+<p><strong><em>NOTE</em></strong>: SLOW_MOVING usually indicates walking, biking and slow driving. FAST_MOVING usually indicates high speed driving. 
+
+</p>
 <h3 id='motion-state-manager/method-references'>Method References</h3 id='motion-state-manager/method-references'>
 <p>Methods to listen or query device’s motion state through <strong>ALMotionManager</strong>.
 
 </p>
-<pre><code><span class="reserved">void</span> registerMotionListener<span class="params">(ALMotionListener listener)</span></code></pre>
+<pre><code><span class="keyword">void</span> registerMotionListener(ALMotionListener listener)</code></pre>
 <p>Register a listener for motion state changes.
 
 </p>
@@ -461,7 +520,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>listener</em>: motion listener. See ALMotionListener.
 
 </p>
-<pre><code>MotionState getCurrentMotionState<span class="params">()</span></code></pre>
+<pre><code>MotionState getCurrentMotionState()</code></pre>
 <p>Query user’s current motion state.
 
 </p>
@@ -494,7 +553,10 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p><strong>ALEventListener</strong> is the key interface to interact with Alohar SDK from your Application. The SDK defines a set of events indicating the status of your request to Alohar platform. We use this event model to make all your service call asynchronous so that you don’t need to worry about the performance and focus more on developing your own killing features. The result of your request to Alohar platform will be made available to you automatically through a callback when it is ready.
 
 </p>
-<ul><li><strong>ALEvents</strong>: a set of events used for Alohar service callback.</li><li><strong>ALEventListener</strong> </li></ul>
+<ul>
+<li><strong>ALEvents</strong>: a set of events used for Alohar service callback.</li>
+<li><strong>ALEventListener</strong></li>
+</ul>
 <p>Provides callback for alohar service request.
 
 </p>
@@ -524,5 +586,12 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>Alohar Android SDK is still in the beta state. We are working on new and cool features. If you have any new API feature requests or questions about the SDK, please contact us at: <a href="mailto:developer@alohar.com">developer@alohar.com</a>.
 
 </p>
+<p><hr style="padding: 0; margin: 0;"/>
+<br/><br/><br/>
+<span style='display:none'>curl -X POST -d &quot;name=Alohar SDK Reference&quot; --data-urlencode content@reference.md <a href="http://documentup.com/compiled?name=super%26">http://documentup.com/compiled?name=super%26</a> &gt; android_reference.html &amp;&amp; open android_reference.html </span>
+
+</p>
+
+  </div>
 </div></body>
 </html>

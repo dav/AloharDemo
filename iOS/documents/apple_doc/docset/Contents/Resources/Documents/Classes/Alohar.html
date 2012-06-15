@@ -60,6 +60,10 @@
 	
 	<option value="//api/name/deleteStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteStay:completion:</option>
 	
+	<option value="//api/name/disableAutoStart">&nbsp;&nbsp;&nbsp;&nbsp;+ disableAutoStart</option>
+	
+	<option value="//api/name/enableAutoStart">&nbsp;&nbsp;&nbsp;&nbsp;+ enableAutoStart</option>
+	
 	<option value="//api/name/getAllPlacesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getAllPlacesWithCompletion:</option>
 	
 	<option value="//api/name/getDetailsForPlace:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForPlace:completion:</option>
@@ -168,6 +172,10 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteStay:completion:">deleteStay:completion:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableAutoStart">disableAutoStart</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/enableAutoStart">enableAutoStart</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllPlacesWithCompletion:">getAllPlacesWithCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForPlace:completion:">getDetailsForPlace:completion:</a></span></li>
@@ -259,7 +267,7 @@
 						<h2 class="subtitle subtitle-overview">Overview</h2>
 						<p>Alohar is the main interface to Alohar&rsquo;s framework.</p>
 
-<p>To use the Alohar, the user needs to be authenticated first. For
+<p>To use the Alohar, the user needs to be authenticated. For
 a new user, call <code>registerWithAppID:andAPIKey:withDelegate</code>
 or call <code>authenticateWithAppID:andAPIKey:andUserID:withDelegate</code></p>
 
@@ -354,6 +362,22 @@ For new user, please use
 	<span class="tooltip">
 		<code><a href="#//api/name/stopMonitoringUser">+&nbsp;stopMonitoringUser</a></code>
 		<span class="tooltip"><p>Stop the monitoring service</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/enableAutoStart">+&nbsp;enableAutoStart</a></code>
+		<span class="tooltip"><p>Enable Auto-Start so that Alohar SDK will resume after reboot
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disableAutoStart">+&nbsp;disableAutoStart</a></code>
+		<span class="tooltip"><p>Disable Auto-start so that Alohar service will stop running after reboot.
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p></span>
 	</span>
 	
 	
@@ -1078,6 +1102,88 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Delete a user stay</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disableAutoStart" title="disableAutoStart"></a>
+	<h3 class="subsubtitle method-title">disableAutoStart</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Disable Auto-start so that Alohar service will stop running after reboot.
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)disableAutoStart</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Disable Auto-start so that Alohar service will stop running after reboot.
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p><div class="warning"><p><strong>Warning:</strong> SDK will disable auto-start feature once the service is up. The API is mainly used internally. Usually you don&rsquo;t need to call it.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/enableAutoStart" title="enableAutoStart"></a>
+	<h3 class="subsubtitle method-title">enableAutoStart</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enable Auto-Start so that Alohar SDK will resume after reboot
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)enableAutoStart</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Enable Auto-Start so that Alohar SDK will resume after reboot
+You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p><div class="warning"><p><strong>Warning:</strong> We leverage locationManager&rsquo;s <code>startMonitoringSignificantLocationChanges</code> to support auto-start, therefore enabling this feature will use more battery power. To save battery, SDK will disable auto-start automatically once the service is running. You need to manually turn auto-start on when your app is going to be terminated.</p></div>
 	</div>
 	
 	
@@ -2411,7 +2517,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-05-10)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-05-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
