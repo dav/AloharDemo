@@ -37,7 +37,7 @@ Questions? Contact us developer@alohar.com
 
 ##Alohar Demo##
 
-This open source project demonstrates how to integrate Alohar SDK into your iOS and Android application.
+This project demonstrates how to integrate Alohar SDK into your iOS and Android application.
 
 ###About Alohar###
 
