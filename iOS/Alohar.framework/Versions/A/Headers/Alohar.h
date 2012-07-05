@@ -433,8 +433,17 @@ enum {
  * For Userstay events, the NSDictionary has the following key/value pairs:
  * ```{type:(NSString*), stay:(ALUserStay*), timestamp:(NSInteger)}```
  *
+ * @warning *important* We will only keep at most 50 most recent events.
  */
 + (NSArray *)userStayLocationHistory;
+
+
+/*!
+ *
+ * Save the in-memory data into disk.
+ * It is recommended to trigger before the application is going to be terminated.
+ */
++ (void)saveData;
 
 //PRIVATE
 
