@@ -21,7 +21,7 @@
  * necessary equivalent to the location of the selected place.
  * 
  */
-@interface ALUserStay : NSObject
+@interface ALUserStay : NSObject <NSCopying>
 
 /*!
  A CLLocation that is the center of the user's activity. NOTE: this can and will be slightly different from the central CLLocation of the selected POI. To get the CLLocation describing the POI, get theUserStay.selectedPlace.location. For more information on CLLocations, see Apple's documentation.

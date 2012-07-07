@@ -1,5 +1,11 @@
 ###Latest Updates###
 
+**06/15/2012***
+
+***Android SDK V0.3***
+
++ Enhancement of Mobile State APIs
+
 **05/24/2012**
 
 ***Android SDK V0.2***
@@ -31,7 +37,7 @@ Questions? Contact us developer@alohar.com
 
 ##Alohar Demo##
 
-This open source project demonstrates how to integrate Alohar SDK into your iOS and Android application.
+This project demonstrates how to integrate Alohar SDK into your iOS and Android application.
 
 ###About Alohar###
 

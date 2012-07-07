@@ -32,7 +32,7 @@ typedef enum {
  *
  *
  */
-@interface ALPlace : NSObject
+@interface ALPlace : NSObject <NSCopying>
 
 /*!
  The unique identifier for this place on Alohar's platform.
