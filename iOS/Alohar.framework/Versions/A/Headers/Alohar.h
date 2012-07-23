@@ -4,7 +4,7 @@
 //
 //  Created by Sam Warmuth on 2/23/12.
 //  Last Updated by Jianming Zhou on 5/3/2012.
-//  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
+//  Copyright (c) 2011-2012 Alohar Mobile Inc.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +14,11 @@
 #import "ALPlace.h"
 #import "ALUserStay.h"
 #import "ALMobileState.h"
+
+typedef enum {
+    kPOWER_SAVE_MODE = 0,
+    kFULL_MODE
+} SERVICE_MODE;
 
 /*!
  * Protocol for Registration and Authentication.
@@ -187,6 +192,18 @@ enum {
  */
 + (void)stopMonitoringUser;
 
+/*!
+ * Change the service mode of the monitoring service
+ * \param serviceMode The supporte service mode are: kPOWER_SAVE_MODE and kFULL_MODE.
+ * 
+ * @warning *important* kPOWER_SAVE_MODE is the default mode which has the best battery life performance which will intelligently stop the location service in some user cases. Switching between different mode will restart the service. 
+ */
++ (void)switchServiceMode:(SERVICE_MODE)serviceMode;
+
+/*!
+ * Get current service mode.
+ */
++ (NSInteger)getCurrentServiceMode;
 
 /*!
  * Enable Auto-Start so that Alohar SDK will resume after reboot
@@ -307,9 +324,11 @@ enum {
 /*!
  * Correct a user stay's selected POIs with a new place candidate
  *
- * \param stayId The user stay's stayId
- * \param placeId The new selected place's ID
+ * \param stayId The user stay's stayId, required. Valid ID must be large than 0.
+ * \param placeId The new selected place's ID, required. Valid placeId must be large than 0.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ * 
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)correctStay:(NSInteger)stayId withCandidate:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
@@ -317,52 +336,65 @@ enum {
 /*!
  * Correct a user stay's selected POIs with a new place
  *
- * \param stayId The user stay's stayId
- * \param name The name of the new place
- * \param loc The location of the new place
- * \param addr The complete address of the new place
- * \param category The category type of the new place
+ * \param stayId The user stay's stayId (>0)
+ * \param name The name of the new place, required.
+ * \param loc The location of the new place, required.
+ * \param addr The complete address of the new place, required
+ * \param category The category type of the new place, required.
  * \param completion The complete handler block with ALResponse or Error.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
+ * 
  */
 + (void)correctStay:(NSInteger)stayId withPlace:(NSString*)name location:(CLLocation*)loc address:(NSString*)addr category:(placeCategoryType)category completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Delete a user stay
  * 
- * \param stayId The user stay's stayId
+ * \param stayId The user stay's stayId. The valid stayId must be large than 0. Otherwise, NSException will be raised.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)deleteStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get the place candidates for a user stay.
  * 
- * \param stayId The user stay's ID. @see ALUserStay
+ * \param stayId The user stay's ID. @see ALUserStay. The valid stayId must be large than 0. Otherwise, NSException will be raised.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get all user stays for a place.
  *
- * \param placeId A place's ID. @see ALPlace
+ * \param placeId A place's ID. @see ALPlace. The valid placeId must be large than 0. Otherwise, NSException will be raised.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)getStaysForPlace:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get details for a place.
  * 
- * \param placeId Valid place's placeID 
+ * \param placeId Valid place's placeID. The valid placeId must be large than 0. Otherwise, NSException will be raised.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)getDetailsForPlace:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /*!
  * Get details for a user stay.
  *
- * \param stayId Valid user stay's stayID
+ * \param stayId Valid user stay's stayID. The valid stayId must be large than 0. Otherwise, NSException will be raised.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * If the params are not valid, NSError will be returned with empty response.
  */
 + (void)getDetailsForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
@@ -433,8 +465,17 @@ enum {
  * For Userstay events, the NSDictionary has the following key/value pairs:
  * ```{type:(NSString*), stay:(ALUserStay*), timestamp:(NSInteger)}```
  *
+ * @warning *important* We will only keep at most 50 most recent events.
  */
 + (NSArray *)userStayLocationHistory;
+
+
+/*!
+ *
+ * Save the in-memory data into disk.
+ * It is recommended to trigger before the application is going to be terminated.
+ */
++ (void)saveData;
 
 //PRIVATE
 

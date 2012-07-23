@@ -3,7 +3,7 @@
 //  Alohar
 //
 //  Created by Sam Warmuth on 2/23/12.
-//  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
+//  Copyright (c) 2011-2012 Alohar Mobile Inc.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
