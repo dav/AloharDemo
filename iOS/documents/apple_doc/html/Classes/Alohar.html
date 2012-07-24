@@ -66,6 +66,8 @@
 	
 	<option value="//api/name/getAllPlacesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getAllPlacesWithCompletion:</option>
 	
+	<option value="//api/name/getCurrentServiceMode">&nbsp;&nbsp;&nbsp;&nbsp;+ getCurrentServiceMode</option>
+	
 	<option value="//api/name/getDetailsForPlace:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForPlace:completion:</option>
 	
 	<option value="//api/name/getDetailsForStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForStay:completion:</option>
@@ -98,6 +100,8 @@
 	
 	<option value="//api/name/registerWithAppID:andAPIKey:withDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerWithAppID:andAPIKey:withDelegate:</option>
 	
+	<option value="//api/name/saveData">&nbsp;&nbsp;&nbsp;&nbsp;+ saveData</option>
+	
 	<option value="//api/name/setMobileStateDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ setMobileStateDelegate:</option>
 	
 	<option value="//api/name/setMotionDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ setMotionDelegate:</option>
@@ -109,6 +113,8 @@
 	<option value="//api/name/startMonitoringUser">&nbsp;&nbsp;&nbsp;&nbsp;+ startMonitoringUser</option>
 	
 	<option value="//api/name/stopMonitoringUser">&nbsp;&nbsp;&nbsp;&nbsp;+ stopMonitoringUser</option>
+	
+	<option value="//api/name/switchServiceMode:">&nbsp;&nbsp;&nbsp;&nbsp;+ switchServiceMode:</option>
 	
 	<option value="//api/name/userStayLocationHistory">&nbsp;&nbsp;&nbsp;&nbsp;+ userStayLocationHistory</option>
 	
@@ -178,6 +184,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllPlacesWithCompletion:">getAllPlacesWithCompletion:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCurrentServiceMode">getCurrentServiceMode</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForPlace:completion:">getDetailsForPlace:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForStay:completion:">getDetailsForStay:completion:</a></span></li>
@@ -210,6 +218,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerWithAppID:andAPIKey:withDelegate:">registerWithAppID:andAPIKey:withDelegate:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveData">saveData</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMobileStateDelegate:">setMobileStateDelegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMotionDelegate:">setMotionDelegate:</a></span></li>
@@ -221,6 +231,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startMonitoringUser">startMonitoringUser</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopMonitoringUser">stopMonitoringUser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/switchServiceMode:">switchServiceMode:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userStayLocationHistory">userStayLocationHistory</a></span></li>
 	
@@ -362,6 +374,20 @@ For new user, please use
 	<span class="tooltip">
 		<code><a href="#//api/name/stopMonitoringUser">+&nbsp;stopMonitoringUser</a></code>
 		<span class="tooltip"><p>Stop the monitoring service</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/switchServiceMode:">+&nbsp;switchServiceMode:</a></code>
+		<span class="tooltip"><p>Change the service mode of the monitoring service</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCurrentServiceMode">+&nbsp;getCurrentServiceMode</a></code>
+		<span class="tooltip"><p>Get current service mode.</p></span>
 	</span>
 	
 	
@@ -594,6 +620,14 @@ You need to start the monitoring service first to enable or disable auto-start. 
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/saveData">+&nbsp;saveData</a></code>
+		<span class="tooltip"><p>Save the in-memory data into disk.
+It is recommended to trigger before the application is going to be terminated.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -764,17 +798,19 @@ For a new user, please use
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>stayId</em></dt>
-			<dd><p>The user stay&rsquo;s stayId</p></dd>
+			<dd><p>The user stay&rsquo;s stayId, required. Valid ID must be large than 0.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>placeId</em></dt>
-			<dd><p>The new selected place&rsquo;s ID</p></dd>
+			<dd><p>The new selected place&rsquo;s ID, required. Valid placeId must be large than 0.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -823,32 +859,34 @@ For a new user, please use
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>stayId</em></dt>
-			<dd><p>The user stay&rsquo;s stayId</p></dd>
+			<dd><p>The user stay&rsquo;s stayId (>0)</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>name</em></dt>
-			<dd><p>The name of the new place</p></dd>
+			<dd><p>The name of the new place, required.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>loc</em></dt>
-			<dd><p>The location of the new place</p></dd>
+			<dd><p>The location of the new place, required.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>addr</em></dt>
-			<dd><p>The complete address of the new place</p></dd>
+			<dd><p>The complete address of the new place, required</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>category</em></dt>
-			<dd><p>The category type of the new place</p></dd>
+			<dd><p>The category type of the new place, required.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>The complete handler block with <a href="../Classes/ALResponse.html">ALResponse</a> or Error.</p></dd>
+			<dd><p>The complete handler block with <a href="../Classes/ALResponse.html">ALResponse</a> or Error.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -1083,12 +1121,14 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>stayId</em></dt>
-			<dd><p>The user stay&rsquo;s stayId</p></dd>
+			<dd><p>The user stay&rsquo;s stayId. The valid stayId must be large than 0. Otherwise, NSException will be raised.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -1250,6 +1290,45 @@ You need to start the monitoring service first to enable or disable auto-start. 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/getCurrentServiceMode" title="getCurrentServiceMode"></a>
+	<h3 class="subsubtitle method-title">getCurrentServiceMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get current service mode.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSInteger)getCurrentServiceMode</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get current service mode.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/getDetailsForPlace:completion:" title="getDetailsForPlace:completion:"></a>
 	<h3 class="subsubtitle method-title">getDetailsForPlace:completion:</h3>
 	
@@ -1268,12 +1347,14 @@ You need to start the monitoring service first to enable or disable auto-start. 
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>placeId</em></dt>
-			<dd><p>Valid place&rsquo;s placeID</p></dd>
+			<dd><p>Valid place&rsquo;s placeID. The valid placeId must be large than 0. Otherwise, NSException will be raised.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -1322,12 +1403,14 @@ You need to start the monitoring service first to enable or disable auto-start. 
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>stayId</em></dt>
-			<dd><p>Valid user stay&rsquo;s stayID</p></dd>
+			<dd><p>Valid user stay&rsquo;s stayID. The valid stayId must be large than 0. Otherwise, NSException will be raised.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -1376,12 +1459,14 @@ You need to start the monitoring service first to enable or disable auto-start. 
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>stayId</em></dt>
-			<dd><p>The user stay&rsquo;s ID. @see <a href="../Classes/ALUserStay.html">ALUserStay</a></p></dd>
+			<dd><p>The user stay&rsquo;s ID. @see <a href="../Classes/ALUserStay.html">ALUserStay</a>. The valid stayId must be large than 0. Otherwise, NSException will be raised.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -1622,12 +1707,14 @@ You need to start the monitoring service first to enable or disable auto-start. 
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>placeId</em></dt>
-			<dd><p>A place&rsquo;s ID. @see <a href="../Classes/ALPlace.html">ALPlace</a></p></dd>
+			<dd><p>A place&rsquo;s ID. @see <a href="../Classes/ALPlace.html">ALPlace</a>. The valid placeId must be large than 0. Otherwise, NSException will be raised.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>completion</em></dt>
-			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
+
+<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
 		</dl>
 		
 	</div>
@@ -2144,6 +2231,47 @@ You need to start the monitoring service first to enable or disable auto-start. 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/saveData" title="saveData"></a>
+	<h3 class="subsubtitle method-title">saveData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Save the in-memory data into disk.
+It is recommended to trigger before the application is going to be terminated.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)saveData</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Save the in-memory data into disk.
+It is recommended to trigger before the application is going to be terminated.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/setMobileStateDelegate:" title="setMobileStateDelegate:"></a>
 	<h3 class="subsubtitle method-title">setMobileStateDelegate:</h3>
 	
@@ -2408,6 +2536,55 @@ You need to start the monitoring service first to enable or disable auto-start. 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/switchServiceMode:" title="switchServiceMode:"></a>
+	<h3 class="subsubtitle method-title">switchServiceMode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Change the service mode of the monitoring service</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)switchServiceMode:(SERVICE_MODE)<em>serviceMode</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>serviceMode</em></dt>
+			<dd><p>The supporte service mode are: kPOWER_SAVE_MODE and kFULL_MODE.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Change the service mode of the monitoring service</p><div class="warning"><p><strong>Warning:</strong> <em>important</em> kPOWER_SAVE_MODE is the default mode which has the best battery life performance which will intelligently stop the location service in some user cases. Switching between different mode will restart the service.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/userStayLocationHistory" title="userStayLocationHistory"></a>
 	<h3 class="subsubtitle method-title">userStayLocationHistory</h3>
 	
@@ -2441,7 +2618,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>History of arrival/departure events.</p>
+		<p>History of arrival/departure events.</p><div class="warning"><p><strong>Warning:</strong> <em>important</em> We will only keep at most 50 most recent events.</p></div>
 	</div>
 	
 	
@@ -2517,7 +2694,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-05-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-07-23)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

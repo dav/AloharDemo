@@ -1,6 +1,13 @@
 ###Latest Updates###
 
-**06/15/2012***
+**07/23/2012**
+
+***iOS SDK V0.2.6***
+
++ support power save mode
++ various bug fixes and enhancement
+
+**06/15/2012**
 
 ***Android SDK V0.3***
 
@@ -87,3 +94,5 @@ This SDK comes with a sample application that demonstrates authorization, making
 Both SDKs are still in Beta stage, we are collecting feedbacks and potential feature requests. Please let's know your thought. 
 
 Got questions? Email <developer@alohar.com>
+
+***Copyright 2011-2012 Alohar Mobile Inc. All rights reserved.***
