@@ -117,10 +117,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.recentStaysTableView){
-        NSLog(@"userstay count: %d", userstays.count);
         return userstays.count;
     }else{
-        NSLog(@"places count");
         return places.count;
     }
     

@@ -25,6 +25,7 @@
     NSString *appID = @"10";
     NSString *apiKey = @"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463";
     
+    [ALLog setDelegate:self];
     
     //There are two ways to register or authenticate
     //using delegate ALSessionDelegate
@@ -96,8 +97,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    //Enable Auto-start 
-    [Alohar enableAutoStart];
 }
+
+#pragma mark -
+#pragma mark ALLogDelegate
+- (void)onLog:(NSString *)log
+{
+    NSLog(@"++++ %@", log);
+}
+
 
 @end

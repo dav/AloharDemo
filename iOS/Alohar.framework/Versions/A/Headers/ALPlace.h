@@ -40,6 +40,23 @@ typedef enum {
 @property (nonatomic) NSInteger placeID;
 /*!
  The number of times the *current* user has visited this place.
+ 
+ This field will ONLY be set in place Query APIs:
+ 
+ ```
+ 
+    + (void)getAllPlacesWithCompletion:(void (^)(ALResponse *response, NSError *error))completion;
+ 
+    + (void)getPlacesWithPattern:(NSString *)namePattern completion:(void (^)(ALResponse *response, NSError *error))completion;
+
+    + (void)getPlacesWithPattern:(NSString *)namePattern andCategory:(NSString *)catPattern 
+            completion:(void (^)(ALResponse *response, NSError *error))completion;
+
+    + (void)getPlacesWithPattern:(NSString *)namePattern fromDate:(NSDate *)startDate toDate:(NSDate *)endDate 
+            minimalVisits:(NSInteger)visits withCategory:(NSString *)catPattern limit:(NSInteger)limit 
+            completion:(void (^)(ALResponse *response, NSError *error))completion;
+    
+ ```
  */
 @property (nonatomic) NSInteger visitCount;
 /*!
