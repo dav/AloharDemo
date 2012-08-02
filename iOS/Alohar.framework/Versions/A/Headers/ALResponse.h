@@ -27,6 +27,8 @@ typedef enum {
 
 typedef NSUInteger ALRequestType;
 
+static NSString * const NSAloharErrorDomain = @"ALOHAR Error";
+
 /*!
  ALResponse class declare a common protocol to process
  Alohar response. 

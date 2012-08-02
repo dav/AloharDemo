@@ -3,8 +3,8 @@
 //  Alohar
 //
 //  Created by Sam Warmuth on 2/23/12.
-//  Last Updated by Jianming Zhou on 5/3/2012.
-//  Copyright (c) 2011-2012 Alohar Mobile Inc.. All rights reserved.
+//  Last Updated by Jianming Zhou on 8/1/2012.
+//  Copyright (c) 2011-2012 Alohar Mobile Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -203,22 +203,7 @@ enum {
 /*!
  * Get current service mode.
  */
-+ (NSInteger)getCurrentServiceMode;
-
-/*!
- * Enable Auto-Start so that Alohar SDK will resume after reboot
- * You need to start the monitoring service first to enable or disable auto-start. @see ```startMonitoringUser```
- * @warning We leverage locationManager's ```startMonitoringSignificantLocationChanges``` to support auto-start, therefore enabling this feature will use more battery power. To save battery, SDK will disable auto-start automatically once the service is running. You need to manually turn auto-start on when your app is going to be terminated.
- */ 
-+ (void)enableAutoStart;
-
-/*!
- * Disable Auto-start so that Alohar service will stop running after reboot. 
- * You need to start the monitoring service first to enable or disable auto-start. @see ```startMonitoringUser```
- * 
- * @warning SDK will disable auto-start feature once the service is up. The API is mainly used internally. Usually you don't need to call it.
- */
-+ (void)disableAutoStart;
++ (NSInteger)currentServiceMode;
 
 /** @name Delegates */
 
@@ -490,6 +475,8 @@ enum {
 - (void)arriveLocation;
 
 - (void)mobileStateChanged:(ALMobileState *)newMobileState;
+
+- (void)downloadDeviceId;
 
 + (NSArray *)logs;
 
