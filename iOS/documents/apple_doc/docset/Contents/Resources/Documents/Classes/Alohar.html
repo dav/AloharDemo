@@ -56,17 +56,13 @@
 	
 	<option value="//api/name/currentMotionState">&nbsp;&nbsp;&nbsp;&nbsp;+ currentMotionState</option>
 	
+	<option value="//api/name/currentServiceMode">&nbsp;&nbsp;&nbsp;&nbsp;+ currentServiceMode</option>
+	
 	<option value="//api/name/currentUserStay">&nbsp;&nbsp;&nbsp;&nbsp;+ currentUserStay</option>
 	
 	<option value="//api/name/deleteStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteStay:completion:</option>
 	
-	<option value="//api/name/disableAutoStart">&nbsp;&nbsp;&nbsp;&nbsp;+ disableAutoStart</option>
-	
-	<option value="//api/name/enableAutoStart">&nbsp;&nbsp;&nbsp;&nbsp;+ enableAutoStart</option>
-	
 	<option value="//api/name/getAllPlacesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getAllPlacesWithCompletion:</option>
-	
-	<option value="//api/name/getCurrentServiceMode">&nbsp;&nbsp;&nbsp;&nbsp;+ getCurrentServiceMode</option>
 	
 	<option value="//api/name/getDetailsForPlace:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForPlace:completion:</option>
 	
@@ -174,17 +170,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentMotionState">currentMotionState</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentServiceMode">currentServiceMode</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUserStay">currentUserStay</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteStay:completion:">deleteStay:completion:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableAutoStart">disableAutoStart</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/enableAutoStart">enableAutoStart</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllPlacesWithCompletion:">getAllPlacesWithCompletion:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCurrentServiceMode">getCurrentServiceMode</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForPlace:completion:">getDetailsForPlace:completion:</a></span></li>
 	
@@ -386,24 +378,8 @@ For new user, please use
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/getCurrentServiceMode">+&nbsp;getCurrentServiceMode</a></code>
+		<code><a href="#//api/name/currentServiceMode">+&nbsp;currentServiceMode</a></code>
 		<span class="tooltip"><p>Get current service mode.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/enableAutoStart">+&nbsp;enableAutoStart</a></code>
-		<span class="tooltip"><p>Enable Auto-Start so that Alohar SDK will resume after reboot
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/disableAutoStart">+&nbsp;disableAutoStart</a></code>
-		<span class="tooltip"><p>Disable Auto-start so that Alohar service will stop running after reboot.
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p></span>
 	</span>
 	
 	
@@ -1055,6 +1031,45 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/currentServiceMode" title="currentServiceMode"></a>
+	<h3 class="subsubtitle method-title">currentServiceMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get current service mode.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSInteger)currentServiceMode</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get current service mode.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/currentUserStay" title="currentUserStay"></a>
 	<h3 class="subsubtitle method-title">currentUserStay</h3>
 	
@@ -1159,88 +1174,6 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/disableAutoStart" title="disableAutoStart"></a>
-	<h3 class="subsubtitle method-title">disableAutoStart</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Disable Auto-start so that Alohar service will stop running after reboot.
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (void)disableAutoStart</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Disable Auto-start so that Alohar service will stop running after reboot.
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p><div class="warning"><p><strong>Warning:</strong> SDK will disable auto-start feature once the service is up. The API is mainly used internally. Usually you don&rsquo;t need to call it.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">Alohar.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/enableAutoStart" title="enableAutoStart"></a>
-	<h3 class="subsubtitle method-title">enableAutoStart</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Enable Auto-Start so that Alohar SDK will resume after reboot
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (void)enableAutoStart</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Enable Auto-Start so that Alohar SDK will resume after reboot
-You need to start the monitoring service first to enable or disable auto-start. @see <code>startMonitoringUser</code></p><div class="warning"><p><strong>Warning:</strong> We leverage locationManager&rsquo;s <code>startMonitoringSignificantLocationChanges</code> to support auto-start, therefore enabling this feature will use more battery power. To save battery, SDK will disable auto-start automatically once the service is running. You need to manually turn auto-start on when your app is going to be terminated.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">Alohar.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/getAllPlacesWithCompletion:" title="getAllPlacesWithCompletion:"></a>
 	<h3 class="subsubtitle method-title">getAllPlacesWithCompletion:</h3>
 	
@@ -1273,45 +1206,6 @@ You need to start the monitoring service first to enable or disable auto-start. 
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Get all places the current user has ever visited.</p><div class="warning"><p><strong>Warning:</strong> <em>NOTE</em> The response may be large (750KB+) depending on the total number of places user has visited. We recommend using <code>getPlacesWithPattern:andCategory:withDelegate</code> instead.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">Alohar.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/getCurrentServiceMode" title="getCurrentServiceMode"></a>
-	<h3 class="subsubtitle method-title">getCurrentServiceMode</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Get current service mode.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (NSInteger)getCurrentServiceMode</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Get current service mode.</p>
 	</div>
 	
 	
@@ -2694,7 +2588,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-07-23)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-08-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
