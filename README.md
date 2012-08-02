@@ -1,5 +1,14 @@
 ###Latest Updates###
 
+**08/01/2012**
+
+***iOS SDK V0.2.7***
+
++ enhance real time API in power save mode
++ deprecated autostart APIs
++ add debug log delegate
++ apple doc updates
+
 **07/23/2012**
 
 ***iOS SDK V0.2.6***
