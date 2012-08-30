@@ -11,6 +11,19 @@
     
 
     
+
+    <!-- Typekit -->
+    
+      <script type="text/javascript">
+        (function() {
+          var config = {
+            kitId: 'hjp0pft',
+            scriptTimeout: 3000
+          };
+          var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+        })();
+      </script>
+    
   </head>
   <body><div id="container">
   <div id="nav">
@@ -173,7 +186,7 @@ To learn how to set up the Alohar Android SDK, please read the <a href="android_
 <p>As the very first action to use Alohar SDK, the app has to call the following method to initialize the Alohar context. It is recommended to be called when the application is initialized or in the onCreate method of the root activity:
 
 </p>
-<pre><code><span class="keyword">static</span> <span class="keyword">void</span> Alohar.init(Application context)</code></pre>
+<pre><code><span class="keyword">static</span> <span class="keyword">void</span> Alohar<span class="variable">.init</span>(Application context)</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>context</em>: application context 
 
@@ -181,7 +194,7 @@ To learn how to set up the Alohar Android SDK, please read the <a href="android_
 <p>After the Alohar is initialized, the developer can use the following method to get the global Alohar instance. This is also referred to as the Alohar context in the following description.
 
 </p>
-<pre><code><span class="keyword">static</span> Alohar Alohar.getInstance()</code></pre>
+<pre><code><span class="keyword">static</span> Alohar Alohar<span class="variable">.getInstance</span>()</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
@@ -256,7 +269,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <ul>
 <li>Start core service and set up other dependencies properly.</li>
 </ul>
-<pre><code><span class="keyword">void</span> startService();</code></pre>
+<pre><code><span class="title">void</span> startService();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
@@ -264,7 +277,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <ul>
 <li>Stop core service.</li>
 </ul>
-<pre><code><span class="keyword">void</span> stopService();</code></pre>
+<pre><code><span class="title">void</span> stopService();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
@@ -272,7 +285,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <ul>
 <li>Stop all other components and release resource properly. Any methods call after the tear down is not guaranteed. </li>
 </ul>
-<pre><code><span class="keyword">void</span> tearDown();</code></pre>
+<pre><code><span class="title">void</span> tearDown();</code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Parameters:</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
@@ -285,7 +298,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>To see how powerful these features are and understand how you can build interesting app on top them, you first need to get an instance of the Place Manager via the Alohar context. 
 
 </p>
-<pre><code>ALPlaceManager getPlaceManager()<span class="comment">;</span></code></pre>
+<pre><code><span class="title">ALPlaceManager</span> getPlaceManager();</code></pre>
 <p>Get Alohar place manager where you can register to listen for place events, query or search places and user stays. 
 
 </p>
@@ -311,7 +324,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>PlaceManager supports real time place detection, for example, when the user arrives at or leaves a place, certain events are generated. Developers can use the following callback interface to listen to those events.
 
 </p>
-<pre><code>ALPlaceEventListener</code></pre>
+<pre><code><span class="attribute">ALPlaceEventListener</code></pre>
 <p>Provides callbacks for events when user arrives at or leaves a place.
 
 </p>
@@ -335,7 +348,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>longitude</em>:double <br>
 
 </p>
-<pre><code><span class="keyword">void</span> onUserStayChanged(UserStay userStay);</code></pre>
+<pre><code><span class="title">void</span> <span class="built_in">on</span>UserStayChanged(UserStay userStay);</code></pre>
 <p>Called when current userstay changes. Either a new userstay is detected, or some major attributes of the current userstay has changed.
 
 </p>
@@ -347,7 +360,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>The developer can use the following methods of <strong>ALPlaceManager</strong> to get place-related data.
 
 </p>
-<pre><code>ALLocation getCurrentLocation()</code></pre>
+<pre><code><span class="title">ALLocation</span> getCurrentLocation()</code></pre>
 <p>Get current alohar location
 
 </p>
@@ -355,7 +368,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code>UserStay getLastKnownStay()</code></pre>
+<pre><code><span class="title">UserStay</span> getLastKnownStay()</code></pre>
 <p>Get last known user stay which might be different from the real current user stay depends on the alohar service. It shall be the current user stay in most cases.
 
 </p>
@@ -363,7 +376,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code><span class="keyword">void</span> registerPlaceEventListener(ALPlaceEventListener listener)</code></pre>
+<pre><code><span class="title">void</span> registerPlaceEventListener(ALPlaceEventListener listener)</code></pre>
 <p>Register a listener for events of any place. 
 
 </p>
@@ -430,7 +443,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <li>If successful, ALEvents.USERSTAYS_QUERY_CALLBACK. Data is a list of UserStay.</li>
 <li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if available.</li>
 </ul>
-<pre><code><span class="keyword">void</span> getCandidates(UserStay stay, ALEventListener callback)</code></pre>
+<pre><code><span class="title">void</span> getCandidates(UserStay stay, ALEventListener callback)</code></pre>
 <p>Fetch the place candidate list of a given user stay.
 
 </p>
@@ -444,10 +457,16 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <li>If failed, ALEvents.GENERAL_ERROR_CALLBACK or ALEvents.SERVER_ERROR_CALLBACK. Data is the error message if presents.</li>
 </ul>
 <h2 id='motion-state-manager'>Motion State Manager</h2 id='motion-state-manager'>
-<p>Besides places, Alohar SDK provides some powerful APIs for applications to get motion state information, such as stationary, walking, or driving. Since version 0.2, we added some new high level movement recognition APIs. You need to get the motion manager instance first from Alohar context.
+<p>Besides places, Alohar SDK provides some powerful APIs for applications to get motion state information (@see MotionState), such as stationary, walking, or driving. Since version 0.2, we added some new high level movement recognition APIs (@see MovementState). You need to get the motion manager instance first from Alohar context.
 
 </p>
-<pre><code>ALMotionManager getMotionManager()<span class="comment">;</span></code></pre>
+<p>Our SDK applies some smoothing logic on top of the raw motion sensor signals from device. The output is our motion state. Therefore, motion states are quite low level and subject to the quality of the raw sensor data. It has smaller smoothing window and it is stateless, sensitive and real time. Games might be the best type of Apps to use this API.
+
+</p>
+<p>Our movement APIs is one more level up comparing to motion state APIs. It leverages not only the motion states but also other signals. It has large smoothing window and it is stateful, which makes it more close to human&#39;s natual movement pattern. For example, if you stop couple minutes in front of the red light, our motion state APIs might call back with stationary state during that time. Our movement APIs will weight the signals into the previous movement context and decide the state is still driving. If your App needs to trigger actions when users are in some high level states, movement APIs might be a better fit.  
+
+</p>
+<pre><code><span class="title">ALMotionManager</span> getMotionManager();</code></pre>
 <p>Get motion manager where you can register to listen for motion state change, query user’s current motion state etc. see more here.
 
 </p>
@@ -471,13 +490,13 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>The developer’s app can receive real-time events when user’s motion state changes, by using the  following real time event listener.
 
 </p>
-<pre><code>ALMotionListener</code></pre>
+<pre><code><span class="attribute">ALMotionListener</code></pre>
 <p>Provides the callbacks for the motion events.
 
 </p>
 <p><strong>Callback Methods:</strong><br>
 </p>
-<pre><code><span class="keyword">void</span> onMotionStateChanged(MotionState oldState, MotionState newState):</code></pre>
+<pre><code><span class="title">void</span> <span class="built_in">on</span>MotionStateChanged(MotionState oldState, MotionState newState):</code></pre>
 <p>Called when a new motion state is detected. 
 
 </p>
@@ -490,13 +509,13 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 .
 
 </p>
-<pre><code>ALMovementListener</code></pre>
+<pre><code><span class="attribute">ALMovementListener</code></pre>
 <p>Provides the callbacks for the mobile movement state change events.
 
 </p>
 <p><strong>Callback Methods:</strong><br>
 </p>
-<pre><code><span class="keyword">void</span> onMovementChanged(MovementState oldState, MovementState newState):</code></pre>
+<pre><code><span class="title">void</span> <span class="built_in">on</span>MovementChanged(MovementState oldState, MovementState newState):</code></pre>
 <p>Called when a new movement state is detected. 
 
 </p>
@@ -512,7 +531,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>Methods to listen or query device’s motion state through <strong>ALMotionManager</strong>.
 
 </p>
-<pre><code><span class="keyword">void</span> registerMotionListener(ALMotionListener listener)</code></pre>
+<pre><code><span class="title">void</span> registerMotionListener(ALMotionListener listener)</code></pre>
 <p>Register a listener for motion state changes.
 
 </p>
@@ -520,7 +539,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>listener</em>: motion listener. See ALMotionListener.
 
 </p>
-<pre><code>MotionState getCurrentMotionState()</code></pre>
+<pre><code><span class="title">MotionState</span> getCurrentMotionState()</code></pre>
 <p>Query user’s current motion state.
 
 </p>
@@ -528,7 +547,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code><span class="keyword">boolean</span> isStationary()</code></pre>
+<pre><code><span class="title">boolean</span> isStationary()</code></pre>
 <p>Check whether user is not moving.
 
 </p>
@@ -536,7 +555,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 </p>
-<pre><code><span class="keyword">boolean</span> isOnCommute()</code></pre>
+<pre><code><span class="title">boolean</span> isOnCommute()</code></pre>
 <p>Check whether user is on the road or not at a place.
 
 </p>
@@ -563,7 +582,7 @@ Again, <strong>THE APP SHALL MANAGE THE ID PROPERLY TO RETRIEVE DATA IN THE FUTU
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Callback Methods:</strong><br>
 
 </p>
-<pre><code><span class="title">void</span> handleEvent(<span class="label">ALEvents</span> event, <span class="label">Object</span> <span class="class"><span class="keyword">data</span>);</span></code></pre>
+<pre><code><span class="title">void</span> handleEvent(<span class="type">ALEvents</span> event, <span class="type">Object</span> <span class="typedef"><span class="keyword">data</span>);</span></code></pre>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Called when an alohar service request is completed. The following event of type ALEvent are supported:
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;GENERAL_ERROR_CALLBACK: connection error or other general failures.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#149;&nbsp;&nbsp;&nbsp;SERVER_ERROR_CALLBACK:  server request failure.
