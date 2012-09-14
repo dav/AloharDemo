@@ -2,7 +2,7 @@
 //  ADAppDelegate.m
 //  aloharDemo
 //
-//  Created by Sam Warmuth on 2/23/12.
+//  Updated by Jianming Zhou on 9/14/2012
 //  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
 //
 
@@ -25,6 +25,7 @@
     NSString *appID = @"10";
     NSString *apiKey = @"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463";
     
+    //listen log
     [ALLog setDelegate:self];
     
     //There are two ways to register or authenticate

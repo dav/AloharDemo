@@ -2,7 +2,7 @@
 //  ADAppDelegate.h
 //  aloharDemo
 //
-//  Created by Sam Warmuth on 2/23/12.
+//  Updated by Jianming Zhou on 9/14/2012
 //  Copyright (c) 2012 Alohar Mobile Inc.. All rights reserved.
 //
 
