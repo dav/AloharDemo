@@ -1,5 +1,11 @@
 ###Latest Updates###
 
+**09/21/2012**
+
+***iOS SDK V0.2.9***
+
++ bug fixes
+
 **09/14/2012**
 
 ***iOS SDK V0.2.8***
