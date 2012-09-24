@@ -408,7 +408,6 @@ enum {
  */
 + (ALMobileState *)currentMobileState;
 
-
 /*!
  * Check whether the device is stationary.
  * \return YES if the device is NOT moving
@@ -426,6 +425,13 @@ enum {
  * \return YES if the monitoring service is ON
  */
 + (BOOL)monitoringUser;
+
+/*!
+ * Check whether the monitoring service is active.
+ * 
+ * \return YES if the location service is ON
+ */
++ (BOOL) isLocationServiceOn;
 
 /*!
  * Check whether the user has valid credentials and has an active session.

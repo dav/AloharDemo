@@ -118,6 +118,10 @@
                 </li>
               
                 <li>
+                  <a href="#objects/almobilestate">ALMobileState</a>
+                </li>
+              
+                <li>
                   <a href="#objects/alresponse">ALResponse</a>
                 </li>
               
@@ -229,12 +233,12 @@
 <p>This starts the motion and location monitoring, which is necessary for collection of userstays and motion state. .
 
 </p>
-<pre><code><span class="attr_selector">[Alohar startMonitoringUser]</span></code></pre>
+<pre><code>[Alohar startMonitoringUser]</code></pre>
 <h4><strong>stopMonitoringUser</strong></h4>
 <p>This ends the motion and location monitoring, which is necessary for collection of userstays and motion state. When this method is called, all user data collection and transmission is stopped. No further location data or motion data will be available until startMonitoringUser is called again.
 
 </p>
-<pre><code><span class="attr_selector">[Alohar stopMonitoringUser]</span></code></pre>
+<pre><code>[Alohar stopMonitoringUser]</code></pre>
 <h4><strong>Auto Start</strong></h4>
 <p>Once your device reboots, the monitoring service will be terminated along with your app. User might forget to turn on your application after the reboot. To continue sensing user&#39;s behavior in those cases, you can turn on auto-start feature which will turn the monitoring service back once the user is moved significantly. Of course, you can completely turn the service off by calling <code>[Alohar stopMonitoringUser]</code> any time and auto start will also respect that. 
 
@@ -242,9 +246,9 @@
 <p>We highly recommend you to turn this feature on for better user experience. To enable this feature, simply add <code>[Alohar enableAutoStart]</code> when the application is going to be terminated. For example:
 
 </p>
-<pre><code>- (void)applicationWillTerminate:(UIApplication *)application
+<pre><code>- (<span class="reserved">void</span>)applicationWillTerminate:(UIApplication *)application
 {
-        // Called <span class="keyword">when</span> the application <span class="keyword">is</span> about <span class="keyword">to</span> terminate. Save data <span class="keyword">if</span> appropriate. See also applicationDidEnterBackground:.
+        // Called <span class="keyword">when</span> the application <span class="keyword">is</span> about to terminate. Save data <span class="keyword">if</span> appropriate. See also applicationDidEnterBackground:.
         [Alohar enableAutoStart];
 }</code></pre>
 <div id='sessiondelegate-callbacks' style='padding:0;margin:0;'/></div>
@@ -263,7 +267,7 @@
 <p>This method is called when there is an issue with the Alohar service. This can be due to a failed signup/login, or an unexpected termination of service. This method will also be called when location is not available for a user (it can be determined by user preference or caused by device issues).
 
 </p>
-<pre><code>- (void)aloharDidFailWithError:(NSError <span class="variable">*)</span><span class="keyword">error</span>;</code></pre>
+<pre><code>- (void)aloharDidFailWithError:(<span class="title">NSError</span> *)<span class="built_in">error</span>;</code></pre>
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='request-delegate'>Request Delegate</h2 id='request-delegate'>
@@ -274,16 +278,16 @@
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)getDetailsForStay:(<span class="built_in">NSInteger</span>)stayId
-               completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+               completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <p>Usage:
 
 </p>
-<pre><code>[Alohar getDetailsForStay:stayID completion:^(ALResponse *<span class="built_in">response</span>, NSError *<span class="keyword">error</span>) {
-    <span class="keyword">if</span> (<span class="keyword">error</span>) {
-        NSLog(@<span class="string">"Request Failed. Error %@"</span>, <span class="keyword">error</span>);
+<pre><code>[Alohar getDetailsForStay:stayID completion:^(ALResponse *response, <span class="built_in">NSError</span> *error) {
+    <span class="keyword">if</span> (error) {
+        <span class="built_in">NSLog</span>(@<span class="string">"Request Failed. Error %@"</span>, error);
     } <span class="keyword">else</span> {
-        NSLog(@<span class="string">"Request Succeeded!"</span>);
-        //The resulting user stay <span class="keyword">is</span> stored <span class="keyword">in</span> the variable <span class="comment">'response'</span>
+        <span class="built_in">NSLog</span>(@<span class="string">"Request Succeeded!"</span>);
+        <span class="comment">//The resulting user stay is stored in the variable 'response'</span>
     }
 }];</code></pre>
 <h3 id='request-delegate/active-methods'>Active Methods</h3 id='request-delegate/active-methods'>
@@ -294,25 +298,25 @@
 <p>Calling this method with an <code>NSDate</code> will return all user stays that overlap with that 24-hour period.
 
 </p>
-<pre><code>+ (void)getUserStaysForDate:(NSDate <span class="variable">*)</span><span class="keyword">date</span>
-                 completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<pre><code>+ (<span class="keyword">void</span>)getUserStaysForDate:(<span class="built_in">NSDate</span> *)date
+                 completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getUserStaysFromDate:toDate:completion</strong></h4>
 <p>This method returns all user stays that overlap with the period between two <code>NSDate</code>s. 
 
 </p>
-<pre><code>+ (void)getUserStaysFromDate:(NSDate <span class="variable">*)</span>startDate
-                      toDate:(NSDate <span class="variable">*)</span>endDate
-                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<pre><code>+ (<span class="keyword">void</span>)getUserStaysFromDate:(<span class="built_in">NSDate</span> *)startDate
+                      toDate:(<span class="built_in">NSDate</span> *)endDate
+                  completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getUserStaysFromDate:toDate:atLocation:radius:limit:includeCandidiates:completion</strong></h4>
 <p>Get user&#39;s user stays within a time period and a location boundary.
 
 </p>
-<pre><code> + (<span class="tag">void</span>)<span class="tag">getUserStaysFromDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">startDate</span>
-                       <span class="tag">toDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">endDate</span>
-                   <span class="tag">atLocation</span><span class="pseudo">:(CLLocation</span> *)<span class="tag">location</span>
-                       <span class="tag">radius</span><span class="pseudo">:(NSInteger)radius</span> <span class="tag">limit</span><span class="pseudo">:(NSInteger)limit</span>
-           <span class="tag">includeCandidiates</span><span class="pseudo">:(BOOL)includeCandidates</span>
-                   <span class="tag">completion</span><span class="pseudo">:(void</span> (^)(<span class="tag">ALResponse</span> *<span class="tag">response</span>, <span class="tag">NSError</span> *<span class="tag">error</span>))<span class="tag">completion</span>;</code></pre>
+<pre><code> + (<span class="keyword">void</span>)getUserStaysFromDate:(<span class="built_in">NSDate</span> *)startDate
+                       toDate:(<span class="built_in">NSDate</span> *)endDate
+                   atLocation:(CLLocation *)location
+                       radius:(<span class="built_in">NSInteger</span>)radius limit:(<span class="built_in">NSInteger</span>)limit
+           includeCandidiates:(<span class="built_in">BOOL</span>)includeCandidates
+                   completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h5>Parameters</h5>
 <ul>
 <li><strong>startDate</strong>: The start time</li>
@@ -327,31 +331,31 @@
 <p>This method returns all <code>ALPlace</code>s that the user has ever visited. <em>NOTE:</em> The response size depends on total number of visits -- for long-term users, this can be hundreds of KB. We recommend using getPlaces:withCategory:withDelegate to return more manageable results.                     
 
 </p>
-<pre><code> + (<span class="keyword">void</span>)getAllPlacesWithCompletion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+<pre><code> + (<span class="keyword">void</span>)getAllPlacesWithCompletion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getPlacesWithPattern:completion</strong></h4>
 <p>This method returns all <code>ALPlace</code>s that match the <code>namePattern</code> regex <code>NSString</code> passed to it. For example, passing <code>@&quot;^McDo&quot;</code> will return all places with names that start with @&quot;McDo&quot; (likely a list of McDonalds visits).
 
 </p>
-<pre><code>+ (void)getPlacesWithPattern:(NSString <span class="variable">*)</span>namePattern
-                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<pre><code>+ (<span class="keyword">void</span>)getPlacesWithPattern:(<span class="built_in">NSString</span> *)namePattern
+                  completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getPlacesWithPattern:andCategory:completion</strong></h4>
 <p>This method returns all <code>ALPlace</code>s that match the <code>namePattern</code> regex <code>NSString</code> passed to it. For example, calling <code>[Alohar getPlaces:@&quot;.*&quot; withCategory:@&quot;^rest&quot; withDelegate:self]</code> will return all places with categories starting with rest -- likely a list of restaurants and possibly rest stops.
 
 </p>
-<pre><code>+ (void)getPlacesWithPattern:(NSString <span class="variable">*)</span>namePattern
-                andCategory:(NSString <span class="variable">*)</span>catPattern
-                  completion:(void (^)(ALResponse <span class="variable">*response</span>, NSError <span class="variable">*error</span>))completion;</code></pre>
+<pre><code>+ (<span class="keyword">void</span>)getPlacesWithPattern:(<span class="built_in">NSString</span> *)namePattern
+                andCategory:(<span class="built_in">NSString</span> *)catPattern
+                  completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getPlacesWithPattern:fromDate:toDate:minimalVisits:withCategory:limit:completion</strong></h4>
 <p>This is the most advanced filter we provide for user stays. See the &quot;Parameters&quot; section below for guidance on each value.
 
 </p>
-<pre><code>+ (<span class="tag">void</span>)<span class="tag">getPlacesWithPattern</span><span class="pseudo">:(NSString</span> *)<span class="tag">namePattern</span>
-         <span class="tag">fromDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">startDate</span>
-           <span class="tag">toDate</span><span class="pseudo">:(NSDate</span> *)<span class="tag">endDate</span>
-    <span class="tag">minimalVisits</span><span class="pseudo">:(NSInteger)visits</span>
-     <span class="tag">withCategory</span><span class="pseudo">:(NSString</span> *)<span class="tag">catPattern</span>
-            <span class="tag">limit</span><span class="pseudo">:(NSInteger)limit</span>
-       <span class="tag">completion</span><span class="pseudo">:(void</span> (^)(<span class="tag">ALResponse</span> *<span class="tag">response</span>, <span class="tag">NSError</span> *<span class="tag">error</span>))<span class="tag">completion</span>;</code></pre>
+<pre><code>+ (<span class="keyword">void</span>)getPlacesWithPattern:(<span class="built_in">NSString</span> *)namePattern
+         fromDate:(<span class="built_in">NSDate</span> *)startDate
+           toDate:(<span class="built_in">NSDate</span> *)endDate
+    minimalVisits:(<span class="built_in">NSInteger</span>)visits
+     withCategory:(<span class="built_in">NSString</span> *)catPattern
+            limit:(<span class="built_in">NSInteger</span>)limit
+       completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h5>Parameters</h5>
 <ul>
 <li><strong>namePattern</strong>: The regular expression to match the place names.</li>
@@ -367,25 +371,25 @@
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)getPlaceCandidatesForStay:(<span class="built_in">NSInteger</span>)stayId
-                       completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+                       completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getStaysForPlace:completion</strong></h4>
 <p>This method returns all user stays for a given place.
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)getStaysForPlace:(<span class="built_in">NSInteger</span>)placeId
-              completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+              completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getDetailsForPlace:completion</strong></h4>
 <p>This method returns the full details for a place.
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)getDetailsForPlace:(<span class="built_in">NSInteger</span>)placeId
-                completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+                completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <h4><strong>getDetailsForStay:completion</strong></h4>
 <p>This method returns the full details for a user stay.
 
 </p>
 <pre><code>+ (<span class="keyword">void</span>)getDetailsForStay:(<span class="built_in">NSInteger</span>)stayId
-               completion:(<span class="keyword">void</span> (^)(ALResponse *response, NSError *error))completion;</code></pre>
+               completion:(<span class="keyword">void</span> (^)(ALResponse *response, <span class="built_in">NSError</span> *error))completion;</code></pre>
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='change-delegate'>Change Delegate</h2 id='change-delegate'>
@@ -408,28 +412,28 @@
 <p>This callback is sent to the delegate when Alohar detects that the user has changed their motion state. See the <code>ALMotionState</code> object for possible user states.
 
 </p>
-<pre><code>- (<span class="tag">void</span>)<span class="tag">didUpdateToMotionState</span><span class="pseudo">:(ALMotionState</span> *)<span class="tag">newMotionState</span> 
-           <span class="tag">fromMotionState</span><span class="pseudo">:(ALMotionState</span> *)<span class="tag">oldMotionState</span>;</code></pre>
+<pre><code><span class="pp">- <span class="params">(void)</span>didUpdateToMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>newMotionState 
+           fromMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>oldMotionState;</code></pre>
 <h4><strong>userArrivedAtPlaceWithLocation</strong></h4>
 <p>This callback is sent to the delegate when Alohar detects that the user has arrived at a new place. This callback only includes latitude and longitude -- once the place of the stay has been determined, the delegate will receive <code>currentUserStayIdentified</code>.
 
 </p>
-<pre><code>- (<span class="keyword">void</span>)userArrivedAtPlaceWithLocation:(CLLocation *)location;</code></pre>
+<pre><code><span class="pp">- <span class="params">(void)</span>userArrivedAtPlaceWithLocation:<span class="params">(<span class="variable">CLLocation</span> *)</span>location;</code></pre>
 <h4><strong>userDepartedPlaceWithLocation</strong></h4>
 <p>This callback is sent to the delegate when Alohar detects that the user has left their current place. This callback includes the latitude and longitude of the place the user has left.
 
 </p>
-<pre><code>- (<span class="keyword">void</span>)userArrivedAtPlaceWithLocation:(CLLocation *)location;</code></pre>
+<pre><code><span class="pp">- <span class="params">(void)</span>userArrivedAtPlaceWithLocation:<span class="params">(<span class="variable">CLLocation</span> *)</span>location;</code></pre>
 <h4><strong>currentUserStayIdentified</strong></h4>
 <p>This callback is sent to the delegate when Alohar detects a new user stay. This <code>ALUserStay</code> object includes location, place name, and several other valuable pieces of data. See the <code>ALUserStay</code> object for further details.             
 
 </p>
-<pre><code>- (<span class="keyword">void</span>)currentUserStayIdentified:(ALUserStay *)newStay;</code></pre>
+<pre><code><span class="pp">- <span class="params">(void)</span>currentUserStayIdentified:<span class="params">(<span class="variable">ALUserStay</span> *)</span>newStay;</code></pre>
 <h4><strong>aloharDidFailWithError</strong></h4>
 <p>This callback is sent to the delegate when an error occurs with either motion state or user stays
 
 </p>
-<pre><code>- (void)aloharDidFailWithError:(NSError <span class="variable">*)</span><span class="keyword">error</span>;</code></pre>
+<pre><code>- (void)aloharDidFailWithError:(<span class="title">NSError</span> *)<span class="built_in">error</span>;</code></pre>
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='non-delegate-methods'>Non-delegate methods</h2 id='non-delegate-methods'>
@@ -440,37 +444,37 @@
 <p>This returns the user stay the user is currently in, or nil if no user stay exists.
 
 </p>
-<pre><code><span class="addition">+ (ALUserStay *)currentUserStay;</span></code></pre>
+<pre><code>+ (<span class="title">ALUserStay</span> *)currentUserStay;</code></pre>
 <h4><strong>currentLocation</strong></h4>
 <p>This returns the latest known location for the user.
 
 </p>
-<pre><code><span class="addition">+ (CLLocation *)currentLocation;</span></code></pre>
+<pre><code>+ (<span class="title">CLLocation</span> *)currentLocation;</code></pre>
 <h4><strong>currentLocation</strong></h4>
 <p>This returns the current motion state for the user. See <code>ALMotionState</code> for possible states.
 
 </p>
-<pre><code><span class="addition">+ (ALMotionState *)currentMotionState;</span></code></pre>
+<pre><code>+ (<span class="title">ALMotionState</span> *)currentMotionState;</code></pre>
 <h4><strong>isStationary</strong></h4>
 <p>This method returns TRUE if the device is not moving, FALSE in all other cases.  
 
 </p>
-<pre><code><span class="addition">+ (BOOL)isStationary;</span></code></pre>
+<pre><code>+ (<span class="built_in">BOOL</span>)isStationary;</code></pre>
 <h4><strong>isStationary</strong></h4>
 <p>This method returns FALSE if the user is currently staying at a place, TRUE in all other cases.   
 
 </p>
-<pre><code><span class="addition">+ (BOOL)isBetweenUserStays;</span></code></pre>
+<pre><code>+ (<span class="built_in">BOOL</span>)isBetweenUserStays;</code></pre>
 <h4><strong>monitoringUser</strong></h4>
 <p>This method can be used to see if Alohar is tracking the user, and will return TRUE if user monitoring is on.   
 
 </p>
-<pre><code><span class="addition">+ (BOOL)monitoringUser;</span></code></pre>
+<pre><code>+ (<span class="built_in">BOOL</span>)monitoringUser;</code></pre>
 <h4><strong>monitoringUser</strong></h4>
 <p>This method returns TRUE if the user has valid credentials and has an active Alohar session, FALSE in all other cases.  
 
 </p>
-<pre><code><span class="addition">+ (BOOL)isLoggedIn;</span></code></pre>
+<pre><code>+ (<span class="built_in">BOOL</span>)isLoggedIn;</code></pre>
 <hr style="padding: 0; margin: 0;"/>
 
 <h2 id='objects'>Objects</h2 id='objects'>
@@ -539,7 +543,7 @@
 <p>The <code>ALMotionState</code> object represents a category of motion from the user.
 
 </p>
-<pre><code>Possible Motion States:
+<pre><code><span class="title">Possible</span> Motion States:
    ALMotionStateStationary
    ALMotionStateWalking
    ALMotionStateDriving
@@ -552,12 +556,29 @@
 <p>Call <code>[motionState stateDiscription]</code> for a pretty <code>NSString</code> version of the current state. Possible values are <code>Stationary</code>, <code>Big Move</code>, <code>Driving</code>, <code>Walking</code>, and <code>unknown</code>.
 
 </p>
-<pre><code><span class="deletion">- (NSString *)stateDescription;</span></code></pre>
+<pre><code>- (<span class="title">NSString</span> *)stateDescription;</code></pre>
+<h3 id='objects/almobilestate'>ALMobileState</h3 id='objects/almobilestate'>
+<p>The <code>ALMobileState</code> object represents a category of high level movement from the user.
+
+</p>
+<pre><code><span class="title">Possible</span> Mobile States:
+   ALMobileStateUnknown
+   ALMobileStateNotMoving
+   ALMobileStateSlowMoving
+   ALMobileStateFastMoving</code></pre>
+<h5>Property</h5>
+<p><code>NSNumber *state</code> <em>The raw state value (see above to find the meaning of each number</em>
+
+</p>
+<p>Call <code>[mobileState stateDiscription]</code> for a pretty <code>NSString</code> version of the current state. Possible values are <code>Not Moving</code>, <code>Slow Moving</code>, <code>Fast Moving</code>, and <code>unknown</code>.
+
+</p>
+<pre><code>- (<span class="title">NSString</span> *)stateDescription;</code></pre>
 <h3 id='objects/alresponse'>ALResponse</h3 id='objects/alresponse'>
 <p>The <code>ALResponse</code> object is a wrapper for the return values for all requests to the Alohar service.
 
 </p>
-<pre><code><span class="built_in">Request</span> Types:
+<pre><code><span class="title">Request</span> Types:
     kALRequestTypeUserStays,
     kALRequestTypePlaces,
     kALRequestTypeStayDetail,
