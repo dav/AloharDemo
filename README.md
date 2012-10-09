@@ -1,5 +1,13 @@
 ###Latest Updates###
 
+**10/09/2012**
+
+***Android SDK V0.5***
+
++ significantly improve the battery life on popular models
++ enhance the mobile state APIs to be more responsive and accurate
++ enhance the real time place detection APIs
+
 **09/21/2012**
 
 ***iOS SDK V0.2.9***
