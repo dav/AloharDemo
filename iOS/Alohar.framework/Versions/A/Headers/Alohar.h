@@ -180,6 +180,14 @@ enum {
  */
 + (void)authenticateWithAppID:(NSString *)appID andAPIKey:(NSString *)APIKey andUserID:(NSString *)userID completion:(void (^)(NSString *userToken, NSError *error))completion;
 
+/*!
+ * Log out the current user from Alohar's cloud system.
+ * 
+ * It will reset all user's information and stop the monitoring service.
+ * return YES if success.
+ */
++ (BOOL)logout;
+
 /** @name Life Cycle Of Monitering Service */
 
 /*!
@@ -240,6 +248,8 @@ enum {
  * Get the user's user stays for a given date.
  * \param date The date to search for user stays. Counts from midnight to midnight of the user's time zone (e.g. July 8th is any user stay that overlaps with 12:01AM July 8th to 11:59PM July 8th).
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ * 
+ * @warning *NOTE* The place candidate list of the user stay is suppressed by default to save bandwidth. You can use ```getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion``` to fetch the list.
  */
 + (void)getUserStaysForDate:(NSDate *)date completion:(void (^)(ALResponse *response, NSError *error))completion;
 
@@ -248,6 +258,8 @@ enum {
  * \param startDate The start time.
  * \param endDate The end time.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * @warning *NOTE* The place candidate list of the user stay is suppressed by default to save bandwidth. You can use ```getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion``` to fetch the list.
  */
 + (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate completion:(void (^)(ALResponse *response, NSError *error))completion;
 
@@ -261,6 +273,8 @@ enum {
  * \param limit The limitation of total number matches to return. Optional. The default is 500.
  * \param includeCandidates Flag to indicate whether the user stay shall include its candidates. Optional. The default is NO.
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
+ *
+ * @warning *NOTE* The place candidate list of the user stay is suppressed by default to save bandwidth. You can use ```getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion``` to fetch the list.
  * 
  */
 + (void)getUserStaysFromDate:(NSDate *)startDate toDate:(NSDate *)endDate atLocation:(CLLocation *)location radius:(NSInteger)radius limit:(NSInteger)limit includeCandidiates:(BOOL)includeCandidates completion:(void (^)(ALResponse *response, NSError *error))completion;
@@ -314,6 +328,8 @@ enum {
  * \param completion This block is called on completion, with either a successful ALResponse or NSError describing the problem encountered.
  * 
  * If the params are not valid, NSError will be returned with empty response.
+ *
+ * This API is used to correct the wrong detection from Alohar from the place candidate list attached to the user stay.
  */
 + (void)correctStay:(NSInteger)stayId withCandidate:(NSInteger)placeId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
@@ -329,6 +345,8 @@ enum {
  * \param completion The complete handler block with ALResponse or Error.
  *
  * If the params are not valid, NSError will be returned with empty response.
+ *
+ * This API is used to correct the wrong detection from Alohar by creating a new personal place. Even if the place is public (not a personal POI), Alohar will treat as personal place in our system.
  * 
  */
 + (void)correctStay:(NSInteger)stayId withPlace:(NSString*)name location:(CLLocation*)loc address:(NSString*)addr category:(placeCategoryType)category completion:(void (^)(ALResponse *response, NSError *error))completion;
