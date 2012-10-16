@@ -1,5 +1,12 @@
 ###Latest Updates###
 
+**10/16/2012**
+
+*** iOS SDK V0.3.0***
+
++ add logout to allow user log out alohar system
++ update apple docs for user stay APIs
+
 **10/09/2012**
 
 ***Android SDK V0.5***
