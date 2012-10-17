@@ -114,7 +114,7 @@ img {
 <p>Alohar SDK <strong>requires Xcode 4.2+</strong> for development, and <strong>iOS 5.0+</strong> for both development and distribution and to access advanced location features of iOS. You can update your software from Apple&#39;s developer portal: <a href="https://developer.apple.com/">developer.apple.com</a>.
 
 </p>
-<p><strong>Alohar SDK</strong> may be limiting to users using iOS 5.0+, Alohar believes the decision is reasonable. As of April 12th 2012, 80-90% of all users are on iOS 5. Most of the users that still remain on iOS 4.0 are those that cannot upgrade due to their device (iPhone, iPhone 3G). These devices are disappearing quickly.
+<p><strong>Alohar SDK</strong> requires users using iOS 5.0+, Alohar believes the decision is reasonable. As of April 12th 2012, 80-90% of all users are on iOS 5. Most of the users that still remain on iOS 4.0 are those that cannot upgrade due to their device (iPhone, iPhone 3G). These devices are disappearing quickly.
 
 </p>
 <h2 id='register-your-ios-app'>Register your iOS app</h2 id='register-your-ios-app'>
@@ -212,14 +212,14 @@ img {
 <p>Add the following aloharDidLogin: and aloharDidFailWithError: methods in the same <code>application:didFinishLaunchingWithOptions</code> method.
 
 </p>
-<pre><code>- (void)aloharDidLogin:(NSString <span class="variable">*)</span>userToken
+<pre><code>- (<span class="keyword">void</span>)aloharDidLogin:(<span class="built_in">NSString</span> *)userToken
 {
-  NSLog(<span class="variable">@"</span>User is logged in!<span class="string">");
+  <span class="built_in">NSLog</span>(@<span class="string">"User is logged in!"</span>);
   [Alohar startMonitoringUser];
 }
-- (void)aloharDidFailWithError:(NSError <span class="variable">*)</span>error
+- (<span class="keyword">void</span>)aloharDidFailWithError:(<span class="built_in">NSError</span> *)error
 {
-  NSLog(<span class="variable">@"</span>User couldn't be logged in! Error: <span class="variable">%@</span>"</span>, error);
+  <span class="built_in">NSLog</span>(@<span class="string">"User couldn't be logged in! Error: %@"</span>, error);
 }</code></pre>
 <p>Your AppDelegate.m file should looks like this:
 
@@ -243,10 +243,10 @@ img {
 <p>Catch any callbacks by adding the <code>didUpdateToMotionState:fromMotionState</code> method.
 
 </p>
-<pre><code><span class="pp">- <span class="params">(void)</span>didUpdateToMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>newMotionState 
-               fromMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>oldMotionState
+<pre><code>- (void)didUpdateToMotionState:(ALMotionState <span class="variable">*)</span>newMotionState 
+               fromMotionState:(ALMotionState <span class="variable">*)</span>oldMotionState
 {
-  NSLog<span class="params">(@<span class="string">"New Motion State: %@"</span>, new<span class="variable">MotionState</span>.</span></span>state<span class="variable">Description</span>);
+  NSLog(<span class="variable">@"</span>New Motion State: <span class="variable">%@</span><span class="string">", newMotionState.stateDescription);
 }</code></pre>
 <p><img src="images/viewcontroller.png" alt="View Controller">
 

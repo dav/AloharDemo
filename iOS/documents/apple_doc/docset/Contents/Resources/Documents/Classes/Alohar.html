@@ -92,6 +92,8 @@
 	
 	<option value="//api/name/isStationary">&nbsp;&nbsp;&nbsp;&nbsp;+ isStationary</option>
 	
+	<option value="//api/name/logout">&nbsp;&nbsp;&nbsp;&nbsp;+ logout</option>
+	
 	<option value="//api/name/monitoringUser">&nbsp;&nbsp;&nbsp;&nbsp;+ monitoringUser</option>
 	
 	<option value="//api/name/registerWithAppID:andAPIKey:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerWithAppID:andAPIKey:completion:</option>
@@ -207,6 +209,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLoggedIn">isLoggedIn</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isStationary">isStationary</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logout">logout</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monitoringUser">monitoringUser</a></span></li>
 	
@@ -348,6 +352,13 @@ For a new user, please use
 		<span class="tooltip"><p>Authenticate an existing user using block.
 For new user, please use
 <code>registerWithAppID:andAPIKey:completion</code> instead.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logout">+&nbsp;logout</a></code>
+		<span class="tooltip"><p>Log out the current user from Alohar&rsquo;s cloud system.</p></span>
 	</span>
 	
 	
@@ -797,7 +808,9 @@ For a new user, please use
 			<dt><em>completion</em></dt>
 			<dd><p>This block is called on completion, with either a successful <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p>
 
-<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
+<p>If the params are not valid, NSError will be returned with empty response.</p>
+
+<p>This API is used to correct the wrong detection from Alohar from the place candidate list attached to the user stay.</p></dd>
 		</dl>
 		
 	</div>
@@ -873,7 +886,9 @@ For a new user, please use
 			<dt><em>completion</em></dt>
 			<dd><p>The complete handler block with <a href="../Classes/ALResponse.html">ALResponse</a> or Error.</p>
 
-<p>If the params are not valid, NSError will be returned with empty response.</p></dd>
+<p>If the params are not valid, NSError will be returned with empty response.</p>
+
+<p>This API is used to correct the wrong detection from Alohar by creating a new personal place. Even if the place is public (not a personal POI), Alohar will treat as personal place in our system.</p></dd>
 		</dl>
 		
 	</div>
@@ -1686,7 +1701,7 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Get the user&rsquo;s user stays for a given date.</p>
+		<p>Get the user&rsquo;s user stays for a given date.</p><div class="warning"><p><strong>Warning:</strong> <em>NOTE</em> The place candidate list of the user stay is suppressed by default to save bandwidth. You can use <code>getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion</code> to fetch the list.</p></div>
 	</div>
 	
 	
@@ -1765,7 +1780,7 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Get user&rsquo;s user stays that start or end within a given time period and a location boundary.</p>
+		<p>Get user&rsquo;s user stays that start or end within a given time period and a location boundary.</p><div class="warning"><p><strong>Warning:</strong> <em>NOTE</em> The place candidate list of the user stay is suppressed by default to save bandwidth. You can use <code>getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion</code> to fetch the list.</p></div>
 	</div>
 	
 	
@@ -1824,7 +1839,7 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Get user stays that that start or end within a given time period</p>
+		<p>Get user stays that that start or end within a given time period</p><div class="warning"><p><strong>Warning:</strong> <em>NOTE</em> The place candidate list of the user stay is suppressed by default to save bandwidth. You can use <code>getPlaceCandidatesForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion</code> to fetch the list.</p></div>
 	</div>
 	
 	
@@ -2001,6 +2016,48 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Check whether the device is stationary.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logout" title="logout"></a>
+	<h3 class="subsubtitle method-title">logout</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Log out the current user from Alohar&rsquo;s cloud system.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)logout</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Log out the current user from Alohar&rsquo;s cloud system.</p>
+
+<p>It will reset all user&rsquo;s information and stop the monitoring service.
+return YES if success.</p>
 	</div>
 	
 	
@@ -2643,7 +2700,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-08-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-10-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

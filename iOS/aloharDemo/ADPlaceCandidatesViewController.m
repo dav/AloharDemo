@@ -167,8 +167,6 @@
                 }
             }];
             break;
-        default:
-            break;
     }
 }
 
