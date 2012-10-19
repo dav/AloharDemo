@@ -10,7 +10,7 @@
 
 @implementation ADAppDelegate
 @synthesize window = _window;
-
+@synthesize events;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,11 +28,17 @@
     //listen log
     [ALLog setDelegate:self];
     
+    //init the event log
+    self.events = [NSMutableArray array];
+    
     //There are two ways to register or authenticate
     //using delegate ALSessionDelegate
 
     if ([Alohar isLoggedIn]) {
         [Alohar startMonitoringUser];
+        
+        //listen for real time events
+        [Alohar setUserStayDelegate:self];
     } else {
 //        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
 //            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -65,6 +71,9 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"AloharDemoUserID"];
     [Alohar startMonitoringUser];
+    
+    //listen for the real time events
+    [Alohar setUserStayDelegate:self];
 }
 
 - (void)aloharDidFailWithError:(NSError *)error
@@ -105,6 +114,39 @@
 - (void)onLog:(NSString *)log
 {
     NSLog(@"++++ %@", log);
+}
+
+
+#pragma mark -
+#pragma mark ALUserStayDelegate
+- (void)currentUserStayIdentified:(ALUserStay *)newStay
+{
+    NSLog(@"%s, userStay: %@", __FUNCTION__, [newStay description]);
+    NSArray *keys = [NSArray arrayWithObjects:@"type", @"stay", @"timestamp", nil];
+    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    NSArray *objects = [NSArray arrayWithObjects:@"Userstay", newStay, time, nil];
+    NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    [self.events addObject:event];
+}
+
+- (void)userArrivedAtPlaceWithLocation:(CLLocation *)location
+{
+    NSLog(@"%s, %@", __FUNCTION__, @"arrival");
+    NSArray *keys = [NSArray arrayWithObjects:@"type", @"location", @"timestamp", nil];
+    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    NSArray *objects = [NSArray arrayWithObjects:@"Arrival", location, time ,nil];
+    NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    [self.events addObject:event];
+}
+
+- (void)userDepartedPlaceWithLocation:(CLLocation *)location
+{
+    NSLog(@"%s, %@", __FUNCTION__, @"departure");
+    NSArray *keys = [NSArray arrayWithObjects:@"type", @"location", @"timestamp", nil];
+    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    NSArray *objects = [NSArray arrayWithObjects:@"Departure", location, time ,nil];
+    NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    [self.events addObject:event];
 }
 
 

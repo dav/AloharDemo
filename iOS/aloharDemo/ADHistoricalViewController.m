@@ -11,6 +11,8 @@
 #import <Alohar/ALUserStay.h>
 #import "ADPlaceDetailViewController.h"
 #import "ADVisitsViewController.h"
+#import "ADEventHistoryTableViewController.h"
+#import "ADAppDelegate.h"
 
 @interface ADHistoricalViewController ()
 
@@ -170,8 +172,11 @@
         ALPlace *place = [places objectAtIndex:[indexPath row]];
         ADVisitsViewController *destinationView = segue.destinationViewController;
         destinationView.place = place;
-    } 
-    
+    } else if ([[segue identifier] isEqualToString:@"showEventsHistory"]){
+        ADEventHistoryTableViewController *desitinationView = (ADEventHistoryTableViewController *)segue.destinationViewController;
+        ADAppDelegate *delegate = (ADAppDelegate *)[UIApplication sharedApplication].delegate;
+        desitinationView.eventsHistory = delegate.events;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

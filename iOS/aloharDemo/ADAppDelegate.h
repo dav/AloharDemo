@@ -10,9 +10,10 @@
 #import <Alohar/Alohar.h>
 #import <Alohar/ALLog.h>
 
-@interface ADAppDelegate : UIResponder <UIApplicationDelegate, ALSessionDelegate, ALLogDelegate>
+@interface ADAppDelegate : UIResponder <UIApplicationDelegate, ALSessionDelegate, ALLogDelegate, ALUserStayDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) NSMutableArray *events;
 
 
 @end

@@ -17,6 +17,8 @@
 
 @implementation ADEventHistoryTableViewController
 
+@synthesize eventsHistory;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -59,16 +61,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Alohar userStayLocationHistory].count;
+    return [self.eventsHistory count];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"Event history: %@", [Alohar userStayLocationHistory]);
-
     [self.tableView reloadData];
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,8 +75,8 @@
     ADEventTableViewCell *cell = (ADEventTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[ADEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }  
-    NSDictionary *event = [[Alohar userStayLocationHistory] objectAtIndex:indexPath.row];
+    }
+    NSDictionary *event = [self.eventsHistory objectAtIndex:indexPath.row];
     static NSDateFormatter *dateFormatter;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -159,7 +157,7 @@
 - (IBAction)emailLog:(id)sender
 {
     NSMutableString *emailBody = [[NSMutableString alloc] initWithCapacity:0]; 
-    NSArray *history = [Alohar userStayLocationHistory];
+    NSArray *history = self.eventsHistory;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"d h:mma"];
     
