@@ -94,9 +94,15 @@
         NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:stay.endTime];
         cell.durationLabel.text = [NSString stringWithFormat:@"%@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
     }else{
-        CLLocation *loc = (CLLocation *)[event valueForKey:@"location"];
-        cell.detailLabel.text = [NSString stringWithFormat:@"(%f,%f)", loc.coordinate.latitude, loc.coordinate.longitude];
-        cell.durationLabel.text = @"";
+        if ([event objectForKey:@"place"] != nil && [event objectForKey:@"place"] != [NSNull null]) {
+            ALPlace *place = (ALPlace *)[event objectForKey:@"place"];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@", place.name];
+            cell.durationLabel.text = @"";
+        } else {
+            CLLocation *loc = (CLLocation *)[event valueForKey:@"location"];
+            cell.detailLabel.text = [NSString stringWithFormat:@"(%f,%f)", loc.coordinate.latitude, loc.coordinate.longitude];
+            cell.durationLabel.text = @"";
+        }
     }
     
     return cell;

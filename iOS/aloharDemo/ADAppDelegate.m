@@ -129,14 +129,24 @@
     [self.events addObject:event];
 }
 
-- (void)userArrivedAtPlaceWithLocation:(CLLocation *)location
+
+- (void)userArrivedAtPlace:(ALPlace *)personalPlace withLocation:(CLLocation *)location;
 {
     NSLog(@"%s, %@", __FUNCTION__, @"arrival");
-    NSArray *keys = [NSArray arrayWithObjects:@"type", @"location", @"timestamp", nil];
-    NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
-    NSArray *objects = [NSArray arrayWithObjects:@"Arrival", location, time ,nil];
-    NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
-    [self.events addObject:event];
+    if (personalPlace != nil) {
+        NSArray *keys = [NSArray arrayWithObjects:@"type", @"location", @"timestamp", @"place", nil];
+        NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+        NSArray *objects = [NSArray arrayWithObjects:@"Arrival", [Alohar currentLocation], time, personalPlace,  nil];
+        NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+        [self.events addObject:event];
+    } else {
+        NSArray *keys = [NSArray arrayWithObjects:@"type", @"location", @"timestamp", nil];
+        NSString *time = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+        NSArray *objects = [NSArray arrayWithObjects:@"Arrival", [Alohar currentLocation], time, nil];
+        NSDictionary *event = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+        [self.events addObject:event];
+    }
+    
 }
 
 - (void)userDepartedPlaceWithLocation:(CLLocation *)location
