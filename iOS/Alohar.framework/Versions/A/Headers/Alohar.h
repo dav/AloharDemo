@@ -79,11 +79,18 @@ typedef enum {
  * \param newStay The updated new user stay.
  */
 - (void)currentUserStayIdentified:(ALUserStay *)newStay;
+
 /*!
  * Callback when an arrival event is detected. 
+ *
+ * \param personalPlace The place you arrive. The SDK will only surface personal places, optionally.
  * \param location The centroid of the user's location when the arrival event was triggered.
+ * 
+ * @warning *important* The personal place will be set if and only if a)user has created a personal place b)the use's centroid is
+ * close enough to that personal place's location.
  */
-- (void)userArrivedAtPlaceWithLocation:(CLLocation *)location;
+- (void)userArrivedAtPlace:(ALPlace *)personalPlace withLocation:(CLLocation *)location;
+
 /*!
  * Callback when a departure event is detected. 
  * \param location The centroid of the last user stay. 
@@ -401,6 +408,13 @@ enum {
  */
 + (void)getDetailsForStay:(NSInteger)stayId completion:(void (^)(ALResponse *response, NSError *error))completion;
 
+/*!
+ * Get all personal places you created.
+ *
+ * \param completion This block is called on completion, with either a success ALResponse or NSError describing the problem encountered.
+ *
+ */
++ (void)getPersonalPlacesWithCompletion:(void (^)(ALResponse *response, NSError *error))completion;
 
 /** @name State Methods */
 
@@ -494,9 +508,9 @@ enum {
 
 - (void)userStayChanged:(ALUserStay *)userStay;
 
-- (void)departLocation;
+- (void)departPlace;
 
-- (void)arriveLocation;
+- (void)arrivePlace:(ALPlace *)place;
 
 - (void)mobileStateChanged:(ALMobileState *)newMobileState;
 
