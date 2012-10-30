@@ -1,5 +1,11 @@
 ###Latest Updates###
 
+**10/30/2012**
+
+***iOS SDK V0.3.1***
+
++ change userArrivedAtPlaceWithLocation: to userArrivedAtPlace:withLocation: to return optional personal place.
+
 **10/16/2012**
 
 ***iOS SDK V0.3.0***
