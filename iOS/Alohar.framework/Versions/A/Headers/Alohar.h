@@ -220,6 +220,15 @@ enum {
  */
 + (NSInteger)currentServiceMode;
 
+/*!
+ * Load customized configuration for your application if any.
+ * \param appID The AppID assigned for the App
+ * \param APIKey The APIKey assigned to the App.
+ * @warning *important* This method shall be called before any API calls.
+ */
++ (void)customizeApp:(NSString *)appID withApiKey:(NSString *)APIKey;
+
+
 /** @name Delegates */
 
 /*!
