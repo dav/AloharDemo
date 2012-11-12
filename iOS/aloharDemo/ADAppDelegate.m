@@ -28,16 +28,13 @@
     //listen log
     [ALLog setDelegate:self];
     
-    //init the event log
-    self.events = [NSMutableArray array];
-    
     //There are two ways to register or authenticate
     //using delegate ALSessionDelegate
-
     if ([Alohar isLoggedIn]) {
         [Alohar startMonitoringUser];
         
         //listen for real time events
+        [self loadHistoryEvents];
         [Alohar setUserStayDelegate:self];
     } else {
 //        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
@@ -73,6 +70,7 @@
     [Alohar startMonitoringUser];
     
     //listen for the real time events
+    [self loadHistoryEvents];
     [Alohar setUserStayDelegate:self];
 }
 
@@ -116,6 +114,13 @@
     NSLog(@"++++ %@", log);
 }
 
+- (void)loadHistoryEvents
+{
+    if (self.events == nil) {
+        NSArray *history = [Alohar userStayLocationHistory];
+        self.events = [NSMutableArray arrayWithArray:history];
+    }
+}
 
 #pragma mark -
 #pragma mark ALUserStayDelegate

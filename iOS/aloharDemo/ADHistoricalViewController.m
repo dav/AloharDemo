@@ -48,7 +48,6 @@
             NSLog(@"Error %@", error);
         } else {
             places = [(NSArray *)response.objects mutableCopy];
-            NSLog(@"Updated places: %@", places);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.placeCountLabel.text = [NSString stringWithFormat:@"%d", places.count];
                 [self.allPlacesTableView reloadData];
@@ -74,7 +73,6 @@
             NSLog(@"Error %@", error);
         } else {
             userstays = [(NSArray *)response.objects mutableCopy];
-            NSLog(@"Updated user stays: %@", userstays);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.stayCountLabel.text = [NSString stringWithFormat:@"%d", userstays.count];
                 [self.recentStaysTableView reloadData];
