@@ -1,5 +1,13 @@
 ###Latest Updates###
 
+**11/12/2012**
+
+***iOS SDK V0.3.2***
+
++ add customization hook for different apps
++ enable event log for arrival/departure
++ minor update of Demo App
+
 **10/30/2012**
 
 ***iOS SDK V0.3.1***
