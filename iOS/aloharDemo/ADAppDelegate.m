@@ -26,7 +26,7 @@
     NSString *apiKey = @"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463";
     
     //listen log
-    [ALLog setDelegate:self];
+//    [ALLog setDelegate:self];
     
     //There are two ways to register or authenticate
     //using delegate ALSessionDelegate
