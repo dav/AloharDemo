@@ -239,18 +239,6 @@
 
 </p>
 <pre><code>[Alohar stopMonitoringUser]</code></pre>
-<h4><strong>Auto Start</strong></h4>
-<p>Once your device reboots, the monitoring service will be terminated along with your app. User might forget to turn on your application after the reboot. To continue sensing user&#39;s behavior in those cases, you can turn on auto-start feature which will turn the monitoring service back once the user is moved significantly. Of course, you can completely turn the service off by calling <code>[Alohar stopMonitoringUser]</code> any time and auto start will also respect that. 
-
-</p>
-<p>We highly recommend you to turn this feature on for better user experience. To enable this feature, simply add <code>[Alohar enableAutoStart]</code> when the application is going to be terminated. For example:
-
-</p>
-<pre><code>- (<span class="reserved">void</span>)applicationWillTerminate:(UIApplication *)application
-{
-        // Called <span class="keyword">when</span> the application <span class="keyword">is</span> about to terminate. Save data <span class="keyword">if</span> appropriate. See also applicationDidEnterBackground:.
-        [Alohar enableAutoStart];
-}</code></pre>
 <div id='sessiondelegate-callbacks' style='padding:0;margin:0;'/></div>
 
 <h3 id='initialization-session-delegate/callbacks'>Callbacks</h3 id='initialization-session-delegate/callbacks'>
@@ -414,11 +402,11 @@
 </p>
 <pre><code><span class="pp">- <span class="params">(void)</span>didUpdateToMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>newMotionState 
            fromMotionState:<span class="params">(<span class="variable">ALMotionState</span> *)</span>oldMotionState;</code></pre>
-<h4><strong>userArrivedAtPlaceWithLocation</strong></h4>
-<p>This callback is sent to the delegate when Alohar detects that the user has arrived at a new place. This callback only includes latitude and longitude -- once the place of the stay has been determined, the delegate will receive <code>currentUserStayIdentified</code>.
+<h4><strong>userArrivedAtPlace:withLocation</strong></h4>
+<p>This callback is sent to the delegate when Alohar detects that the user has arrived at a new place. This callback includes latitude and longitude with a optional personal place if it is close enough to the centroid of the arrival -- once the final place of the stay has been determined, the delegate will receive <code>currentUserStayIdentified</code>.
 
 </p>
-<pre><code><span class="pp">- <span class="params">(void)</span>userArrivedAtPlaceWithLocation:<span class="params">(<span class="variable">CLLocation</span> *)</span>location;</code></pre>
+<pre><code><span class="pp">- <span class="params">(void)</span>userArrivedAtPlace:<span class="params">(<span class="variable">ALPlace</span> *)</span>personalPlace withLocation:<span class="params">(<span class="variable">CLLocation</span> *)</span>location;</code></pre>
 <h4><strong>userDepartedPlaceWithLocation</strong></h4>
 <p>This callback is sent to the delegate when Alohar detects that the user has left their current place. This callback includes the latitude and longitude of the place the user has left.
 
