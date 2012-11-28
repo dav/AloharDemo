@@ -1,5 +1,12 @@
 ###Latest Updates###
 
+**11/28/2012**
+
+***iOS SDK v0.3.5***
+
++ Add more real time logs for service life cycle
++ Some real time performance tuning
+
 **11/27/2012**
 
 ***iOS SDK V0.3.4***
