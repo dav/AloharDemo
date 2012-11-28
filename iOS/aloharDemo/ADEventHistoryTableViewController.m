@@ -84,9 +84,9 @@
     }
 
     NSLog(@"Configuring cell: %@", event);
-    NSDate *d = [[NSDate alloc] initWithTimeIntervalSince1970:[[event valueForKey:@"timestamp"] intValue]];
+    NSString *timestamp = [event valueForKey:@"timestamp"];
     cell.eventLabel.text = [event valueForKey:@"type"];
-    cell.timeLabel.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:d]];
+    cell.timeLabel.text = timestamp;
     if ([[event valueForKey:@"type"] isEqualToString:@"Userstay"]){
         ALUserStay *stay = [event valueForKey:@"stay"];
         cell.detailLabel.text = stay.selectedPlace.name;
