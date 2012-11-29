@@ -168,14 +168,13 @@
     [dateFormatter setDateFormat:@"d h:mma"];
     
     for (NSDictionary *event in history) {
-        NSDate *d = [[NSDate alloc] initWithTimeIntervalSince1970:[[event valueForKey:@"timestamp"] intValue]];
-        NSString *time = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:d]];
+        NSString *time = [event valueForKey:@"timestamp"];
 
         if ([[event valueForKey:@"type"] isEqualToString:@"Userstay"]){
             ALUserStay *stay = [event valueForKey:@"stay"];
-            [emailBody appendFormat:@"%@\r\n%@\r\n%@", [event valueForKey:@"type"], time, stay.description];
+            [emailBody appendFormat:@"<p>%@\r\n%@\r\n%@</p>", [event valueForKey:@"type"], time, stay.description];
         }else{
-            [emailBody appendFormat:@"%@\r\n%@\r\n", [event valueForKey:@"type"], time];
+            [emailBody appendFormat:@"<p>%@\r\n%@\r\n</p>", [event valueForKey:@"type"], time];
         }
     }
     
