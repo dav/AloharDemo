@@ -12,4 +12,7 @@
 @interface ADEventHistoryTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 
 - (IBAction)emailLog:(id)sender;
+
+@property (nonatomic, strong)  NSArray *eventsHistory;
+
 @end

@@ -60,6 +60,8 @@
 	
 	<option value="//api/name/currentUserStay">&nbsp;&nbsp;&nbsp;&nbsp;+ currentUserStay</option>
 	
+	<option value="//api/name/customizeApp:withApiKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ customizeApp:withApiKey:</option>
+	
 	<option value="//api/name/deleteStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteStay:completion:</option>
 	
 	<option value="//api/name/getAllPlacesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getAllPlacesWithCompletion:</option>
@@ -67,6 +69,8 @@
 	<option value="//api/name/getDetailsForPlace:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForPlace:completion:</option>
 	
 	<option value="//api/name/getDetailsForStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getDetailsForStay:completion:</option>
+	
+	<option value="//api/name/getPersonalPlacesWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getPersonalPlacesWithCompletion:</option>
 	
 	<option value="//api/name/getPlaceCandidatesForStay:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ getPlaceCandidatesForStay:completion:</option>
 	
@@ -178,6 +182,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUserStay">currentUserStay</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/customizeApp:withApiKey:">customizeApp:withApiKey:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteStay:completion:">deleteStay:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllPlacesWithCompletion:">getAllPlacesWithCompletion:</a></span></li>
@@ -185,6 +191,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForPlace:completion:">getDetailsForPlace:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDetailsForStay:completion:">getDetailsForStay:completion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getPersonalPlacesWithCompletion:">getPersonalPlacesWithCompletion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getPlaceCandidatesForStay:completion:">getPlaceCandidatesForStay:completion:</a></span></li>
 	
@@ -398,6 +406,13 @@ For new user, please use
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/customizeApp:withApiKey:">+&nbsp;customizeApp:withApiKey:</a></code>
+		<span class="tooltip"><p>Load customized configuration for your application if any.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -537,6 +552,13 @@ For new user, please use
 	<span class="tooltip">
 		<code><a href="#//api/name/getDetailsForStay:completion:">+&nbsp;getDetailsForStay:completion:</a></code>
 		<span class="tooltip"><p>Get details for a user stay.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getPersonalPlacesWithCompletion:">+&nbsp;getPersonalPlacesWithCompletion:</a></code>
+		<span class="tooltip"><p>Get all personal places you created.</p></span>
 	</span>
 	
 	
@@ -1144,6 +1166,60 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/customizeApp:withApiKey:" title="customizeApp:withApiKey:"></a>
+	<h3 class="subsubtitle method-title">customizeApp:withApiKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load customized configuration for your application if any.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)customizeApp:(NSString *)<em>appID</em> withApiKey:(NSString *)<em>APIKey</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>appID</em></dt>
+			<dd><p>The AppID assigned for the App</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>APIKey</em></dt>
+			<dd><p>The APIKey assigned to the App.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load customized configuration for your application if any.</p><div class="warning"><p><strong>Warning:</strong> <em>important</em> This method shall be called before any API calls.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/deleteStay:completion:" title="deleteStay:completion:"></a>
 	<h3 class="subsubtitle method-title">deleteStay:completion:</h3>
 	
@@ -1344,6 +1420,55 @@ is NOT a replacement for the current location of native LocationManager.</p></di
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Get details for a user stay.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getPersonalPlacesWithCompletion:" title="getPersonalPlacesWithCompletion:"></a>
+	<h3 class="subsubtitle method-title">getPersonalPlacesWithCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all personal places you created.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)getPersonalPlacesWithCompletion:(void ( ^ ) ( ALResponse *response , NSError *error ))<em>completion</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>This block is called on completion, with either a success <a href="../Classes/ALResponse.html">ALResponse</a> or NSError describing the problem encountered.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get all personal places you created.</p>
 	</div>
 	
 	
@@ -2700,7 +2825,7 @@ For Arrival/Departure events, the NSDictionary has the following key/value pairs
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-10-16)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-11-12)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>ALMobileState Class Reference</title>
+		<title>ALResponse Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">ALMobileState Class Reference</h1>
+				<h1 class="hideInXcode">ALResponse Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,16 +40,15 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/state">&nbsp;&nbsp;&nbsp;&nbsp;state</option>
+	<option value="//api/name/objects">&nbsp;&nbsp;&nbsp;&nbsp;objects</option>
+	
+	<option value="//api/name/requestType">&nbsp;&nbsp;&nbsp;&nbsp;requestType</option>
+	
+	<option value="//api/name/timeStamp">&nbsp;&nbsp;&nbsp;&nbsp;timeStamp</option>
 	
 	
 	
 	
-	
-	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/stateDescription">&nbsp;&nbsp;&nbsp;&nbsp;- stateDescription</option>
 	
 	
 	
@@ -75,26 +74,24 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/state">state</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objects">objects</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestType">requestType</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/timeStamp">timeStamp</a></span></li>
 	
 </ul></li>
 
 
 
 
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stateDescription">stateDescription</a></span></li>
-	
-</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="ALMobileState Class Reference" name="top"></a>
+				<a title="ALResponse Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -103,7 +100,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">ALMobileState Class Reference</h1>
+						<h1 class="title title-header">ALResponse Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -114,7 +111,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">ALMobileState.h<br />ALMobileState.m</td>
+	<td class="specification-value">ALResponse.h<br />ALResponse.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -124,31 +121,30 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>ALMobileState captures the high-level movement <a href="#//api/name/state">state</a> of the user&rsquo;s device.</p>
+						<p>ALResponse class declare a common protocol to process
+<a href="../Classes/Alohar.html">Alohar</a> response.</p>
 
-<p>While <a href="../Classes/ALMotionState.html">ALMotionState</a> provides near-instant motion <a href="#//api/name/state">state</a> of the user&rsquo;s device,
-ALMobileState provides a more stable and reliable indicator of the type of
-action (sitting, walking, driving, etc) the user is currently performing.</p>
+<p>The response has three main parts:</p>
 
-<p>ALMobileState&rsquo;s <a href="#//api/name/state">state</a> is based on data from various sensors, including
-accelerometer, location, and wifi.</p>
+<ul>
+<li><a href="#//api/name/timeStamp">timeStamp</a> The time the response is returned.</li>
+<li><a href="#//api/name/requestType">requestType</a> The type of the request type.</li>
+<li><a href="#//api/name/objects">objects</a> The payload of the response</li>
+</ul>
 
-<p>Imagine you leave your home in the morning, drive 10 minutes to your company campus, and then
-walk to your office. The ALMobileState will capture each major motion <a href="#//api/name/state">state</a>.</p>
 
-<pre><code>Start      (At Home)                          ALMobileStateNotMoving
-~1-2 min   (Leaving home, getting into car)   ALMobileStateSlowMoving
-~10 min    (Driving on Highway to work)       ALMobileStateFastMoving
-~1-2 min   (Park car, walk into work)         ALMobileStateSlowMoving
-end        (At Work)                          ALMobileStateNotMoving
+<p>ALResponse has following request types:</p>
+
+<pre><code>enum {
+    kALRequestTypeUserStays,
+    kALRequestTypePlaces,
+    kALRequestTypeStayDetail,
+    kALRequestTypePlaceDetail,
+    kALRequestTypeCorrectUserStay,
+    kALRequestTypeAddUserStay,
+    kALRequestTypeDeleteUserStay,
+}
 </code></pre>
-
-<p>In general, slow moving is anything like walking or biking or low speed driving.
-Fast moving usually means high speed driving. As opposed to from <a href="../Classes/ALMotionState.html">ALMotionState</a>, ALMobileState
-will skip small <a href="#//api/name/state">state</a> changes in between. For example, if user drives and
-stops at red light for short time, <a href="../Protocols/ALMotionDelegate.html">ALMotionDelegate</a> might surface the stationary
-motion <a href="#//api/name/state">state</a>, but ALMobileStateDelgate will likely treat it as still fast moving and
-skip the change completely.</p><div class="warning"><p><strong>Warning:</strong> This API is still beta quality. Feedback is welcome: developer@alohar.com</p></div>
 					</div>
 					
 					
@@ -166,17 +162,38 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
-		<span class="tooltip"><p>Currently, we support following mobile states:</p></span>
+		<code><a href="#//api/name/timeStamp">&nbsp;&nbsp;timeStamp</a></code>
+		<span class="tooltip"><p>An NSDate that is set to the time the request was received from the server.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/stateDescription">&ndash;&nbsp;stateDescription</a></code>
-		
+		<code><a href="#//api/name/objects">&nbsp;&nbsp;objects</a></code>
+		<span class="tooltip"><p>The objects returned from this call. Depending on the call, this is an NSMutableArray of:</p>
+
+<pre><code> kALRequestTypeUserStays
+     ALUserStay object(s)
+ kALRequestTypePlaces
+     ALPlace object(s)
+ kALRequestTypeStayDetail
+     ALUserStay object(s)
+ kALRequestTypePlaceDetail
+     ALPlace Object(s)
+kALRequestTypeCorrectUserStay
+    ALUserStay object
+kALRequestTypeAddUserStay
+    ALUserStay object
+</code></pre></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestType">&nbsp;&nbsp;requestType</a></code>
+		<span class="tooltip"><p>This is the type identifier for the request. Use this to determine what class of object is in the <a href="#//api/name/objects">objects</a> array.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -192,17 +209,31 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/state" title="state"></a>
-	<h3 class="subsubtitle method-title">state</h3>
+	<a name="//api/name/objects" title="objects"></a>
+	<h3 class="subsubtitle method-title">objects</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Currently, we support following mobile states:</p>
+		<p>The objects returned from this call. Depending on the call, this is an NSMutableArray of:</p>
+
+<pre><code> kALRequestTypeUserStays
+     ALUserStay object(s)
+ kALRequestTypePlaces
+     ALPlace object(s)
+ kALRequestTypeStayDetail
+     ALUserStay object(s)
+ kALRequestTypePlaceDetail
+     ALPlace Object(s)
+kALRequestTypeCorrectUserStay
+    ALUserStay object
+kALRequestTypeAddUserStay
+    ALUserStay object
+</code></pre>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *state</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *objects</code></div>
 	
 	
 	
@@ -213,16 +244,25 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Currently, we support following mobile states:</p>
+		<p>The objects returned from this call. Depending on the call, this is an NSMutableArray of:</p>
 
-<pre><code> ALMobileStateUnknown
-     Initial unknown state
- ALMobileStateNotMoving
-     User is at a user stay. The user may be moving within a place, but is not moving *between* places.
- ALMobileStateSlowMoving
-     User is traveling between user stays at a relatively slow speed like walking, biking or slow driving.
- ALMobileStateFastMoving         
-     Users are moving at high speed like high way driving.
+<pre><code> kALRequestTypeUserStays
+     ALUserStay object(s)
+ kALRequestTypePlaces
+     ALPlace object(s)
+ kALRequestTypeStayDetail
+     ALUserStay object(s)
+ kALRequestTypePlaceDetail
+     ALPlace Object(s)
+kALRequestTypeCorrectUserStay
+    ALUserStay object
+kALRequestTypeAddUserStay
+    ALUserStay object
+</code></pre>
+
+<p>Following calls will return Nil:</p>
+
+<pre><code>kALRequestTypeDeleteUserStay
 </code></pre>
 	</div>
 	
@@ -234,37 +274,36 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ALMobileState.h</code><br />
+		<code class="declared-in-ref">ALResponse.h</code><br />
 	</div>				
 	
 	
 </div>
 						
-					</div>
-					
-					
-					
-					
-					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
 						<div class="section-method">
-	<a name="//api/name/stateDescription" title="stateDescription"></a>
-	<h3 class="subsubtitle method-title">stateDescription</h3>
+	<a name="//api/name/requestType" title="requestType"></a>
+	<h3 class="subsubtitle method-title">requestType</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This is the type identifier for the request. Use this to determine what class of object is in the <a href="#//api/name/objects">objects</a> array.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property ALRequestType requestType</code></div>
 	
 	
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSString *)stateDescription</code></div>
 	
 	
 	
 	
-	
-	
-	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is the type identifier for the request. Use this to determine what class of object is in the <a href="#//api/name/objects">objects</a> array.</p>
+	</div>
 	
 	
 	
@@ -274,13 +313,56 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ALMobileState.h</code><br />
+		<code class="declared-in-ref">ALResponse.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/timeStamp" title="timeStamp"></a>
+	<h3 class="subsubtitle method-title">timeStamp</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An NSDate that is set to the time the request was received from the server.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (strong) NSDate *timeStamp</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An NSDate that is set to the time the request was received from the server.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ALResponse.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
+					
+					
+					
+					
 					
 					
 				</div>
@@ -293,7 +375,7 @@ skip the change completely.</p><div class="warning"><p><strong>Warning:</strong>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-10-16)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-11-12)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -17,6 +17,8 @@
 
 @implementation ADEventHistoryTableViewController
 
+@synthesize eventsHistory;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -59,16 +61,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Alohar userStayLocationHistory].count;
+    return [self.eventsHistory count];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"Event history: %@", [Alohar userStayLocationHistory]);
-
     [self.tableView reloadData];
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,8 +75,8 @@
     ADEventTableViewCell *cell = (ADEventTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[ADEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }  
-    NSDictionary *event = [[Alohar userStayLocationHistory] objectAtIndex:indexPath.row];
+    }
+    NSDictionary *event = [self.eventsHistory objectAtIndex:indexPath.row];
     static NSDateFormatter *dateFormatter;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -86,9 +84,9 @@
     }
 
     NSLog(@"Configuring cell: %@", event);
-    NSDate *d = [[NSDate alloc] initWithTimeIntervalSince1970:[[event valueForKey:@"timestamp"] intValue]];
+    NSString *timestamp = [event valueForKey:@"timestamp"];
     cell.eventLabel.text = [event valueForKey:@"type"];
-    cell.timeLabel.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:d]];
+    cell.timeLabel.text = timestamp;
     if ([[event valueForKey:@"type"] isEqualToString:@"Userstay"]){
         ALUserStay *stay = [event valueForKey:@"stay"];
         cell.detailLabel.text = stay.selectedPlace.name;
@@ -96,9 +94,15 @@
         NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:stay.endTime];
         cell.durationLabel.text = [NSString stringWithFormat:@"%@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
     }else{
-        CLLocation *loc = (CLLocation *)[event valueForKey:@"location"];
-        cell.detailLabel.text = [NSString stringWithFormat:@"(%f,%f)", loc.coordinate.latitude, loc.coordinate.longitude];
-        cell.durationLabel.text = @"";
+        if ([event objectForKey:@"place"] != nil && [event objectForKey:@"place"] != [NSNull null]) {
+            ALPlace *place = (ALPlace *)[event objectForKey:@"place"];
+            cell.detailLabel.text = [NSString stringWithFormat:@"%@", place.name];
+            cell.durationLabel.text = @"";
+        } else {
+            CLLocation *loc = (CLLocation *)[event valueForKey:@"location"];
+            cell.detailLabel.text = [NSString stringWithFormat:@"(%f,%f)", loc.coordinate.latitude, loc.coordinate.longitude];
+            cell.durationLabel.text = @"";
+        }
     }
     
     return cell;
@@ -159,19 +163,18 @@
 - (IBAction)emailLog:(id)sender
 {
     NSMutableString *emailBody = [[NSMutableString alloc] initWithCapacity:0]; 
-    NSArray *history = [Alohar userStayLocationHistory];
+    NSArray *history = self.eventsHistory;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"d h:mma"];
     
     for (NSDictionary *event in history) {
-        NSDate *d = [[NSDate alloc] initWithTimeIntervalSince1970:[[event valueForKey:@"timestamp"] intValue]];
-        NSString *time = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:d]];
+        NSString *time = [event valueForKey:@"timestamp"];
 
         if ([[event valueForKey:@"type"] isEqualToString:@"Userstay"]){
             ALUserStay *stay = [event valueForKey:@"stay"];
-            [emailBody appendFormat:@"%@\r\n%@\r\n%@", [event valueForKey:@"type"], time, stay.description];
+            [emailBody appendFormat:@"<p>%@\r\n%@\r\n%@</p>", [event valueForKey:@"type"], time, stay.description];
         }else{
-            [emailBody appendFormat:@"%@\r\n%@\r\n", [event valueForKey:@"type"], time];
+            [emailBody appendFormat:@"<p>%@\r\n%@\r\n</p>", [event valueForKey:@"type"], time];
         }
     }
     

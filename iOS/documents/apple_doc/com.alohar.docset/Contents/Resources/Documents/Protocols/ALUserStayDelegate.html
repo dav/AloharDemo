@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>ALMotionState Class Reference</title>
+		<title>ALUserStayDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">ALMotionState Class Reference</h1>
+				<h1 class="hideInXcode">ALUserStayDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,18 +38,17 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/state">&nbsp;&nbsp;&nbsp;&nbsp;state</option>
-	
-	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/stateDescription">&nbsp;&nbsp;&nbsp;&nbsp;- stateDescription</option>
+	<option value="//api/name/currentUserStayIdentified:">&nbsp;&nbsp;&nbsp;&nbsp;- currentUserStayIdentified:</option>
+	
+	<option value="//api/name/userArrivedAtPlace:withLocation:">&nbsp;&nbsp;&nbsp;&nbsp;- userArrivedAtPlace:withLocation:</option>
+	
+	<option value="//api/name/userDepartedPlaceWithLocation:">&nbsp;&nbsp;&nbsp;&nbsp;- userDepartedPlaceWithLocation:</option>
 	
 	
 	
@@ -73,19 +72,17 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/state">state</a></span></li>
-	
-</ul></li>
-
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stateDescription">stateDescription</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentUserStayIdentified:">currentUserStayIdentified:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userArrivedAtPlace:withLocation:">userArrivedAtPlace:withLocation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userDepartedPlaceWithLocation:">userDepartedPlaceWithLocation:</a></span></li>
 	
 </ul></li>
 
@@ -94,7 +91,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="ALMotionState Class Reference" name="top"></a>
+				<a title="ALUserStayDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -103,18 +100,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">ALMotionState Class Reference</h1>
+						<h1 class="title title-header">ALUserStayDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
+	<td class="specification-title">Conforms to</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">ALMotionState.h<br />ALMotionState.m</td>
+	<td class="specification-value">Alohar.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -124,9 +121,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>ALMotionState class represents the motion <a href="#//api/name/state">state</a> of the device. The <a href="#//api/name/state">state</a>
-captures the motion <a href="#//api/name/state">state</a> by smoothing raw accecelometer data. These states
-describe smoothed raw motion data. For a higher-level user <a href="#//api/name/state">state</a>, see <a href="../Classes/ALMobileState.html">ALMobileState</a>.</p><div class="warning"><p><strong>Warning:</strong> This API is still beta quality. Feedback is welcome: developer@alohar.com</p></div>
+						<p>Protocol to listen to real time events such as arrival, departure and user stay detection.</p>
 					</div>
 					
 					
@@ -144,15 +139,22 @@ describe smoothed raw motion data. For a higher-level user <a href="#//api/name/
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
-		<span class="tooltip"><p>We support following motion states:</p></span>
+		<code><a href="#//api/name/currentUserStayIdentified:">&ndash;&nbsp;currentUserStayIdentified:</a></code>
+		<span class="tooltip"><p>Callback when a user stay is detected or updated.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/stateDescription">&ndash;&nbsp;stateDescription</a></code>
-		
+		<code><a href="#//api/name/userArrivedAtPlace:withLocation:">&ndash;&nbsp;userArrivedAtPlace:withLocation:</a></code>
+		<span class="tooltip"><p>Callback when an arrival event is detected.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userDepartedPlaceWithLocation:">&ndash;&nbsp;userDepartedPlaceWithLocation:</a></code>
+		<span class="tooltip"><p>Callback when a departure event is detected.</p></span>
 	</span>
 	
 	
@@ -165,23 +167,37 @@ describe smoothed raw motion data. For a higher-level user <a href="#//api/name/
 					
 					
 					
+					
+					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/state" title="state"></a>
-	<h3 class="subsubtitle method-title">state</h3>
+	<a name="//api/name/currentUserStayIdentified:" title="currentUserStayIdentified:"></a>
+	<h3 class="subsubtitle method-title">currentUserStayIdentified:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>We support following motion states:</p>
+		<p>Callback when a user stay is detected or updated.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSNumber *state</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)currentUserStayIdentified:(ALUserStay *)<em>newStay</em></code></div>
 	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>newStay</em></dt>
+			<dd><p>The updated new user stay.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -191,19 +207,7 @@ describe smoothed raw motion data. For a higher-level user <a href="#//api/name/
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>We support following motion states:</p>
-
-<pre><code>ALMotionStateStationary: 
-    The device is not moving. e.g. device is put on desk
-ALMotionStateWalking: 
-    The device is moving with small regular shakes, e.g device in user's pocket when user is walking
-ALMotionStateSmoothMoving: 
-    The device is moving on a smooth surface. e.g. sliding on a desk or driving on highway
-ALMotionStateRotation: 
-    The device has significant movement. e.g Waving or Rotating.
-ALMotionStateNoData: 
-    Initial unknown state.
-</code></pre>
+		<p>Callback when a user stay is detected or updated.</p>
 	</div>
 	
 	
@@ -214,37 +218,52 @@ ALMotionStateNoData:
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ALMotionState.h</code><br />
+		<code class="declared-in-ref">Alohar.h</code><br />
 	</div>				
 	
 	
 </div>
 						
-					</div>
-					
-					
-					
-					
-					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
 						<div class="section-method">
-	<a name="//api/name/stateDescription" title="stateDescription"></a>
-	<h3 class="subsubtitle method-title">stateDescription</h3>
+	<a name="//api/name/userArrivedAtPlace:withLocation:" title="userArrivedAtPlace:withLocation:"></a>
+	<h3 class="subsubtitle method-title">userArrivedAtPlace:withLocation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Callback when an arrival event is detected.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)userArrivedAtPlace:(ALPlace *)<em>personalPlace</em> withLocation:(CLLocation *)<em>location</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>personalPlace</em></dt>
+			<dd><p>The place you arrive. The SDK will only surface personal places, optionally.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>location</em></dt>
+			<dd><p>The centroid of the user&rsquo;s location when the arrival event was triggered.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSString *)stateDescription</code></div>
 	
 	
 	
-	
-	
-	
-	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Callback when an arrival event is detected.</p><div class="warning"><p><strong>Warning:</strong> <em>important</em> The personal place will be set if and only if a)user has created a personal place b)the use&rsquo;s centroid is
+close enough to that personal place&rsquo;s location.</p></div>
+	</div>
 	
 	
 	
@@ -254,7 +273,57 @@ ALMotionStateNoData:
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ALMotionState.h</code><br />
+		<code class="declared-in-ref">Alohar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userDepartedPlaceWithLocation:" title="userDepartedPlaceWithLocation:"></a>
+	<h3 class="subsubtitle method-title">userDepartedPlaceWithLocation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Callback when a departure event is detected.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)userDepartedPlaceWithLocation:(CLLocation *)<em>location</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>location</em></dt>
+			<dd><p>The centroid of the last user stay.
+If no user stay is detected, the centroid of the user&rsquo;s last location is returned.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Callback when a departure event is detected.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Alohar.h</code><br />
 	</div>				
 	
 	
@@ -273,7 +342,7 @@ ALMotionStateNoData:
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-10-16)</span><br />
+						<p><span class="copyright">&copy; 2012 Alohar Mobile. All rights reserved. (Last updated: 2012-11-12)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

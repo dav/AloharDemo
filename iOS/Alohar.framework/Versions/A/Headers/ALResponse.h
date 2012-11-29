@@ -17,6 +17,7 @@ enum {
     kALRequestTypeCorrectUserStay,
     kALRequestTypeAddUserStay,
     kALRequestTypeDeleteUserStay,
+    kALRequestTypePersonalPlaces,
 };
 
 typedef enum {

@@ -1,5 +1,40 @@
 ###Latest Updates###
 
+**11/28/2012**
+
+***iOS SDK v0.3.6***
+
++ Add more real time logs for service life cycle
++ Some real time performance tuning
+
+**11/27/2012**
+
+***iOS SDK V0.3.4***
+
++ bug fixes
+
+**11/21/2012**
+
+***iOS SDK V0.3.3***
+
++ fix one critical bug
++ add more performance log
++ internal enhancement for real time APIs
+
+**11/12/2012**
+
+***iOS SDK V0.3.2***
+
++ add customization hook for different apps
++ enable event log for arrival/departure
++ minor update of Demo App
+
+**10/30/2012**
+
+***iOS SDK V0.3.1***
+
++ change userArrivedAtPlaceWithLocation: to userArrivedAtPlace:withLocation: to return optional personal place.
+
 **10/16/2012**
 
 ***iOS SDK V0.3.0***
