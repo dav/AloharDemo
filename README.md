@@ -2,7 +2,7 @@
 
 **11/28/2012**
 
-***iOS SDK v0.3.5***
+***iOS SDK v0.3.6***
 
 + Add more real time logs for service life cycle
 + Some real time performance tuning
