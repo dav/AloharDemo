@@ -1,5 +1,11 @@
 ###Latest Updates###
 
+**12/1/2012**
+
+***iOS SDK v0.3.7***
+
++ More enhancement for real time apis
+
 **11/28/2012**
 
 ***iOS SDK v0.3.6***
