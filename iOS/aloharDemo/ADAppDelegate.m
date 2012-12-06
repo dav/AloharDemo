@@ -24,6 +24,7 @@
     
     NSString *appID = @"10";
     NSString *apiKey = @"2a2b3446ebd2af25633a9f600c1d8e8aa1d7b463";
+    
     //listen log
     [ALLog setDelegate:self];
     
@@ -38,11 +39,6 @@
         [Alohar setUserStayDelegate:self];
     } else {
 //        //To set a manual uid, use the method below to set the AloharDemoUserID to a custom ID
-//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//            NSString *userToken = @"27f4547b2c586c809a3887658b5270a488184565";
-//            [defaults setObject:userToken forKey:@"AloharDemoUserID"];
-//                    NSString *userToken = @"nexuss.tmo2";   //userId = 21
-//        NSString *userToken = @"8f2f1e165456134c433a11fd09b0dbc45cb05c96";
         NSString *userToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"AloharDemoUserID"];
         if (userToken == nil || userToken.length == 0){
             [Alohar registerWithAppID:appID andAPIKey:apiKey withDelegate:self];
@@ -79,6 +75,10 @@
 - (void)aloharDidFailWithError:(NSError *)error
 {
     NSLog(@"Sorry, there was an error with alohar: %@", error);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to login, please re-try" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    });
 }
 
 							
