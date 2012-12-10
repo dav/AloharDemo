@@ -1,5 +1,23 @@
 ###Latest Updates###
 
+**12/6/2012**
+
+***iOS SDK V0.4.0***
+
++ Add more safety net for real time APIs
+
+**12/3/2012**
+
+***iOS SDK v0.3.9***
+
++ More enhancement for real time APIs.
+
+**12/1/2012**
+
+***iOS SDK v0.3.7***
+
++ More enhancement for real time apis
+
 **11/28/2012**
 
 ***iOS SDK v0.3.6***
